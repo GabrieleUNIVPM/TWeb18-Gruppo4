@@ -6,7 +6,14 @@
           <a href="index"></a>
       </div>
       <div id="menubar">
-          <ul id="menu"><li class="selected"><a href="index">Home</a></li>
+          <ul id="menu"><li class="selected"><a href="
+                         <?= $this->url(array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" >Home</a></li>
           <li><a href="Partner.html">Partner</a></li>
           <li><a href="Eventi.html">Catalogo Eventi</a></li>
           <li><a href="Contatti.html">Contattaci</a></li>

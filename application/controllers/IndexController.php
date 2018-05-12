@@ -2,15 +2,20 @@
 
 class IndexController extends Zend_Controller_Action
 {
+    protected $_publicModel;
+    protected $_form;
+    protected $_form1;
+    // protected $_logger;
 
     public function init()
     {
-        /* Initialize action controller here */
+        $this->_publicModel = new Application_Model_Public();  // model da fare
+        
     }
 
     public function indexAction()
     {
-        // action body
+        
     }
 
 
