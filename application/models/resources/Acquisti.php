@@ -10,3 +10,5 @@ class Application_Resource_Acquisti extends Zend_Db_Table_Abstract
     {
         
     }
+    
+}

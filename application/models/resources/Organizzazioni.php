@@ -10,3 +10,4 @@ class Application_Resource_Organizzazioni extends Zend_Db_Table_Abstract
     {
         
     }
+}

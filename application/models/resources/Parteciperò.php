@@ -10,3 +10,4 @@ class Application_Resource_Parteciperò extends Zend_Db_Table_Abstract
     {
         
     }
+}
