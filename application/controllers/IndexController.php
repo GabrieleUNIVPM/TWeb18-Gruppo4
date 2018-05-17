@@ -10,12 +10,12 @@ class IndexController extends Zend_Controller_Action
     public function init()
     {
        // $this->_publicModel = new Application_Model_Public();  // model da fare
-        
+        $this->_helper->layout->setLayout('main');    
     }
 
     public function indexAction()
     {
-        
+
     }
 
 
