@@ -15,13 +15,14 @@
       <div id="menubar">
           <?= $this->render('_menubar.phtml') ?>
       </div>
+        <div id="site_content">
+            <?php echo $this->layout()->content; ?>
+        </div>
     </div>
   </div>
 
- <div id="footer">
-	<br>
-	<p>TicketTo</p>
-</div>
-</body>
+    <footer id="footer">
+	<p>© 2018 Ticketo.it</p>
+    </footer>
 </html>
 
