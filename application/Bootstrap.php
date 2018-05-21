@@ -14,7 +14,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $this->bootstrap('view');
         $this->_view = $this->getResource('view');
-        $this->_view->headTitle('TicketTo');
+        $this->_view->headTitle('TickeTo');
         $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/style.css'));
     }
 
