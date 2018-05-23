@@ -1,7 +1,7 @@
 <ul id="menu">
           <li class="selected"><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'index',
                         ), 
                         'default',true
@@ -10,7 +10,7 @@
               </li>
                      <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'viewstatic',
                         'staticPage' => 'catalogo', 
                         ), 
@@ -20,7 +20,7 @@
               </li>
                      <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'viewstatic',
                         'staticPage' => 'partner', 
                         ), 
@@ -30,7 +30,7 @@
               </li>
                      <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'viewstatic',
                         'staticPage' => 'where', 
                         ), 
@@ -40,7 +40,7 @@
               </li>
                <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'viewstatic',
                         'staticPage' => 'who', 
                         ), 
@@ -48,9 +48,18 @@
                     ); 
                  ?>" >Chi siamo</a>
               </li>
+                             <li><a href="
+                         <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'faq', 
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" >FAQ</a>
+              </li>
                      <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'index',
+                        'controller' => 'public',
                         'action'     => 'viewstatic',
                         'staticPage' => 'login', 
                         ), 
