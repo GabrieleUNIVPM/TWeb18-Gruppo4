@@ -3,30 +3,30 @@
 class Application_Resource_Utenti extends Zend_Db_Table_Abstract
 {
     protected $_name     = 'utenti';
-    protected $_primary  = 'username';
+    protected $_primary  = 'id_U';
     protected $_rowClass = 'Application_Resource_Utenti_Item';
     
     public function init ()       
     {
     }
     
-    public function getElement($key)
+    public function getUtente($key)
     {
         return $this->fetchRow($this->select()->where('username = ?', $key));
     }
     
-    public function getTable($paged=null)
+    public function getUtenti($paged=null)
     {
         
         
     }
     
-    public function addElement($el)
+    public function salvaUtente($el)
     {
         $this->insert($el);
     }
     
-    public function deleteElement ($key)
+    public function cancellaUtente ($key)
     {
         return $this->delete('username =' . $key.'"');
     }

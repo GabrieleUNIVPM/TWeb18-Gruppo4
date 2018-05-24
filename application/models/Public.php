@@ -41,4 +41,9 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Utenti')->getUtenti();
     }
     
+    public function salvaUtente($utente)
+    {
+        return $this->getResource('Utenti')->salvaUtente($utente);
+    }
+    
 }

@@ -1,20 +1,15 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-class Application_Form_Public_Registrati extends Zend_Form
+class Application_Form_Public_Registra extends Zend_Form
 {
-    // protected $_publicModel;
+    
+     protected $_publicModel;
     
     public function init() 
     {
-        // $this->_publicModel = new Application_Model_Public();
+        $this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
-        $this->setName('registrati');
+        $this->setName('registra');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
         
@@ -32,13 +27,13 @@ class Application_Form_Public_Registrati extends Zend_Form
             'validators' => array('Alpha',array('StringLength',true, array(1,20))),
 		));
         
-        $this->addElement('text', 'genere', array(
+        $this->addElement('select', 'genere', array(
             'label' => 'Genere',
             'filters' => array('StringTrim'),
             'required' => true,
             'multiOptions' => array(
-                         'M' => 'Maschile',
-                         'F' => 'Femminile',
+                         'M' => 'Maschio',
+                         'F' => 'Femmina',
                          ),
                 ));
         
@@ -46,7 +41,7 @@ class Application_Form_Public_Registrati extends Zend_Form
             'label' => 'Nato il',
             'filters' => array('StringTrim'),
             'required' => true,
-           // 'validators' => array('data',array('StringLength',true, array(1,20))),
+            'validators' => array (array('date', false, array('dd/MM/yyyy'))),
 		));
         
         $this->addElement('text', 'email', array(
@@ -73,7 +68,7 @@ class Application_Form_Public_Registrati extends Zend_Form
             'validators' => array('Alnum',array('StringLength',true, array(4,15))),
 		));
         
-        $this->addElement('hidden', 'ruolo', array(
+        $this->addElement('select', 'ruolo', array(
             'value' => 'user',
                 ));
         

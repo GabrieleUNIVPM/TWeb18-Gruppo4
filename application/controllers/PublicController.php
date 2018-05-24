@@ -4,14 +4,15 @@ class PublicController extends Zend_Controller_Action
 {
     protected $_publicModel;
     protected $_form;
-    protected $_form1;
-    //protected $_logger;
+    protected $_formreg;
+    protected $_logger;
 
     public function init()
     {
         $this->_publicModel = new Application_Model_Public();
         $this->_helper->layout->setLayout('layout');
         $this->view->loginForm = $this->getLoginForm();
+        $this->view->registraForm = $this->getRegistraForm();
     }
 
     public function indexAction()
@@ -65,5 +66,44 @@ class PublicController extends Zend_Controller_Action
         $organizzazioni=$this->_publicModel->getOrganizzazioni($key);
         $this->view->assign(array('Organizzazioni' => $organizzazioni));
     }
-
+    
+    private function getRegistraForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->_formreg = new Application_Form_Public_Registra();
+    		$this->_formreg->setAction($urlHelper->url(array(
+			'controller' => 'public',
+			'action' => 'registra'),
+			'default'
+		));
+		return $this->_formreg;
+    }
+    
+    public function registraAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+			//$this->_helper->redirector('index','public');
+	}
+	$form = $this->_formreg;
+	if (!$form->isValid($_POST)) {
+			return $this->render('registra');
+	}
+	$values = $form->getValues();
+        $this->_publicModel->salvaUtente($values);
+	$this->_helper->redirector('login','public');
+    }
+    
+ /*   public function regAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+	}
+	$form = $this->_formreg;
+	if (!$form->isValid($_POST)) {
+			return $this->render('registra');
+	}
+	$values = $form->getValues();
+        $this->_publicModel->saveUtente($values);
+	$this->_helper->redirector('login','public');
+    } */
 }

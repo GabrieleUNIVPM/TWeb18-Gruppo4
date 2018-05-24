@@ -5,7 +5,7 @@ class UserController extends Zend_Controller_Action
     public function init()
     {
 		$this->_helper->layout->setLayout('user');
-		$this->_authService = new Application_Service_Auth();
+	//	$this->_authService = new Application_Service_Auth();
     }
 
     public function indexAction()
@@ -13,7 +13,7 @@ class UserController extends Zend_Controller_Action
 
     public function logoutAction()
 	{
-		$this->_authService->clear();
+	//	$this->_authService->clear();
 		return $this->_helper->redirector('index','public');	
 	}
     
