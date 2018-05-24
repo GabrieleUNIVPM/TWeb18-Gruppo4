@@ -2,8 +2,8 @@
     <h1>Catalogo Organizzatori</h1>
     <ul>
         <?php foreach ($this->Organizzazioni as $type){ 
-          echo "<table><th colspan=2>$type->nome</th>";
-	  echo '<tr><img src="/../../../../public/css/images/logo.png"><td></td>'; 
+          echo "<table class=elenco><th colspan=2>$type->nome</th>";
+	  echo '<tr><td><img src="../../css/images/virginradio.png" width=100 height=></td>'; 
           echo "<td><p>$type->descrizione</p>"; 
           echo "<p>Missione: $type->missione"; 
           echo "<br>Recapito: $type->recapiti</p></td></tr></table>";
