@@ -12,7 +12,6 @@
 	  echo "<li> $type->tipologia </li>"?>
         </ul></div>
  <?php if($this->products instanceof Zend_Paginator) {
-	  		echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
-	  } 
-          ?>
+    echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
+}?>
 

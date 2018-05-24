@@ -21,9 +21,9 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Faq')->getFaq();
     }
        
-    public function getOrganizzazioni()
+    public function getOrganizzazioni($key)
     {
-        return $this->getResource('Organizzazioni')->getOrganizzazioni();
+        return $this->getResource('Organizzazioni')->getOrganizzazioni($key);
     }    
     
     public function getPartecipazioni()

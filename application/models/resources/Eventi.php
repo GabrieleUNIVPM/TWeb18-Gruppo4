@@ -12,8 +12,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     }
     public function getEventi($key)
     {
-        $select = $this->select()
-                       ;
+        $select = $this->select();
         return $this->fetchAll($select);
     }
     

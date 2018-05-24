@@ -13,3 +13,6 @@
         }?>
     </ul>
 </div>
+<?php if($this->products instanceof Zend_Paginator) {
+    echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
+}?>

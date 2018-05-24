@@ -1,0 +1,17 @@
+<div id="content">
+    <h1>Catalogo Organizzatori</h1>
+    <ul>
+        <?php foreach ($this->Organizzazioni as $type){ 
+	  echo "<h2>$type->nome</h2>"; 
+          echo "<p>$type->descrizione</p>"; 
+          echo "<br>Missione: $type->missione"; 
+          echo "<br>Recapito: $type->recapiti";
+          echo '<hr>';
+          
+
+        }?>
+    </ul>
+</div>
+<?php if($this->products instanceof Zend_Paginator) {
+    echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
+}?>
