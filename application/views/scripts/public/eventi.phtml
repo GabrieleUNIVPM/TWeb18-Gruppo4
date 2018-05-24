@@ -3,14 +3,15 @@
 
     <ul>
         <?php foreach ($this->Eventi as $type){ 
-	  echo "<h1>$type->nome</h1>"; 
-          echo "<br>$type->descrizione";
-          echo "<br>$type->programma";
-          echo "<br>Data :$type->data";
-          echo "<br>Orario di inizio :$type->orario";
-          echo "<br>Luogo :$type->luogo";
-          echo "<br>Prezzo :$type->prezzo";
-        }?>
+          echo "<table class=elenco><th colspan=2>$type->nome</th>";
+	  echo '<tr><td><img src="../../css/images/vascorossi.png" width=100 height=></td>'; 
+          echo "<td><p>$type->descrizione</p>";
+          echo "Prezzo: $type->prezzo";
+          echo "<br>Luogo: $type->luogo"; 
+          echo "<br>Data: $type->data";
+          echo "<br>Orario di inizio: $type->orario</p></td></tr></table>";
+          echo '<hr>';}
+          ?>
     </ul>
 </div>
 <?php if($this->products instanceof Zend_Paginator) {
