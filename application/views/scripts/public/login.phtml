@@ -1,5 +1,13 @@
     <div class="content">
     <h2>Login o registrati</h2>
     <p>Utilizza questa form per l'autenticazione</p>
-    <?=$this->loginForm; ?>
+    <?=$this->loginForm;?>
+    <a href="
+                         <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'registra',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" >Non sei registrato? Registrati qui</a>
     </div>
