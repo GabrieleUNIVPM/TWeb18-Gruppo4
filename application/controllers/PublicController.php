@@ -39,5 +39,11 @@ class PublicController extends Zend_Controller_Action
             		)
         );
     }
+    public function eventiAction()
+    {
+        $key= $this->_getParam('getEventi', null);
+        $eventi=$this->_publicModel->getEventi($key);
+        $this->view->assign(array('Eventi' => $eventi));
+    }
 
 }

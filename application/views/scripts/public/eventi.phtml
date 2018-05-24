@@ -1,0 +1,15 @@
+<div id="content">
+<h2>Catalogo Eventi</h2>
+
+    <ul>
+        <?php foreach ($this->Eventi as $type){ 
+	  echo "<h1>$type->nome</h1>"; 
+          echo "<br>$type->descrizione";
+          echo "<br>$type->programma";
+          echo "<br>Data :$type->data";
+          echo "<br>Orario di inizio :$type->orario";
+          echo "<br>Luogo :$type->luogo";
+          echo "<br>Prezzo :$type->prezzo";
+        }?>
+    </ul>
+</div>

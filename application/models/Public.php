@@ -11,9 +11,9 @@ class Application_Model_Public extends App_Model_Abstract
     {
 		return $this->getResource('Tipoeventi')->getTipoEventi($key);
     }
-    public function getEventi()
+    public function getEventi($key)
     {
-        return $this->getResource('Eventi')->getEventi();
+        return $this->getResource('Eventi')->getEventi($key);
     }
 
     public function getFaq()
