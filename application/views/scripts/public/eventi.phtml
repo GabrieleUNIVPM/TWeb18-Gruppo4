@@ -1,19 +1,28 @@
-<div id="content">
 <h2>Catalogo Eventi</h2>
+<div class="sidebar">
+    <form method="post" action="#" id="search_form">
+          <input class="search" type="text" name="search_field" placeholder="Cerca...">
+        </form>
+</div>
 
-    <ul>
+    
         <?php foreach ($this->Eventi as $type){ 
-          echo "<table class=elenco><th colspan=2>$type->nome</th>";
-	  echo '<tr><td><img src="../../css/images/vascorossi.png" width=100 height=></td>'; 
+          echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
+          $more=$this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'evento',
+                        ), 
+                        'default',true
+                    );
+	  echo "<tr><td><img src=$type->immagine></td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
-          echo "<br>Orario di inizio: $type->orario</p></td></tr></table>";
-          echo '<hr>';}
+          echo "<br>Orario di inizio: $type->orario</p>";
+          echo "<a href=$more>Clicca qui per saperne di più</a></td></tr></table></div>";}
           ?>
-    </ul>
-</div>
+
 <?php if($this->products instanceof Zend_Paginator) {
     echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
-}?>
+}

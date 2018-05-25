@@ -1,0 +1,18 @@
+<div id="content">
+    <ul>
+        <?php foreach ($this->Eventi as $type){
+          echo "<h2>$type->nome</h2>";
+	  echo "<img src=$type->immagine>"; 
+          echo "<p>$type->descrizione</p>";
+          echo "Programma:<p>$type->programma</p>";
+          echo "Prezzo: $type->prezzo";
+          echo "<br>Luogo: $type->luogo"; 
+          echo "<br>Data: $type->data";
+          echo "<br>Orario di inizio: $type->orario</p>";
+          echo "<iframe src=$type->mappa width='528px' height='400px'></iframe>";
+          break;//In questo modo stampa solo il primo evento della tabella
+          //dobbiamo far in modo da passargli quello collegato all'ancora su cui ha premuto
+          }
+          ?>
+    </ul>
+</div>

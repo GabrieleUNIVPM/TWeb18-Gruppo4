@@ -277,7 +277,8 @@ table.elenco
 
 table
 {margin: 10px 0 30px 0;
- border-collapse: collapse;}
+ border-collapse: collapse;
+}
 
 table tr th, table tr td
 { background: #3B3B3B;
@@ -294,6 +295,10 @@ table tr td
 td.button, td.errors
 {background:none;}
 
+.tabella
+{width: 70%;}
+
 img
 { width: 100px;
-  height: 100px;}
+  height: 100px;
+}
