@@ -11,26 +11,79 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $this->addElement('text', 'name', array(
-            'label' => 'Nome',
+        $this->addElement('text', 'nome', array(
+            'label' => 'Nome Evento',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
         
-        $categories = array();
-        $cats = $this->_adminModel->getSubCats();
-        foreach ($cats as $cat) {
-        	$categories[$cat -> catId] = $cat->name;       
+        $tipologia = array();
+        $tip = $this->_adminModel->getTipoEventi();
+        foreach ($tip as $cat) {
+        	$tipologia[$cat -> id_TE] = $cat->tipologia;       
         }
-        $this->addElement('select', 'catId', array(
+        
+        $this->addElement('select', 'id_TE', array(
             'label' => 'Categoria',
             'required' => true,
-        	'multiOptions' => $categories,
+            'multiOptions' => $tipologia,
             'decorators' => $this->elementDecorators,
         ));
-
+        $this->addElement('text', 'descrizione', array(
+            'label' => 'Descrizione',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+        $this->addElement('text', 'data', array(
+            'label' => 'Data',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+        $this->addElement('text', 'orario', array(
+            'label' => 'Orario',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+         $this->addElement('text', 'luogo', array(
+            'label' => 'Luogo',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+         $this->addElement('text', 'numerobiglietti', array(
+            'label' => 'Biglietti disponibili',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+         $this->addElement('text', 'prezzo', array(
+            'label' => 'Prezzo biglietto',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,25))),
+            'decorators' => $this->elementDecorators,
+        ));
+        $this->addElement('textarea', 'programma', array(
+            'label' => 'Descrizione Estesa',
+        	'cols' => '60', 'rows' => '20',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,2500))),
+            'decorators' => $this->elementDecorators,
+        ));
+        
+        
+/*
         $this->addElement('file', 'image', array(
         	'label' => 'Immagine',
         	'destination' => APPLICATION_PATH . '/../public/images/products',
@@ -78,10 +131,10 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,2500))),
             'decorators' => $this->elementDecorators,
-        ));
+        ));*/
 
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Prodotto',
+            'label' => 'Aggiungi Evento',
         	'decorators' => $this->buttonDecorators,
         ));
         
