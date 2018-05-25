@@ -18,15 +18,21 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-        $this->addElement('text', 'tipologia', array(
-            'label' => 'Tipologia Evento',
-            'filters' => array('StringTrim'),
+        
+        $tipologia = array();
+        $tip = $this->_adminModel->getTipoEventi();
+        foreach ($tip as $cat) {
+        	$tipologia[$cat -> id_TE] = $cat->tipologia;       
+        }
+        
+        $this->addElement('select', 'id_TE', array(
+            'label' => 'Categoria',
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'multiOptions' => $tipologia,
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'descrizione', array(
-            'label' => 'Tipologia Evento',
+            'label' => 'Descrizione',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
@@ -76,18 +82,8 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
         ));
         
-        /*$categories = array();
-        $cats = $this->_adminModel->getTipologia();
-        foreach ($cats as $cat) {
-        	$categories[$cat -> catId] = $cat->name;       
-        }
-        $this->addElement('select', 'catId', array(
-            'label' => 'Categoria',
-            'required' => true,
-        	'multiOptions' => $categories,
-            'decorators' => $this->elementDecorators,
-        ));
-
+        
+/*
         $this->addElement('file', 'image', array(
         	'label' => 'Immagine',
         	'destination' => APPLICATION_PATH . '/../public/images/products',

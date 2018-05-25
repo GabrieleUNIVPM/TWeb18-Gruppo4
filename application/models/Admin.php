@@ -7,9 +7,9 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     }
 
-    public function getTipologia()
+    public function getTipoEventi()
     {
-        return $this->getResource('Tipologia')->getTipologia();
+	return $this->getResource('Tipoeventi')->getTipoEventi();
     }
     
     public function saveProduct($info)
