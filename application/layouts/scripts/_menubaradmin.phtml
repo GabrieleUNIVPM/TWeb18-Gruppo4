@@ -1,7 +1,7 @@
 <ul id="menu">
           <li class="selected"><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'admin',
                         'action'     => 'index',
                         ), 
                         'default',true
@@ -10,12 +10,12 @@
               </li>
                      <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'eventi'
+                        'controller' => 'admin',
+                        'action'     => 'newproduct'
                         ), 
                         'default',true
                     ); 
-                 ?>" >Catalogo</a>
+                 ?>" >Inserisci</a>
               </li>
                      <li><a href="
                          <?= $this->url(array(
@@ -58,20 +58,10 @@
                      <li><a href="
                          <?= $this->url(array(
                         'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'login', 
+                        'action'     => 'index'
                         ), 
                         'default',true
                     ); 
-                 ?>" >Login</a>
-              </li>
-              <li><a href="
-                         <?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'index' 
-                        ), 
-                        'default',true
-                    ); 
-                 ?>" >Amministratore</a>
+                 ?>" >Logout</a>
               </li>
 </ul>
