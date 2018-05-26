@@ -102,7 +102,7 @@ class PublicController extends Zend_Controller_Action
 	$values = $form->getValues();
         $this->_publicModel->salvaUtente($values);
 	$this->_helper->redirector('login','public');
-    } */
+    }
      public function loginAction()
     {}
 
