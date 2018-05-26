@@ -25,7 +25,7 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         	$tipologia[$cat -> id_TE] = $cat->tipologia;       
         }
         
-        $this->addElement('select', 'id_TE', array(
+        $this->addElement('select', 'tipologia', array(
             'label' => 'Categoria',
             'required' => true,
             'multiOptions' => $tipologia,
@@ -59,11 +59,11 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-         $this->addElement('text', 'numerobiglietti', array(
+         $this->addElement('text', 'numero biglietti', array(
             'label' => 'Biglietti disponibili',
             'filters' => array('StringTrim'),
-            'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'required' => false,
+            
             'decorators' => $this->elementDecorators,
         ));
          $this->addElement('text', 'prezzo', array(
@@ -73,6 +73,16 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
+          $this->addElement('file', 'immagine', array(
+        	'label' => 'Immagine',
+        	'destination' => APPLICATION_PATH . '/../public/css/images',
+        	'validators' => array( 
+        			array('Count', false, 1),
+        			array('Size', false, 1024000),
+        			array('Extension', false, array('jpg', 'gif'))),
+            'decorators' => $this->fileDecorators,
+        			));
+               
         $this->addElement('textarea', 'programma', array(
             'label' => 'Descrizione Estesa',
         	'cols' => '60', 'rows' => '20',
@@ -83,18 +93,9 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         ));
         
         
-/*
-        $this->addElement('file', 'image', array(
-        	'label' => 'Immagine',
-        	'destination' => APPLICATION_PATH . '/../public/images/products',
-        	'validators' => array( 
-        			array('Count', false, 1),
-        			array('Size', false, 102400),
-        			array('Extension', false, array('jpg', 'gif'))),
-            'decorators' => $this->fileDecorators,
-        			));
-               
-        $this->addElement('text', 'descShort', array(
+
+       
+    /*    $this->addElement('text', 'descShort', array(
             'label' => 'Descrizione Breve',
             'required' => true,
             'filters' => array('StringTrim'),

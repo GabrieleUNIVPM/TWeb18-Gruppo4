@@ -15,5 +15,8 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
         $select = $this->select();
         return $this->fetchAll($select);
     }
-    
+    public function insertProduct($info)
+    {
+    	$this->insert($info);
+    }
 }

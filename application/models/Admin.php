@@ -14,12 +14,12 @@ class Application_Model_Admin extends App_Model_Abstract
     
     public function saveProduct($info)
     {
-    	return $this->getResource('Product')->insertProduct($info);
+    	return $this->getResource('Eventi')->insertProduct($info);
     }
     
-    public function getUserByName($info)
+    public function getUtente($info)//user by name
     {
-    	return $this->getResource('User')->getUserByName($info);
+    	return $this->getResource('Utenti')->getUtente($info);
     }
 
 }
