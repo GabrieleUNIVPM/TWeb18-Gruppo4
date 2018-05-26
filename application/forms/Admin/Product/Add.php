@@ -26,13 +26,14 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         }
         
         $this->addElement('select', 'tipologia', array(
-            'label' => 'Categoria',
+            'label' => 'Tipologia',
             'required' => true,
             'multiOptions' => $tipologia,
             'decorators' => $this->elementDecorators,
         ));
-        $this->addElement('text', 'descrizione', array(
+        $this->addElement('textarea', 'descrizione', array(
             'label' => 'Descrizione',
+            'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
@@ -60,10 +61,9 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
         ));
          $this->addElement('text', 'numero biglietti', array(
-            'label' => 'Biglietti disponibili',
+            'label' => 'Numero Biglietti',
             'filters' => array('StringTrim'),
             'required' => false,
-            
             'decorators' => $this->elementDecorators,
         ));
          $this->addElement('text', 'prezzo', array(
@@ -84,11 +84,26 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         			));
                
         $this->addElement('textarea', 'programma', array(
-            'label' => 'Descrizione Estesa',
-        	'cols' => '60', 'rows' => '20',
+            'label' => 'Programma',
+            'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,2500))),
+            'decorators' => $this->elementDecorators,
+        ));
+        
+        $this->addElement('text', 'sconto',array(
+            'label' => 'Sconto (%)',
+            'value' => 0,
+            'required' => true,
+            'validators' => array('Int'),
+            'decorators' => $this->elementDecorators,
+        ));
+         $this->addElement('textarea', 'mappa', array(
+            'label' => 'Link Maps',
+            'cols' => '22', 'rows' => '3',
+            'filters' => array('StringTrim'),
+            'required' => false,
             'decorators' => $this->elementDecorators,
         ));
         
@@ -108,14 +123,6 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'validators' => array(array('Float', true, array('locale' => 'en_US'))),
-            'decorators' => $this->elementDecorators,
-        ));
-
-        $this->addElement('text', 'discountPerc',array(
-            'label' => 'Sconto (%)',
-            'value' => 0,
-            'required' => true,
-            'validators' => array('Int'),
             'decorators' => $this->elementDecorators,
         ));
 
