@@ -11,9 +11,10 @@
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
           echo "<br>Orario di inizio: $type->orario</p>";
+          //echo "<br>Evento organizzato da: $type->organizzatore</p>";
+          //echo "<br><b>$type->partecipazioni sono interessate a partecipare</b>"; qua va fatta la query che calcola quanti partecipazioni sono collegate all'evento
           echo "<iframe src=$type->mappa width='528px' height='400px'></iframe>";
-          break;//In questo modo stampa solo il primo evento della tabella
-          //dobbiamo far in modo da passargli quello collegato all'ancora su cui ha premuto
+          break;//In questo modo stampa solo il primo evento della tabella, dobbiamo far in modo da passargli quello collegato all'ancora su cui ha premuto
           }
           ?>
     </ul>
