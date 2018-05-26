@@ -1,11 +1,11 @@
 <?php
-class Application_Form_Admin_Product_Add extends App_Form_Abstract
+class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
 {
-	protected $_adminModel;
+	protected $_organizzazioniModel;
     
     public function init()
     {
-    	$this->_adminModel = new Application_Model_Admin();
+    	$this->_organizzazioniModel = new Application_Model_Admin();
         $this->setMethod('post');
         $this->setName('addproduct');
         $this->setAction('');
@@ -20,7 +20,7 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
         ));
         
         $tipologia = array();
-        $tip = $this->_adminModel->getTipoEventi();
+        $tip = $this->_organizzazioniModel->getTipoEventi();
         foreach ($tip as $cat) {
         	$tipologia[$cat -> id_TE] = $cat->tipologia;       
         }
@@ -106,6 +106,40 @@ class Application_Form_Admin_Product_Add extends App_Form_Abstract
             'required' => false,
             'decorators' => $this->elementDecorators,
         ));
+        
+        
+
+       
+    /*    $this->addElement('text', 'descShort', array(
+            'label' => 'Descrizione Breve',
+            'required' => true,
+            'filters' => array('StringTrim'),
+            'validators' => array(array('StringLength',true, array(1,30))),
+            'decorators' => $this->elementDecorators,
+        ));
+        
+        $this->addElement('text', 'price', array(
+            'label' => 'Prezzo',
+            'required' => true,
+            'filters' => array('LocalizedToNormalized'),
+            'validators' => array(array('Float', true, array('locale' => 'en_US'))),
+            'decorators' => $this->elementDecorators,
+        ));
+
+        $this->addElement('select', 'discounted', array(
+            'label' => 'In Sconto',
+            'multiOptions' => array('1' => 'Si', '0' => 'No'),
+            'decorators' => $this->elementDecorators,
+        ));
+
+        $this->addElement('textarea', 'descLong', array(
+            'label' => 'Descrizione Estesa',
+        	'cols' => '60', 'rows' => '20',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array(array('StringLength',true, array(1,2500))),
+            'decorators' => $this->elementDecorators,
+        ));*/
 
         $this->addElement('submit', 'add', array(
             'label' => 'Aggiungi Evento',
