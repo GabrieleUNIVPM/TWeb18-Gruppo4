@@ -5,7 +5,7 @@ class PartnerController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_helper->layout->setLayout('partner');  
+        $this->_helper->layout->setLayout('laypartner');  
      	$this->view->productForm = $this->getProductForm();  
         $this->_organizzazioniModel = new Application_Model_Organizzazioni();        
          $this->_authService = new Application_Service_Auth();

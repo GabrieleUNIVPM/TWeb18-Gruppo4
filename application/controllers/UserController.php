@@ -8,7 +8,7 @@ class UserController extends Zend_Controller_Action
     
     public function init()
     {
-        $this->_helper->layout->setLayout('layout');
+        $this->_helper->layout->setLayout('layuser');
         
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;

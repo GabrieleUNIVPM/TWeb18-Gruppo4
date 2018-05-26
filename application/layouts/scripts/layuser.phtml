@@ -13,10 +13,22 @@
       <div id="logo">
       </div>
       <div id="menubar">
-          <?= $this->render('_menubarpartner.phtml') ?>
+          <?= $this->render('_menubar.phtml') ?>
       </div>
     </div>
         <div id="site_content">
+            <div class="sidebar">
+                <br><a>ciao</a>
+                <br><a>ciao</a>
+                <br><a class="" href="<?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'index',
+                      //  'username'   => $this->utente->username,
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">Profilo</a>
+      </div>
             <?php echo $this->layout()->content; ?>
         </div>
   </div>
@@ -24,4 +36,3 @@
         <p>© 2018 Ticketo.it</p>
     </footer>
 </html>
-

@@ -9,7 +9,7 @@ class AdminController extends Zend_Controller_Action
 	
     public function init()
     {
-    	$this->_helper->layout->setLayout('admin');   	
+    	$this->_helper->layout->setLayout('layadmin');   	
         $this->_adminModel = new Application_Model_Admin();
   	
         $this->_authService = new Application_Service_Auth();
