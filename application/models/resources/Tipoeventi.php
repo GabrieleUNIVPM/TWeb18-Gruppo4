@@ -11,12 +11,12 @@ class Application_Resource_Tipoeventi extends Zend_Db_Table_Abstract
         
     }
     
-    public function getTipoEvento()
+    public function getTipoEvento($key)
     {
          return $this->fetchRow($this->select()->where('id_TE = ?', $key));
     }
     
-    public function getTipoEventi($key)
+    public function getTipoEventi()
     {
         $select = $this->select()->order('id_TE');
         return $this->fetchAll($select);
