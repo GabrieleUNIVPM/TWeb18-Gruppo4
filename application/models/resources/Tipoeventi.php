@@ -10,10 +10,25 @@ class Application_Resource_Tipoeventi extends Zend_Db_Table_Abstract
     {
         
     }
-        public function getTipoEventi()
+    
+    public function getTipoEvento()
     {
-        $select = $this->select()
-                       ->order('tipologia');
+         return $this->fetchRow($this->select()->where('id_TE = ?', $key));
+    }
+    
+    public function getTipoEventi($key)
+    {
+        $select = $this->select()->order('id_TE');
         return $this->fetchAll($select);
+    }
+    
+    public function addElement($el)
+    {
+    	$this->insert($el);
+    }
+    
+    public function deleteElement($key)
+    {
+        return $this->delete('id_TE = ?', $key);
     }
 }
