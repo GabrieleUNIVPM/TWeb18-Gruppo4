@@ -112,7 +112,9 @@ class PublicController extends Zend_Controller_Action
 	$this->_helper->redirector('login','public');
     }
      public function loginAction()
-    {}
+    {
+         
+    }
 
     public function authenticateAction()
 	{        
@@ -135,12 +137,12 @@ class PublicController extends Zend_Controller_Action
         private function getLoginForm()
     {
     		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Public_Auth_Login();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_formlogin = new Application_Form_Public_Auth_Login();
+    		$this->_formlogin->setAction($urlHelper->url(array(
 			'controller' => 'public',
 			'action' => 'authenticate'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_formlogin;
     }
 }

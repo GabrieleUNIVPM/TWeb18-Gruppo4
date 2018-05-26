@@ -28,7 +28,7 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
 
-        $this->addElement('submit', 'login', array(
+        $this->addElement('submit', 'entra', array(
             'label'    => 'Login',
             'decorators' => $this->buttonDecorators,
         ));

@@ -12,11 +12,15 @@ class AdminController extends Zend_Controller_Action
     	$this->_helper->layout->setLayout('admin');   	
         $this->_adminModel = new Application_Model_Admin();
      	$this->view->productForm = $this->getProductForm();    	
-        $this->_authService = new Application_Service_Auth();       
+        $this->_authService = new Application_Service_Auth();
+        $ruolo = $this->_authService->getIdentity()->ruolo;
+        $this->view->assign(array('ruolo' => $ruolo));
     }
 
     public function indexAction()
-    {}
+    {
+        
+    }
     
 	public function logoutAction()
 	{
