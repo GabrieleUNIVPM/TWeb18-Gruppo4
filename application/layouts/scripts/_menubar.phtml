@@ -54,8 +54,41 @@
                         'default',true
                     ); 
                  ?>" >FAQ</a>
-              </li>
-                     <li><a href="
+              <?php if($this->ruolo == 'user'):?>         
+         <li class=""><a href="
+                         <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+                 >Area Utente</a></li>  
+         <?php endif ?>       
+         <?php if($this->ruolo == 'partner'):?>         
+         <li class=""><a href="
+                         <?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+                 >Area Partner</a></li>
+         <?php endif ?>
+         <?php if($this->ruolo == 'admin'):?>        
+         <li class=""><a href="
+                         <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+                 >Area Admin</a></li>
+         <?php endif ?>        
+         <?php if($this->ruolo == false):?>        
+	 <li class=""><a href="
                          <?= $this->url(array(
                         'controller' => 'public',
                         'action'     => 'login',
@@ -63,5 +96,16 @@
                         'default',true
                     ); 
                  ?>" >Login</a>
+             <?php endif ?>        
+         <?php if($this->ruolo == 'staff' || $this->ruolo == 'user' || $this->ruolo == 'admin'):?>       
+         <li class=""><a href="
+                         <?= $this->url(array(
+                        'controller' => $this->ruolo,
+                        'action'     => 'logout',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" >Log Out</a>
+                 <?php endif ?> 
               </li>
 </ul>
