@@ -1,12 +1,11 @@
 <?php
-class Application_Model_Public extends App_Model_Abstract
-{ 
-
-	public function __construct()
+class Application_Model_User extends App_Model_Abstract
+{
+    public function __construct()
     {
-		//$this->_logger = Zend_Registry::get('log');  	
-	}
-
+        //$this->_logger = Zend_Registry::get('log');  	
+    }
+    
     public function getTipoEventi($key)
     {
 	return $this->getResource('Tipoeventi')->getTipoEventi($key);

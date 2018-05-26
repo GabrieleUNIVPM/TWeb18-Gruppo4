@@ -5,6 +5,7 @@ class PublicController extends Zend_Controller_Action
     protected $_publicModel;
     protected $_form;
     protected $_formreg;
+    protected $_formlogin;
     protected $_logger;
     protected $_authService;
 
@@ -14,7 +15,14 @@ class PublicController extends Zend_Controller_Action
         $this->_helper->layout->setLayout('layout');
         $this->view->loginForm = $this->getLoginForm();
         $this->view->registraForm = $this->getRegistraForm();
+        
         $this->_authService = new Application_Service_Auth();
+        if($this->_authService->getIdentity() != false){
+        $ruolo = $this->_authService->getIdentity()->ruolo;
+        }
+        else {$ruolo=false;}        
+        $this->view->assign(array('ruolo' => $ruolo));
+        
     }
 
     public function indexAction()
@@ -112,7 +120,7 @@ class PublicController extends Zend_Controller_Action
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
         }
-        $form = $this->_form;
+        $form = $this->_formlogin;
         if (!$form->isValid($request->getPost())) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
         	    return $this->render('login');
