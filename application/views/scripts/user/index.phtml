@@ -1,0 +1,12 @@
+<h3>Benvenuto nella tua area personale!</h3>
+<br />
+<?php   echo '<p><b>ID: </b>'.$this->utente->id_U.'</p>';
+        echo '<p><b>Username: </b>'.$this->utente->username.'</p>';?>
+ <a class="button" href="<?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'moduser',
+                        'username'   => $this->utente->username,
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">Modifica profilo</a>

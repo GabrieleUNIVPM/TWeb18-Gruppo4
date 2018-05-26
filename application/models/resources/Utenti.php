@@ -15,10 +15,10 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
         return $this->fetchRow($this->select()->where('username = ?', $key));
     }
     
-    public function getUtenti($paged=null)
+    public function getUtenti()
     {
-        
-        
+        $select = $this->select();
+        return $this->fetchAll($select);
     }
     
     public function salvaUtente($el)
@@ -28,7 +28,7 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
     
     public function cancellaUtente ($key)
     {
-        return $this->delete('username =' . $key.'"');
+        return $this->delete('id_U =' . $key.'"');
     }
     
     

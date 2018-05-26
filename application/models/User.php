@@ -35,14 +35,19 @@ class Application_Model_User extends App_Model_Abstract
         return $this->getResource('Acquisti')->getAcquisti();
     }
     
-     public function getUtenti()
+     public function getUtente($utente)
     {     
-        return $this->getResource('Utenti')->getUtenti();
+        return $this->getResource('Utenti')->getUtente($utente);
     }
     
     public function salvaUtente($utente)
     {
         return $this->getResource('Utenti')->salvaUtente($utente);
+    }
+    
+    public function cancellaUtente($utente)
+    {
+        return $this->getResource('Utenti')->cancellaUtente($utente);
     }
     
 }
