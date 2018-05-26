@@ -1,5 +1,5 @@
 <ul id="menu">
-          <li class="selected"><a href="
+          <li><a href="
                          <?= $this->url(array(
                         'controller' => 'partner',
                         'action'     => 'index',
@@ -15,45 +15,34 @@
                         ), 
                         'default',true
                     ); 
-                 ?>" >Inserisci</a>
+                 ?>" >Aggiungi Evento</a>
               </li>
-                     <li><a href="
+                    <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'organizzazioni'
+                        'controller' => 'partner',
+                        'action'     => '', 
                         ), 
                         'default',true
                     ); 
-                 ?>" >Partner</a>
+                 ?>" >Modifica</a>
               </li>
-                     <li><a href="
+              <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'where', 
+                        'controller' => 'partner',
+                        'action'     => '', 
                         ), 
                         'default',true
                     ); 
-                 ?>" >Dove Siamo</a>
+                 ?>" >Cancella</a>
               </li>
-               <li><a href="
+              <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'who', 
+                        'controller' => 'partner',
+                        'action'     => '', 
                         ), 
                         'default',true
                     ); 
-                 ?>" >Chi siamo</a>
-              </li>
-                             <li><a href="
-                         <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'faq', 
-                        ), 
-                        'default',true
-                    ); 
-                 ?>" >FAQ</a>
+                 ?>" >Analisi Vendite</a>
               </li>
                      <li><a href="
                          <?= $this->url(array(

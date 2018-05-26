@@ -1,5 +1,5 @@
 <ul id="menu">
-          <li class="selected"><a href="
+          <li><a href="
                          <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'index',
@@ -11,51 +11,40 @@
                      <li><a href="
                          <?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'newproduct'
+                        'action'     => ''
                         ), 
                         'default',true
                     ); 
-                 ?>" >Inserisci</a>
-              </li>
-                     <li><a href="
+                 ?>" >Utenti</a>
+                     </li>
+                          <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'organizzazioni'
+                        'controller' => 'admin',
+                        'action'     => ''
                         ), 
                         'default',true
                     ); 
-                 ?>" >Partner</a>
-              </li>
-                     <li><a href="
+                 ?>" >Organizzatori</a>
+                          </li>
+                           <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'where', 
+                        'controller' => 'admin',
+                        'action'     => ''
                         ), 
                         'default',true
                     ); 
-                 ?>" >Dove Siamo</a>
-              </li>
-               <li><a href="
+                 ?>" >Tipologie Eventi</a>
+                          </li>
+                    <li><a href="
                          <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'who', 
+                        'controller' => 'admin',
+                        'action'     => ''
                         ), 
                         'default',true
                     ); 
-                 ?>" >Chi siamo</a>
-              </li>
-                             <li><a href="
-                         <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'faq', 
-                        ), 
-                        'default',true
-                    ); 
-                 ?>" >FAQ</a>
-              </li>
-                     <li><a href="
+                 ?>" >Gestione FAQ</a>
+                          </li>
+                    <li><a href="
                          <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'logout'
