@@ -104,9 +104,9 @@ class PublicController extends Zend_Controller_Action
 			$this->_helper->redirector('index','public');
 	}*/
 	$form = $this->_formreg;
-	/*if (!$form->isValid($_POST)) {
+	if (!$form->isValid($_POST)) {
 			return $this->render('registra');
-	}*/
+	}
 	$values = $form->getValues();
         $this->_publicModel->salvaUtente($values);
 	$this->_helper->redirector('login','public');
