@@ -18,16 +18,17 @@
     </div>
         <div id="site_content">
             <div class="sidebar">
-                <br><a>ciao</a>
-                <br><a>ciao</a>
-                <br><a class="" href="<?= $this->url(array(
+                <ul>
+                    <li><a>I miei acquisti</a></li>
+                    <li><a class="" href="<?= $this->url(array(
                         'controller' => 'user',
-                        'action'     => 'index',
-                      //  'username'   => $this->utente->username,
+                        'action'     => 'moduser',
+                        'username'   => $this->utente->username,
                         ), 
                         'default',true
                     ); 
-                 ?>">Profilo</a>
+                    ?>">Mofica dati profilo</a></li>
+                </ul>
       </div>
             <?php echo $this->layout()->content; ?>
         </div>

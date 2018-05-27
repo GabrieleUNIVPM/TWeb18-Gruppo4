@@ -39,8 +39,8 @@ class Application_Form_User_Moduser extends App_Form_Abstract
             'filters' => array('StringTrim'),
             'required' => true,
             'multiOptions' => array(
-                        'M' => 'Maschile',
-                        'F' => 'Femminile',
+                        'M' => 'Maschio',
+                        'F' => 'Femmina',
                         ),
             'decorators' => $this->elementDecorators,
 		));

@@ -15,13 +15,22 @@
       <div id="menubar">
           <?= $this->render('_menubar.phtml') ?>
       </div>
-        <div class="sidebar">
-        <form method="post" action="#" id="search_form">
-          <input class="search" type="text" name="search_field" placeholder="Cerca...">
-        </form>
-      </div>
     </div>
         <div id="site_content">
+            <div class="sidebar">
+                <ul>
+                      <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'addproduct',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Crea nuovo evento</a></li>
+                    <li><a>Modifica evento</a></li>
+                    <li><a>Elimina evento</a></li>
+                    <li><a>Analisi vendite</a></li>
+                </ul>
+      </div>
             <?php echo $this->layout()->content; ?>
         </div>
   </div>
