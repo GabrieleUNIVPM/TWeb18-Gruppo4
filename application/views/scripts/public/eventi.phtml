@@ -14,7 +14,9 @@
                         ), 
                         'default',true
                     );
-	  echo "<tr><td><img src=$type->immagine></td>"; 
+	  echo "<tr><td>";
+          echo $this->img($type->immagine);
+          echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
           echo "<br>Luogo: $type->luogo"; 
@@ -25,6 +27,6 @@
           echo "<a href=$more>Clicca qui per saperne di più</a></td></tr></table></div>";}
           ?>
 
-<?php if($this->products instanceof Zend_Paginator) {
-    echo $this->paginationControl($this->tipologia,'Sliding','public/_paginator.phtml');
+<?php if($this->Eventi instanceof Zend_Paginator) {
+    echo $this->paginationControl($this->Eventi,'Sliding','public/_paginator.phtml');
 }
