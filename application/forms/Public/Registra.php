@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Public_Registra extends Zend_Form
+class Application_Form_Public_Registra extends App_Form_Abstract
 {
     
      protected $_publicModel;
@@ -13,11 +13,14 @@ class Application_Form_Public_Registra extends Zend_Form
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
         
+        //$this->setAttrib('ruolo','user');
+        
         $this->addElement('text', 'nome', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array('Alpha',array('StringLength',true, array(1,20))),
+            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('text', 'cognome', array(
@@ -25,6 +28,7 @@ class Application_Form_Public_Registra extends Zend_Form
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array('Alpha',array('StringLength',true, array(1,20))),
+            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('select', 'genere', array(
@@ -35,13 +39,15 @@ class Application_Form_Public_Registra extends Zend_Form
                          'M' => 'Maschio',
                          'F' => 'Femmina',
                          ),
+            'decorators' => $this->elementDecorators,
                 ));
         
         $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il',
+            'label' => 'Nato il (dd/MM/yyyy)',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array (array('date', false, array('dd/MM/yyyy'))),
+            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('text', 'email', array(
@@ -49,6 +55,7 @@ class Application_Form_Public_Registra extends Zend_Form
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array('EmailAddress',array('StringLength',true, array(1,30))),
+            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('text', 'username', array(
@@ -59,6 +66,7 @@ class Application_Form_Public_Registra extends Zend_Form
                 array('Db_NoRecordExists',true, 
                 array('table'   => 'utenti',
                       'field'   => 'username'))),
+            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('password', 'password', array(
@@ -66,14 +74,20 @@ class Application_Form_Public_Registra extends Zend_Form
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array('Alnum',array('StringLength',true, array(4,15))),
+            'decorators' => $this->elementDecorators,
 		));
-        
-        $this->addElement('select', 'ruolo', array(
-            'value' => 'user',
-                ));
-        
         $this->addElement('submit', 'add', array(
             'label' => 'Registrati',
+            'decorators' => $this->buttonDecorators,
 		));
+        $this->addElement('hidden', 'ruolo', array(
+            'value' => 'user'
+		));
+        $this->setDecorators(array(
+            'FormElements',
+            array('HtmlTag', array('tag' => 'table', 'class' => 'zend_form')),
+        		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
+            'Form'
+        ));
     }
 }
