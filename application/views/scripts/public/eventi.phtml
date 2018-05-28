@@ -1,4 +1,9 @@
 <h2>Catalogo Eventi</h2>
+<?php
+$filename='toggleEventi.js';
+echo $this->toggleEventi($filename);
+$id=0;?>
+
 <div class="sidebar">
     <form method="post" action="#" id="search_form">
           <input class="search" type="text" name="search_field" placeholder="Cerca...">
@@ -8,12 +13,6 @@
     
         <?php foreach ($this->Eventi as $type){ 
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
-          $more=$this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'evento',
-                        ), 
-                        'default',true
-                    );
 	  echo "<tr><td>";
           echo $this->img($type->immagine);
           echo "</td>"; 
@@ -22,9 +21,16 @@
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
           echo "<br>Orario di inizio: $type->orario</p>";
-          //echo "<br>Evento organizzato da: $type->organizzatore</p>";
+          echo '<br><a onclick='."toggleEventi($id)".'>Clicca qui per saperne di più</a></td></tr></table></div>';
+          echo '<div class='."estensione".' id='."$id".'>';
+          echo "<div class=tabella><table class=elenco><tr colspan=2>";
+          echo "<td>Programma:<p>$type->programma</p>";
+          echo "Evento organizzato da $type->organizzatore<br>";
           //echo "<br><b>$type->partecipazioni sono interessate a partecipare</b>"; qua va fatta la query che calcola quanti partecipazioni sono collegate all'evento
-          echo "<a href=$more>Clicca qui per saperne di più</a></td></tr></table></div>";}
+          echo "<iframe src=$type->mappa width='400px' height='240px'></iframe>";
+          echo "</td></tr></table></div></div>";
+          $id++;
+        }
           ?>
 
 <?php if($this->Eventi instanceof Zend_Paginator) {

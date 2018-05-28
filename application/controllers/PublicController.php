@@ -61,7 +61,7 @@ class PublicController extends Zend_Controller_Action
     public function eventoAction()
     {
         $key= $this->_getParam('getEventi', null);
-        $evento=$this->_publicModel->getEventi($key);
+        $evento=$this->_publicModel->getEvento($key);
         $this->view->assign(array('Eventi' => $evento));
     }
 

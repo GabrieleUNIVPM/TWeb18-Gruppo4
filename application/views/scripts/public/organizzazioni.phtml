@@ -1,14 +1,10 @@
 <h2>Catalogo Organizzatori</h2>
-<div class="sidebar">
-    <form method="post" action="#" id="search_form">
-          <input class="search" type="text" name="search_field" placeholder="Cerca...">
-        </form>
-</div>
 
-    
         <?php foreach ($this->Organizzazioni as $type){ 
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
-	  echo "<tr><td><img src=$type->logo></td>"; 
+	  echo "<tr><td>";
+          echo $this->img($type->logo);
+          echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Missione: $type->missione";
           echo "<br>Recapito: $type->recapiti</td></tr></table></div>";}

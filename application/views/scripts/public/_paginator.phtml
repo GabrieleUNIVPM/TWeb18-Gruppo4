@@ -1,12 +1,12 @@
 <?php if ($this->pageCount > 1): ?>
 <div>
-<?php echo $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?> di <?= $this->totalItemCount; ?> ---
+Pagina <?php echo $this->current; ?> di <?= $this->pageCount; ?> -
 
 <!-- Link alla prima pagina -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->first)); ?>">Inizio</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->first)); ?>">Prima</a> |
 <?php else: ?>
-  Inizio |
+  Prima |
 <?php endif; ?>
 
 <!-- Link alla pagina precedente -->
@@ -18,16 +18,16 @@
 
 <!-- Link alla pagina successiva -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->next)); ?>">Successivo &gt;</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->next)); ?>">Successiva &gt;</a> |
 <?php else: ?>
-  Successivo &gt; |
+  Successiva &gt; |
 <?php endif; ?>
 
 <!-- Link all'ultima pagina -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->last)); ?>">Fine</a>
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'eventi', 'page' => $this->last)); ?>">Ultima</a>
 <?php else: ?>
-  Fine
+  Ultima
 <?php endif; ?>
 
 </div>

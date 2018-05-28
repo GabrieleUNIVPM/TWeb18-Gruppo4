@@ -15,6 +15,10 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Eventi')->getEventi($key,$paged);
     }
+    public function getEvento($key)
+    {
+        return $this->getResource('Eventi')->getEvento($key);
+    }
     
     public function getFaq()
     {
