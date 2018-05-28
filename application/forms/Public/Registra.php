@@ -43,10 +43,10 @@ class Application_Form_Public_Registra extends App_Form_Abstract
                 ));
         
         $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il (dd/MM/yyyy)',
+            'label' => 'Nato il (AAAA/MM/GG)',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array (array('date', false, array('dd/MM/yyyy'))),
+            'validators' => array (array('date', false, array('yyyy/MM/dd'))),
             'decorators' => $this->elementDecorators,
 		));
         
