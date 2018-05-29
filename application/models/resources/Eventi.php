@@ -26,12 +26,6 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
 		}
         return $this->fetchAll($select);
     }
-    public function getEvento($key)
-    {
-        $select = $this->select();
-        				//->where('catId IN(?)', $categoryId);
-	return $this->fetchAll($select);
-    }
     
     public function insertProduct($info)
     {

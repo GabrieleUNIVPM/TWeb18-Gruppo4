@@ -35,9 +35,14 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Partecipazioni')->getPartecipazioni();
     }
     
-    public function getAcquisti()
+    public function getAcquisti($key)
     {     
-        return $this->getResource('Acquisti')->getAcquisti();
+        return $this->getResource('Acquisti')->getAcquisti($key);
+    }
+    
+    public function getAcquistiEvento($key)
+    {     
+        return $this->getResource('Acquisti')->getAcquistiEvento($key);
     }
     
      public function getUtenti()

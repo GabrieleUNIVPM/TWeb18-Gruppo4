@@ -18,5 +18,8 @@ class Application_Resource_Eventi_Item extends Zend_Db_Table_Row_Abstract
         if($this->sconto==0) return false;
         else return true;
     }
-    
+    public function getNome()
+    {
+        return $nome=$this->nome;
+    }
 }

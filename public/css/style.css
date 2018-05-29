@@ -305,3 +305,9 @@ img
 
 .estensione
 {display: none;}
+
+form#acquista select.numerobiglietti
+{width: 40px;}
+
+select.pagamento
+{width: 99px;}

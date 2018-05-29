@@ -2,7 +2,8 @@
 <?php
 $filename='toggleEventi.js';
 echo $this->toggleEventi($filename);
-$id=0;?>
+$id=0; $numeroacquisti=0;
+?>
 
 <div class="sidebar">
     <form method="post" action="#" id="search_form">
@@ -11,10 +12,27 @@ $id=0;?>
 </div>
 
     
-        <?php foreach ($this->Eventi as $type){ 
+        <?php foreach ($this->Eventi as $type){
+          $biglietti=$type->numerobiglietti-$this->Biglietti;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
-          echo $this->img($type->immagine);
+          echo $this->img($type->immagine); ?>
+          <?php if($this->ruolo == 'user') :?>
+          <form id="acquista" method="post">
+          <div class="form_settings">
+              <select class="numerobiglietti"><option>1</option><option>2</option><option>3</option><option>4</option>
+              <option>5</option><option>6</option><option>7</option><option>8</option></select>
+              <select class="pagamento"><option>Paypal</option><option>Bonifico Bancario</option><option>VISA</option>
+              <option>MasterCard</option></select>
+          <input class="submit" type="submit" name="contact_submitted" value="Acquista" href="
+                        <?=$this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'acquisto',
+                        ), 
+                        'default',true
+                    )?>
+          "></div></form><?php endif?>
+          <?php
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
@@ -25,7 +43,8 @@ $id=0;?>
           echo '<div class='."estensione".' id='."$id".'>';
           echo "<div class=tabella><table class=elenco><tr colspan=2>";
           echo "<td>Programma:<p>$type->programma</p>";
-          echo "Evento organizzato da $type->organizzatore<br>";
+          echo "Biglietti rimanenti: $biglietti<br>";
+          echo "Evento organizzato da $type->organizzatore";
           //echo "<br><b>$type->partecipazioni sono interessate a partecipare</b>"; qua va fatta la query che calcola quanti partecipazioni sono collegate all'evento
           echo "<iframe src=$type->mappa width='400px' height='240px'></iframe>";
           echo "</td></tr></table></div></div>";

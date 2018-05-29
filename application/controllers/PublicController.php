@@ -58,12 +58,6 @@ class PublicController extends Zend_Controller_Action
         $eventi=$this->_publicModel->getEventi($key,$paged);
         $this->view->assign(array('Eventi' => $eventi));
     }
-    public function eventoAction()
-    {
-        $key= $this->_getParam('getEventi', null);
-        $evento=$this->_publicModel->getEvento($key);
-        $this->view->assign(array('Eventi' => $evento));
-    }
 
     
     public function organizzazioniAction()
@@ -83,20 +77,6 @@ class PublicController extends Zend_Controller_Action
 			'default'
 		));
 		return $this->_formreg;
-    }
-    
-    public function registraAction()
-    {
-    /*    if (!$this->getRequest()->isPost()) {
-			$this->_helper->redirector('index','public');
-	}
-	$form = $this->_formreg;
-	if (!$form->isValid($_POST)) {
-			return $this->render('registra');
-	}
-	$values = $form->getValues();
-        $this->_publicModel->salvaUtente($values);
-	$this->_helper->redirector('login','public'); */
     }
     
     public function regAction()
