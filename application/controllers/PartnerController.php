@@ -2,11 +2,14 @@
 
 class PartnerController extends Zend_Controller_Action
 {
+    protected $_organizzazioniModel;
+    protected $_form;  
+    protected $_authService;
 
     public function init()
     {
         $this->_helper->layout->setLayout('laypartner');  
-     	$this->view->productForm = $this->getProductForm();  
+     	$this->view->addForm = $this->getProductForm();  
         $this->_organizzazioniModel = new Application_Model_Organizzazioni();        
          $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
@@ -27,7 +30,7 @@ class PartnerController extends Zend_Controller_Action
     public function newproductAction() 
     {}
 
-	public function addproductAction() 
+    public function addproductAction() 
     {
         if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('index');
@@ -38,8 +41,10 @@ class PartnerController extends Zend_Controller_Action
             return $this->render('newproduct');
         }
         $values = $form->getValues();
-       	$this->_adminModel->saveProduct($values);
-		$this->_helper->redirector('index'); 
+       	$this->_organizzazioniModel->saveProduct($values);//
+        //$this->_organizzazioniModel->setNomeOrg($form->getValues('nome'));
+        
+	$this->_helper->redirector('index'); 
     }
     private function getProductForm()
     {
