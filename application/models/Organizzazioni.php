@@ -19,4 +19,8 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
     	return $this->getResource('Eventi')->insertNome($info,$id);
     }
+    public function getEventi($key,$paged=null)
+    {
+        return $this->getResource('Eventi')->getEventi($key,$paged);
+    }
 }
