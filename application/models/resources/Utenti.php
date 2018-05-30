@@ -33,7 +33,8 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
     
     public function modificaUtente ($data, $key)
     {
-        return $this->update($data, $key);
+        $where = $this->getAdapter()->quoteInto('id_U = ?', $key);
+        return $this->update($data, $where);
     }
     
 }

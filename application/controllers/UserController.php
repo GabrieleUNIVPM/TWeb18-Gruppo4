@@ -51,7 +51,7 @@ class UserController extends Zend_Controller_Action
 		}
 		$values = $form->getValues();
                 $id = $values['id_U'];
-                unset($values[id_U]);
+                unset($values['id_U']);
 		$this->_userModel->modificaUtente($values, $id);
 		$this->_helper->redirector('index','user');
     }

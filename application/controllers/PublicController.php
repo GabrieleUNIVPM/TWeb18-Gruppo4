@@ -15,6 +15,7 @@ class PublicController extends Zend_Controller_Action
         $this->_helper->layout->setLayout('layout');
         $this->view->loginForm = $this->getLoginForm();
         $this->view->registraForm = $this->getRegistraForm();
+        $this->view->ricercaForm = $this->getRicercaForm();
         
         $this->_authService = new Application_Service_Auth();
         if($this->_authService->getIdentity() != false){
@@ -125,5 +126,36 @@ class PublicController extends Zend_Controller_Action
 			'default'
 		));
 		return $this->_formlogin;
+    }
+    
+    private function getRicercaForm()
+    {
+    		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_Public_Ricerca();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'public',
+			'action' => 'risultati'),
+			'default'
+		));
+		return $this->_form;
+    
+}
+    public function risultatiAction() {
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+		}
+		$form=$this->_form;
+		if (!$form->isValid($_POST)) {
+			return $this->render('eventi');
+		}
+                $values = $form->getValues();
+                $type=$values['tipologia'];
+                $part=$values['organizzatore'];
+                $nome=$values['nome'];
+                $nome=explode(' ',$nome); //separa le parole della stringa e le mette in un array
+                $paged = $this->_getParam('page', 1);
+		$eventi=$this->_publicModel->getEventiCercati($type, $name, $part, $paged);
+                $this->view->assign(array('Eventi' => $eventi));
+    
     }
 }

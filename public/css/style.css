@@ -311,3 +311,6 @@ form#acquista select.numerobiglietti
 
 select.pagamento
 {width: 99px;}
+
+div.ricerca label.optional
+{font-size: 20;}

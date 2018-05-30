@@ -5,11 +5,17 @@ echo $this->toggleEventi($filename);
 $id=0; $numeroacquisti=0;
 ?>
 
-<div class="sidebar">
-                <div class="ricerca">
+<div id="sidebar" class="">
+                <div class="">
                      <?php echo $this->ricercaForm ?>
                     </div>
     </div>
+
+<div class="sidebar">
+    <form method="post" action="#" id="search_form">
+          <input class="search" type="text" name="search_field" placeholder="Cerca...">
+        </form>
+</div>
 
     
         <?php foreach ($this->Eventi as $type){
