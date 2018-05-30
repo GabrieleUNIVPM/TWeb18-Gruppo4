@@ -46,11 +46,11 @@ class Application_Form_User_Moduser extends App_Form_Abstract
 		));
         
         $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il',
+            'label' => 'Nato il (AAAA/MM/GG)',
             'value' => $values['natoil'],
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array (array('date', false, array('dd/MM/yyyy'))),
+            'validators' => array (array('date', false, array('yyyy/MM/dd'))),
             'decorators' => $this->elementDecorators,
 		));
         
@@ -86,6 +86,8 @@ class Application_Form_User_Moduser extends App_Form_Abstract
             'label' => 'Salva Modifiche',
             'decorators' => $this->buttonDecorators,
 		)); 
+        $this->addElement('hidden', 'id_U', array(
+            'value' => $values['id_U'],));
         
         $this->setDecorators(array(
 			'FormElements',

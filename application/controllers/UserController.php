@@ -50,9 +50,9 @@ class UserController extends Zend_Controller_Action
 			return $this->render('moduser');
 		}
 		$values = $form->getValues();
-                $el = $values['id_U'];
-                $this->_userModel->cancellaUtente($el);
-		$this->_userModel->salvaUtente($values);
+                $id = $values['id_U'];
+                unset($values[id_U]);
+		$this->_userModel->modificaUtente($values, $id);
 		$this->_helper->redirector('index','user');
     }
     

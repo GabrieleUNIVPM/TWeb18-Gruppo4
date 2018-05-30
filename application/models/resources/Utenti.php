@@ -31,6 +31,9 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
         return $this->delete('id_U =' . $key.'"');
     }
     
-    
+    public function modificaUtente ($data, $key)
+    {
+        return $this->update($data, $key);
+    }
     
 }
