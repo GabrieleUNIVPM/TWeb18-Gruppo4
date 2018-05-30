@@ -22,14 +22,14 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
         $tipologia = array();
         $tip = $this->_organizzazioniModel->getTipoEventi();
         foreach ($tip as $cat) {
-        	$tipologia[$cat -> id_TE] = $cat->tipologia;       
+        	$tipologia[$cat -> tipologia] = $cat->tipologia;       
         }
 
         $this->addElement('select', 'tipologia', array(
             'label' => 'Tipologia',
             'required' => true,
             'multiOptions' => $tipologia,
-            'values'=>$tipologia,//CORREGGERE L INSERIMENTO DELLA TIPOLOGIA
+            'values'=>$tipologia,
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('textarea', 'descrizione', array(
@@ -119,5 +119,8 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
         	array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+        $this->addElement('hidden', 'organizzatore', array(
+            'value' => $this->nome
+		));
     }
 }

@@ -15,8 +15,8 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
     	return $this->getResource('Eventi')->insertProduct($info);
     }
-    /*public function setNomeOrg($nome)
+    public function insertNome($info,$id)
     {
-        return $this->getResource('Eventi')->setNomeOrg($nome);
-    }*/
+    	return $this->getResource('Eventi')->insertNome($info,$id);
+    }
 }

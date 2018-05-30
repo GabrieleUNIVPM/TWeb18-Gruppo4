@@ -31,8 +31,10 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     {
     	$this->insert($info);
     }
-    /*public function setNomeOrg($nome)
+    public function insertNome($nome,$id)
     {
-        return $this->insert($this->select()->columns('organizzatore')->where('nome = ?', $nome));
-    }*/
+        $a=array('organizzatore'=>$nome);
+        $where=$this->getAdapter()->quoteInto('id_E=?', $id);
+        return $this->update($a,$where);
+    }
 }
