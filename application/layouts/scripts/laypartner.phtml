@@ -26,8 +26,13 @@
                         'default',true
                     ); 
                     ?>">Crea nuovo evento</a></li>
-                    <li><a>Modifica evento</a></li>
-                    <li><a>Elimina evento</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'gestisci',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Gestisci eventi</a></li>
                     <li><a>Analisi vendite</a></li>
                 </ul>
       </div>

@@ -31,6 +31,13 @@ class PartnerController extends Zend_Controller_Action
 
     public function newproductAction() 
     {}
+    public function gestisciAction(){
+        $paged = $this->_getParam('page', 1);
+        $key= $this->_getParam('getEventi', null);
+        $eventi=$this->_organizzazioniModel->getEventi($key,$paged);
+        $this->view->assign(array('Eventi' => $eventi));
+        $this->view->assign(array('Nome' => $this->_authService->getIdentity()->nome));
+    }
 
     public function addproductAction() 
     {
@@ -57,6 +64,10 @@ class PartnerController extends Zend_Controller_Action
 				'default'
 		));
 		return $this->_form;
+    }
+    public function eventiAction()//
+    {
+        
     }
 }
 
