@@ -314,3 +314,6 @@ select.pagamento
 
 div.ricerca label.optional
 {font-size: 20;}
+
+div#gestione th, div#gestione td
+{text-align:center;}

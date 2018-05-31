@@ -20,6 +20,11 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
         $select = $this->select();
         return $this->fetchAll($select);
     }
+    public function getadmUtenti()
+    {
+        $select = $this->select();
+        return $this->fetchAll($select);
+    }
     
     public function salvaUtente($el)
     {

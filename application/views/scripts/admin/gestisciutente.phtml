@@ -1,0 +1,16 @@
+<div>
+ <h3>Gestisci utenti</h3>
+ <p>Utilizza questa form per gestire i dati degli utenti</p>
+</div>
+<?php       echo "<div class=tabella id=gestione><table class=elenco><th>Username</th><th>Ruolo</th><th>Nome</th><th>Cognome</th>";
+            foreach ($this->utenti as $type){
+            if($type->ruolo!='admin'){
+            echo "<tr><td>$type->username</td>";
+            echo "<td>$type->ruolo</td>";
+            echo "<td>$type->nome</td>";
+            echo "<td>$type->cognome</td>";
+            echo '<td><input type="submit" value="Modifica"></td>';
+            echo '<td><input type="submit" value="Elimina"></td></tr>';
+            }}
+            echo '</table></div>';
+        
