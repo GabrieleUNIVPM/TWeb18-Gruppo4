@@ -1,7 +1,6 @@
 <?php
-class Application_Form_Public_Ricerca extends Zend_Form
-{            
-    protected $_publicModel;
+class Application_Form_Public_Ricerca extends App_Form_Abstract
+{protected $_publicModel;
     
     public function init()
     {
@@ -16,37 +15,36 @@ class Application_Form_Public_Ricerca extends Zend_Form
             'filters' => array('StringTrim'),
             'required' => false,
             'validators' => array(array('StringLength',true, array(1,25))),
-		));
+    ));
         
         $categories = array();
-	$cats = $this->_publicModel->getTipoEventi($key);
-	foreach ($cats as $cat) {
-		$categories[$cat->tipologia] = $cat->tipologia;
-	}
+  $cats = $this->_publicModel->getTipoEventi();
+  foreach ($cats as $cat) {
+    $categories[$cat->tipologia] = $cat->tipologia;
+  }
         $this->addElement('multiCheckbox', 'tipologia', array(
             'label' => 'Tipologia',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
             'multiOptions' => $categories
-		));
+    ));
         
-        $aziende = array();
-	$azi = $this->_publicModel->getEventi($key);
-	foreach ($azi as $a) {
-		$aziende[$a->nome] = $a->nome;
-	}
+        $part = array();
+  $par = $this->_publicModel->getOrganizzazioni();
+  foreach ($par as $p) {
+    $part[$p->nome] = $p->nome;
+  }
         $this->addElement('multiCheckbox', 'organizzatore', array(
             'label' => 'Organizzatori',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
-            'multiOptions' => $aziende
-		));
+            'multiOptions' => $part
+    ));
         
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',
-		));
+    ));
     }
 }
-
