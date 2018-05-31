@@ -13,10 +13,6 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     public function getEventi($key,$paged=null)
     {
         $select = $this->select();
-        				//->where('catId IN(?)', $categoryId);
-        //if (true === is_array($order)) {
-        //    $select->order($order);
-        //}
 		if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
 			$paginator = new Zend_Paginator($adapter);
@@ -47,7 +43,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
             foreach ($type as $c) {$string1.=" or tipologia = '".$c."' ";}
             }
         $string2=("descrizione like '%'");
-              foreach ($desc as $d) {$string2.=" and descrizione like '%".$d."%' ";}
+              foreach ($nome as $d) {$string2.=" and descrizione like '%".$d."%' ";}
         if(count($part)==0){$string3=("organizzatore like '%'");} //se l'utente non ha selezionato nessun organizzatore vanno bene tutte
         else{
             $string3=("organizzatore = ''");

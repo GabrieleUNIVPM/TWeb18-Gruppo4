@@ -5,20 +5,17 @@ echo $this->toggleEventi($filename);
 $id=0; $numeroacquisti=0;
 ?>
 
-<div id="sidebar" class="">
-                <div class="">
+<div class="sidebar">
+                <div class="ricerca">
                      <?php echo $this->ricercaForm ?>
                     </div>
     </div>
 
-<div class="sidebar">
-    <form method="post" action="#" id="search_form">
-          <input class="search" type="text" name="search_field" placeholder="Cerca...">
-        </form>
-</div>
-
     
-        <?php foreach ($this->Eventi as $type){
+        <?php
+          if(count($this->Eventi)==0)
+          {echo'<h3>Non ci sono eventi che corrispondono alla tua ricerca</h3>';}
+          foreach ($this->Eventi as $type){
           $biglietti=$type->numerobiglietti-$this->Biglietti;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";

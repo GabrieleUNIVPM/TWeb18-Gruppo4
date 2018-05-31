@@ -7,9 +7,9 @@ class Application_Model_Public extends App_Model_Abstract
 		//$this->_logger = Zend_Registry::get('log');  	
 	}
 
-    public function getTipoEventi($key)
+    public function getTipoEventi()
     {
-	return $this->getResource('Tipoeventi')->getTipoEventi($key);
+	return $this->getResource('Tipoeventi')->getTipoEventi();
     }
     public function getEventi($key,$paged=null)
     {
@@ -25,9 +25,9 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Faq')->getFaq();
     }
        
-    public function getOrganizzazioni($key)
+    public function getOrganizzazioni()
     {
-        return $this->getResource('Organizzazioni')->getOrganizzazioni($key);
+        return $this->getResource('Organizzazioni')->getOrganizzazioni();
     }    
     
     public function getPartecipazioni()
@@ -54,8 +54,8 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Utenti')->salvaUtente($utente);
     }
-    public function getEventiCercati($type, $name, $part, $paged=null)
+    public function getEventiCercati($type, $nome, $part, $paged=null)
     {
-        return $this->getResource('Eventi')->getEventiCercati($type, $name, $part, $paged);
+        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part, $paged);
     }
 }

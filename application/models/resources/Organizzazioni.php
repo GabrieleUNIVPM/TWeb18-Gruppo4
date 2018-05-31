@@ -10,7 +10,7 @@ class Application_Resource_Organizzazioni extends Zend_Db_Table_Abstract
     {
         
     }
-    public function getOrganizzazioni($key)
+    public function getOrganizzazioni()
     {
         $select = $this->select();
         return $this->fetchAll($select);

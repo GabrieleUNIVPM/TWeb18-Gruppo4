@@ -8,6 +8,7 @@ class PublicController extends Zend_Controller_Action
     protected $_formlogin;
     protected $_logger;
     protected $_authService;
+    protected $key;
 
     public function init()
     {
@@ -29,7 +30,7 @@ class PublicController extends Zend_Controller_Action
     public function indexAction()
     {
         $key= $this->_getParam('getTipoEventi', null);
-        $keys=$this->_publicModel->getTipoEventi($key);
+        $keys=$this->_publicModel->getTipoEventi();
         foreach ($keys as $key) {$keys[] = $key->id_TE;}
         $this->view->assign(array(
             		'tipologie' => $keys,
@@ -64,7 +65,7 @@ class PublicController extends Zend_Controller_Action
     public function organizzazioniAction()
     {
         $key= $this->_getParam('getOrganizzazioni', null);
-        $organizzazioni=$this->_publicModel->getOrganizzazioni($key);
+        $organizzazioni=$this->_publicModel->getOrganizzazioni();
         $this->view->assign(array('Organizzazioni' => $organizzazioni));
     }
     
@@ -151,10 +152,9 @@ class PublicController extends Zend_Controller_Action
                 $values = $form->getValues();
                 $type=$values['tipologia'];
                 $part=$values['organizzatore'];
-                $nome=$values['nome'];
-                $nome=explode(' ',$nome); //separa le parole della stringa e le mette in un array
+                $nome=array($values['nome']);
                 $paged = $this->_getParam('page', 1);
-		$eventi=$this->_publicModel->getEventiCercati($type, $name, $part, $paged);
+		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
                 $this->view->assign(array('Eventi' => $eventi));
     
     }
