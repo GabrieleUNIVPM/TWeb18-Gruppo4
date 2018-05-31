@@ -1,0 +1,13 @@
+<div>
+ <h3>Gestisci FAQ</h3>
+ <p>Utilizza questa form per gestire le FAQ</p>
+</div>
+<?php       
+            foreach ($this->faq as $type){
+                echo "<p><li> $type->domanda</li>"; 
+                echo "<br>$type->risposta<br></p>";
+            echo '<td><input type="submit" value="Modifica"></td>';
+            echo '<td><input type="submit" value="Elimina"></td></tr><hr>';
+            }
+            
+        

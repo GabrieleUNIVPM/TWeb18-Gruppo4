@@ -41,6 +41,22 @@ class AdminController extends Zend_Controller_Action
         	$this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
         }
     }
+    public function gestisciutenteAction()
+    {
+        $keys=$this->_adminModel->getadmUtenti();
+        $this->view->assign(array(
+            		'utenti' => $keys,
+            		)
+        );
+    }
+    public function gestiscifaqAction()
+    {
+        $keys=$this->_adminModel->getFaq();
+        $this->view->assign(array(
+            		'faq' => $keys,
+            		)
+        );
+    }
 
     
 }

@@ -27,6 +27,13 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     {
     	$this->insert($info);
     }
+    
+     public function deleteEvento($ev)//
+    {
+        $where=$this->getAdapter()->quoteInto('id_E=?', $ev);
+    	return $this->delete($where);
+    }
+    
     public function insertNome($nome,$id)
     {
         $a=array('organizzatore'=>$nome);

@@ -3,7 +3,8 @@
 class PartnerController extends Zend_Controller_Action
 {
     protected $_organizzazioniModel;
-    protected $_form;  
+    protected $_form; 
+    protected $_form1;
     protected $_authService;
     protected $nome;
 
@@ -11,6 +12,7 @@ class PartnerController extends Zend_Controller_Action
     {
         $this->_helper->layout->setLayout('laypartner');  
      	$this->view->addForm = $this->getProductForm();  
+        /*$this->view->gestisciForm = $this->getGestisciForm(); */
         $this->_organizzazioniModel = new Application_Model_Organizzazioni();        
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
@@ -69,5 +71,24 @@ class PartnerController extends Zend_Controller_Action
     {
         
     }
+    public function eliminaAction()
+    {
+        //$form=$this->_form1;
+        
+       	$this->_organizzazioniModel->deleteEvento($this->$_POST['id_E']);
+        $this->_helper->redirector('index'); 
+    }
+   /* private function getGestisciForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+	$this->_form1 = new Application_Form_Organizzazioni_Product_Gestisci();
+    	$this->_form1->setAction($urlHelper->url(array(
+				'controller' => 'partner',
+				'action' => 'elimina'),
+				'default'
+		));
+    return $this->_form1;
+        
+    }*/
 }
 

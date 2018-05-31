@@ -19,18 +19,25 @@
         <div id="site_content">
             <div class="sidebar">
                 <ul>
-                    <li><a>Modifica utente</a></li>
-                    <li><a>Elimina utente</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'gestisciutente',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Gestisci utenti</a></li>
                     <li><a>Aggiungi nuovo organizzatore</a></li>
-                    <li><a>Modifica organizzatore</a></li>
-                    <li><a>Elimina organizzatore</a></li>
                     <li><a>Aggiungi nuova tipologia evento</a></li>
-                    <li><a>Modifica tipologia evento</a></li>
-                    <li><a>Elimina tipologia evento</a></li>
+                    <li><a>Gestisci tipologia evento</a></li>
                     <li><a>Acquisti degli utenti</a></li>
                     <li><a>Aggiungi nuova FAQ</a></li>
-                    <li><a>Modifica FAQ</a></li>
-                    <li><a>Elimina FAQ</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'gestiscifaq',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Gestisci FAQ</a></li>
                 </ul>
       </div>
             <?php echo $this->layout()->content; ?>

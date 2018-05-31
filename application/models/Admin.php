@@ -21,5 +21,13 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     	return $this->getResource('Utenti')->getUtente($info);
     }
+    public function getadmUtenti()
+    {
+        return $this->getResource('Utenti')->getadmUtenti();
+    }
+    public function getFaq()
+    {
+        return $this->getResource('Faq')->getFaq();
+    }
 
 }
