@@ -1,12 +1,17 @@
-    <div class="form_settings">
-    <h2>Login o registrati</h2>
-    <?=$this->loginForm;?>
-    <a href="
+<div class="sidebar">
+    <br><br><br><h2>Non sei registrato?</h2>
+    <a class="ancora" href="
                          <?= $this->url(array(
                         'controller' => 'public',
                         'action'     => 'registra',
                         ), 
                         'default',true
                     ); 
-                 ?>" >Non sei registrato? Registrati qui</a>
-    </div>
+                 ?>" >Registrati qui</a>
+</div>
+<div class="form_settings">
+    <h2>Login o registrati</h2>
+
+    <?=$this->loginForm;?>
+  
+</div>

@@ -80,8 +80,9 @@ class PublicController extends Zend_Controller_Action
 		));
 		return $this->_formreg;
     }
-    
-    public function regAction()
+    public function registraAction(){}
+
+        public function regAction()
     {
         if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index','public');

@@ -313,7 +313,29 @@ select.pagamento
 {width: 99px;}
 
 div.ricerca label.optional
-{font-size: 20;}
+{font-size: 20px;}
 
 div#gestione th, div#gestione td
 {text-align:center;}
+
+div#gestione table
+{border-collapse: separate;}
+
+a.ancora
+{ text-decoration:none;font: 100% arial; 
+  border: 1px solid; 
+  width: 99px; 
+  margin: 0 0 0 0px; 
+  height: 33px;
+  padding: 5px 5px 5px 5px;
+  cursor: pointer; 
+  background: #263C56; 
+  color: #FFF;
+}
+
+dd#nome-element input#nome
+{ padding: 3px 0 11px 33px;
+  background: url(images/search.png) no-repeat;}
+
+div.hand
+{background: url(images/hand.png) no-repeat;}
