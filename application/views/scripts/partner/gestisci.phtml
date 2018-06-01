@@ -13,25 +13,25 @@ function cancella() {
  <h3>Gestisci eventi</h3>
  <p>Utilizza questa sezione per gestire gli eventi nel Catalogo</p>
 </div>
-        <?php foreach ($this->Eventi as $type){
-          if($type->organizzatore==$this->Nome){
+        <?php foreach ($this->Eventi as $type):
+           if($type->organizzatore==$this->Nome){
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
           echo $this->img($type->immagine);
-          echo '</td><td>';
-          //echo $this->gestisciForm;//
-          echo '<form  method="post" href="'.$this->url(array(
+          } ?>
+ <input  type="submit" href="<?= $this->url(array(
                         'controller' => 'partner',
                         'action'     => 'elimina',
+                        'id_E'       => $type->id_E,
+                        'nome'       => $type->nome,
                         ), 
                         'default',true
-                    ).'"><input class="submit" type="submit" value="Elimina"></form>';
-          echo '</td></tr></table></div>';
-          }
-        }
-          ?>
+                  );?>" value="Elimina">
+          <?php endforeach ?>
 
-<?php if($this->Eventi instanceof Zend_Paginator) {
+         
+    <?php if($this->Eventi instanceof Zend_Paginator) {
     if($type->organizzatore==$this->Nome){
-    echo $this->paginationControl($this->Eventi,'Sliding','partner/_paginator.phtml');}
-}
+    echo $this->paginationControl($this->Eventi,'Sliding','partner/_paginator.phtml');
+    }
+    }

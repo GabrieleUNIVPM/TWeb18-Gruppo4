@@ -34,10 +34,24 @@ class PartnerController extends Zend_Controller_Action
     public function newproductAction() 
     {}
     public function gestisciAction(){
+        
         $paged = $this->_getParam('page', 1);
         $key= $this->_getParam('getEventi', null);
         $eventi=$this->_organizzazioniModel->getEventi($key,$paged);
-        $this->view->assign(array('Eventi' => $eventi));
+        
+        $elimina = $this->getParam('elimina');
+        $modifica = $this->getParam('modifica');
+         if($elimina){
+        //    $even = $this->getParam('even');
+            $this->view->assign(array('Eventi' => $eventi, 'elimina' => $elimina));
+        }else if($modifica){
+        //    $off = $this->getParam('off');
+            $this->view->assign(array('Eventi' => $eventi,'modifica' => $modifica)); 
+        }else{
+           $this->view->assign(array('Eventi' => $eventi)); 
+        }
+        
+    //    $this->view->assign(array('Eventi' => $eventi));
         $this->view->assign(array('Nome' => $this->_authService->getIdentity()->nome));
     }
 
@@ -71,12 +85,19 @@ class PartnerController extends Zend_Controller_Action
     {
         
     }
-    public function eliminaAction()
+    /*public function eliminaAction()
     {
         //$form=$this->_form1;
         
        	$this->_organizzazioniModel->deleteEvento($this->$_POST['id_E']);
         $this->_helper->redirector('index'); 
+    }*/
+    
+    public function eliminaAction(){
+        $nome = $this->getParam('id_E');
+        $elimina = true;
+        $this->_organizzazioniModel->deleteEvento($nome);
+        $this->_helper->redirector('gestisci','partner','default');
     }
    /* private function getGestisciForm()
     {
