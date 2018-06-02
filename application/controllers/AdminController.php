@@ -17,6 +17,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->assign(array('ruolo' => $ruolo));
         $this->view->addpartnerForm = $this->getAddpartnerForm();  
         $this->view->addfaqForm = $this->getAddfaqForm();  
+        $this->view->addtipevForm = $this->getAddtipevForm();  
     }
 
     public function indexAction()
@@ -127,6 +128,47 @@ class AdminController extends Zend_Controller_Action
 				'default'
 		));
 		return $this->_form;
+    }
+    public function newtipevAction(){}
+    public function newtipev1Action()
+        {
+            if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('index');
+        }
+        $form=$this->_form;
+        if (!$form->isValid($_POST)) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('newtipev');
+        }
+        
+        $values = $form->getValues();
+       	$this->_adminModel->addTipev($values);
+	$this->_helper->redirector('index'); 
+            }
+    private function getAddtipevForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+	$this->_form = new Application_Form_Admin_Addtipev();
+    	$this->_form->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'newtipev1'),
+				'default'
+		));
+		return $this->_form;
+    }
+    public function gestiscitipevAction()
+    {
+        $keys=$this->_adminModel->getTipoEventi();
+        $this->view->assign(array(
+            		'tipoeventi' => $keys,
+            		)
+        );
+    }
+    public function eliminatipevAction()
+    {
+        $id = $this->getParam('id_TE');
+        $this->_adminModel->deleteTipev($id);
+        $this->_helper->redirector('gestiscitipev','admin','default');
     }
 
     

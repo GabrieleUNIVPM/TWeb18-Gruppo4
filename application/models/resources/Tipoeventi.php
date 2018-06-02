@@ -22,13 +22,14 @@ class Application_Resource_Tipoeventi extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
     }
     
-    public function addElement($el)
+    public function addTipev($el)
     {
     	$this->insert($el);
     }
     
-    public function deleteElement($key)
+    public function deleteTipev($id)
     {
-        return $this->delete('id_TE = ?', $key);
+        $where=$this->getAdapter()->quoteInto('id_TE=?', $id);
+    	return $this->delete($where);
     }
 }

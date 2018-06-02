@@ -49,6 +49,14 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Faq')->addFaq($f);
     }
+    public function addTipev($t)
+    {
+        return $this->getResource('Tipoeventi')->addTipev($t);
+    }
+    public function deleteTipev($t)
+    {
+        return $this->getResource('Tipoeventi')->deleteTipev($t);
+    }
     
 
 }

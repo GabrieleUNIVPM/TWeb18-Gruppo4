@@ -33,8 +33,20 @@
                         'default',true
                     ); 
                     ?>">Aggiungi nuovo organizzatore</a></li>
-                    <li><a>Aggiungi nuova tipologia evento</a></li>
-                    <li><a>Gestisci tipologia evento</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'newtipev',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Aggiungi nuova tipologia evento</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'gestiscitipev',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Gestisci tipologia evento</a></li>
                     <li><a>Acquisti degli utenti</a></li>
                     <li><a class="" href="<?= $this->url(array(
                         'controller' => 'admin',
