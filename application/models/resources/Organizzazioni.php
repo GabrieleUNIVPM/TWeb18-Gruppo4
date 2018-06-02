@@ -15,4 +15,8 @@ class Application_Resource_Organizzazioni extends Zend_Db_Table_Abstract
         $select = $this->select();
         return $this->fetchAll($select);
     }
+    public function savePartner($u)
+    {
+        $this->insert($u);
+    }
 }

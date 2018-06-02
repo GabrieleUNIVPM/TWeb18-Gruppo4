@@ -20,20 +20,16 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
         $select = $this->select();
         return $this->fetchAll($select);
     }
-    public function getadmUtenti()
-    {
-        $select = $this->select();
-        return $this->fetchAll($select);
-    }
     
     public function salvaUtente($el)
     {
         $this->insert($el);
     }
     
-    public function cancellaUtente ($key)
+    public function cancellaUtente ($id)
     {
-        return $this->delete('id_U =' . $key.'"');
+        $where=$this->getAdapter()->quoteInto('id_U=?', $id);
+    	return $this->delete($where);
     }
     
     public function modificaUtente ($data, $key)

@@ -21,13 +21,26 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     	return $this->getResource('Utenti')->getUtente($info);
     }
-    public function getadmUtenti()
+    public function getUtenti()
     {
-        return $this->getResource('Utenti')->getadmUtenti();
+        return $this->getResource('Utenti')->getUtenti();
     }
     public function getFaq()
     {
         return $this->getResource('Faq')->getFaq();
     }
+    public function cancellaUtente($u)
+    {
+        return $this->getResource('Utenti')->cancellaUtente($u);
+    }
+    public function savePartner($u)
+    {
+        return $this->getResource('Organizzazioni')->savePartner($u);
+    }
+    public function salvaUtente($utente)
+    {
+        return $this->getResource('Utenti')->salvaUtente($utente);
+    }
+    
 
 }

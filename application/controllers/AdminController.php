@@ -5,16 +5,17 @@ class AdminController extends Zend_Controller_Action
 	protected $_adminModel;
 	protected $_authService;
 	protected $_form;
+        protected $form;
 	
 	
     public function init()
     {
     	$this->_helper->layout->setLayout('layadmin');   	
-        $this->_adminModel = new Application_Model_Admin();
-  	
+        $this->_adminModel = new Application_Model_Admin(); 	
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
+        $this->view->addpartnerForm = $this->getAddpartnerForm();  
     }
 
     public function indexAction()
@@ -43,11 +44,13 @@ class AdminController extends Zend_Controller_Action
     }
     public function gestisciutenteAction()
     {
-        $keys=$this->_adminModel->getadmUtenti();
+        $keys=$this->_adminModel->getUtenti();
         $this->view->assign(array(
             		'utenti' => $keys,
             		)
         );
+        $this->view->assign(array('elimina' => $elimina));
+       
     }
     public function gestiscifaqAction()
     {
@@ -56,6 +59,40 @@ class AdminController extends Zend_Controller_Action
             		'faq' => $keys,
             		)
         );
+    }
+    public function eliminaAction()
+    {
+        $id = $this->getParam('id_U');
+        $this->_adminModel->cancellaUtente($id);
+        $this->_helper->redirector('gestisciutente','admin','default');
+    }
+    public function newpartnerAction()
+    {}
+    public function newpartner1Action()
+    {
+        if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('index');
+        }
+        $form=$this->_form;
+        if (!$form->isValid($_POST)) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('newpartner');
+        }
+        
+        $values = $form->getValues();
+       	$this->_adminModel->savePartner($values);
+	$this->_helper->redirector('index'); 
+    }
+     private function getAddpartnerForm()
+    {
+    	$urlHelper = $this->_helper->getHelper('url');
+	$this->_form = new Application_Form_Admin_Addpartner();
+    	$this->_form->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'newpartner1'),
+				'default'
+		));
+		return $this->_form;
     }
 
     
