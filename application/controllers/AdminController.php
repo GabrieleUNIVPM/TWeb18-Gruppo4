@@ -16,6 +16,7 @@ class AdminController extends Zend_Controller_Action
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
         $this->view->addpartnerForm = $this->getAddpartnerForm();  
+        $this->view->addfaqForm = $this->getAddfaqForm();  
     }
 
     public function indexAction()
@@ -60,6 +61,12 @@ class AdminController extends Zend_Controller_Action
             		)
         );
     }
+    public function eliminafaqAction()
+    {
+        $id = $this->getParam('id_F');
+        $this->_adminModel->deleteFaq($id);
+        $this->_helper->redirector('gestiscifaq','admin','default');
+    }
     public function eliminaAction()
     {
         $id = $this->getParam('id_U');
@@ -90,6 +97,33 @@ class AdminController extends Zend_Controller_Action
     	$this->_form->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'newpartner1'),
+				'default'
+		));
+		return $this->_form;
+    }
+    public function newfaqAction(){}
+    public function newfaq1Action()
+        {
+            if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('index');
+        }
+        $form=$this->_form;
+        if (!$form->isValid($_POST)) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('newfaq');
+        }
+        
+        $values = $form->getValues();
+       	$this->_adminModel->addFaq($values);
+	$this->_helper->redirector('index'); 
+        }
+     private function getAddfaqForm()
+    {
+    	$urlHelper = $this->_helper->getHelper('url');
+	$this->_form = new Application_Form_Admin_Addfaq();
+    	$this->_form->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'newfaq1'),
 				'default'
 		));
 		return $this->_form;

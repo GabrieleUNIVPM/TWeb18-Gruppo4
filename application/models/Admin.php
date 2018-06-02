@@ -41,6 +41,14 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Utenti')->salvaUtente($utente);
     }
+    public function deleteFaq($f)
+    {
+        return $this->getResource('Faq')->deleteFaq($f);
+    }
+     public function addFaq($f)
+    {
+        return $this->getResource('Faq')->addFaq($f);
+    }
     
 
 }

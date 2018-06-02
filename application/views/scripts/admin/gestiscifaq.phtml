@@ -3,11 +3,14 @@
  <p>Utilizza questa form per gestire le FAQ</p>
 </div>
 <?php       
-            foreach ($this->faq as $type){
-                echo "<p><li> $type->domanda</li>"; 
-                echo "<br>$type->risposta<br></p>";
-            echo '<td><input type="submit" value="Modifica"></td>';
-            echo '<td><input type="submit" value="Elimina"></td></tr><hr>';
-            }
-            
-        
+            foreach ($this->faq as $type):
+            echo "<p><li> $type->domanda</li>"; 
+            echo "<br>$type->risposta<br></p>";?>
+            <td><input type="submit" value="Modifica"></td>
+            <td><a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'eliminafaq',
+                        'id_F'       => $type->id_F), 
+                        'default',true
+                    );?>" value="Elimina">Elimina</a></td></tr><hr>
+             <?php endforeach?>

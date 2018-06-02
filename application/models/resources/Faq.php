@@ -22,14 +22,15 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
     }
     
-    public function deleteElement($key)
+    public function deleteFaq($f)
     {
-        return $this->delete("id_F = '" . $key . "'");
+        $where=$this->getAdapter()->quoteInto('id_F=?', $f);
+    	return $this->delete($where);
     }
     
-    public function addElement($el)
+    public function addFaq($f)
     {
-    	return $this->insert($el);
+    	return $this->insert($f);
     }
     
 }
