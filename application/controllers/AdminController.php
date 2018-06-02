@@ -6,6 +6,8 @@ class AdminController extends Zend_Controller_Action
 	protected $_authService;
 	protected $_form;
         protected $form;
+        protected $formF;
+        protected $formP;
 	
 	
     public function init()
@@ -81,7 +83,7 @@ class AdminController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('index');
         }
-        $form=$this->_form;
+        $form=$this->formP;
         if (!$form->isValid($_POST)) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
             return $this->render('newpartner');
@@ -94,21 +96,21 @@ class AdminController extends Zend_Controller_Action
      private function getAddpartnerForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
-	$this->_form = new Application_Form_Admin_Addpartner();
-    	$this->_form->setAction($urlHelper->url(array(
+	$this->formP = new Application_Form_Admin_Addpartner();
+    	$this->formP->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'newpartner1'),
 				'default'
 		));
-		return $this->_form;
+		return $this->formP;
     }
     public function newfaqAction(){}
     public function newfaq1Action()
         {
-            if (!$this->getRequest()->isPost()) {
-            $this->_helper->redirector('index');
+        if (!$this->getRequest()->isPost()) {
+        $this->_helper->redirector('index');
         }
-        $form=$this->_form;
+        $form=$this->formF;
         if (!$form->isValid($_POST)) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
             return $this->render('newfaq');
@@ -121,13 +123,13 @@ class AdminController extends Zend_Controller_Action
      private function getAddfaqForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
-	$this->_form = new Application_Form_Admin_Addfaq();
-    	$this->_form->setAction($urlHelper->url(array(
+	$this->formF = new Application_Form_Admin_Addfaq();
+    	$this->formF->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'newfaq1'),
 				'default'
 		));
-		return $this->_form;
+		return $this->formF;
     }
     public function newtipevAction(){}
     public function newtipev1Action()
@@ -158,9 +160,9 @@ class AdminController extends Zend_Controller_Action
     }
     public function gestiscitipevAction()
     {
-        $keys=$this->_adminModel->getTipoEventi();
+        $ke=$this->_adminModel->getTipoEventi();
         $this->view->assign(array(
-            		'tipoeventi' => $keys,
+            		'tipoeventi' => $ke,
             		)
         );
     }

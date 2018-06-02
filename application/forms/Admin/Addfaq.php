@@ -13,7 +13,7 @@ class Application_Form_Admin_Addfaq extends App_Form_Abstract
 
         $this->addElement('textarea', 'domanda', array(
             'label' => 'Domanda',
-            'cols' => '22', 'rows' => '7',
+            'cols' => '22', 'rows' => '3',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
@@ -21,7 +21,7 @@ class Application_Form_Admin_Addfaq extends App_Form_Abstract
         ));
         $this->addElement('textarea', 'risposta', array(
             'label' => 'Risposta',
-            'cols' => '22', 'rows' => '7',
+            'cols' => '22', 'rows' => '3',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
