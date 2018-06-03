@@ -55,7 +55,7 @@ class AdminController extends Zend_Controller_Action
             		'utenti' => $keys,
             		)
         );
-        $this->view->assign(array('elimina' => $elimina));
+    //    $this->view->assign(array('elimina' => $elimina));
        
     }
     public function gestiscifaqAction()

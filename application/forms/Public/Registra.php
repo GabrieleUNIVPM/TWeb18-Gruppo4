@@ -62,7 +62,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'label' => 'Username',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array('Alnum',array('StringLength',true, array(4,15)),
+            'validators' => array('Alnum',array('StringLength',true, array(3,15)),
                 array('Db_NoRecordExists',true, 
                 array('table'   => 'utenti',
                       'field'   => 'username'))),
@@ -73,7 +73,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'label' => 'Password',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array('Alnum',array('StringLength',true, array(4,15))),
+            'validators' => array('Alnum',array('StringLength',true, array(3,15))),
             'decorators' => $this->elementDecorators,
 		));
         
