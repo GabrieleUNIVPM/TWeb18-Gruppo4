@@ -5,13 +5,16 @@ class AdminController extends Zend_Controller_Action
 	protected $_adminModel;
 	protected $_authService;
 	protected $_form;
-        protected $form;
         protected $_formF;
         protected $_formMF;
         protected $_formP;
-	
-	
-    public function init()
+        protected $_formT;
+        protected $_formMT;
+
+
+
+
+        public function init()
         {
     	$this->_helper->layout->setLayout('layadmin');   	
         $this->_adminModel = new Application_Model_Admin(); 	
@@ -22,6 +25,8 @@ class AdminController extends Zend_Controller_Action
         $this->view->addfaqForm = $this->getAddfaqForm();  
         $this->view->addtipevForm = $this->getAddtipevForm();  
         $this->view->modfaqForm = $this->getModfaqForm();
+        $this->view->modtipoForm = $this->getModtipoForm();  
+
         }
 
     public function indexAction()
@@ -78,12 +83,7 @@ class AdminController extends Zend_Controller_Action
         $this->_adminModel->cancellaUtente($id);
         $this->_helper->redirector('gestisciutente','admin','default');
     }
-    
-    public function functionName($param) 
-        {
-        
-        }
-        
+       
     public function newpartnerAction()
         {
         
@@ -176,20 +176,59 @@ class AdminController extends Zend_Controller_Action
     
     public function gestiscitipevAction()
         {
+        $paged = $this->_getParam('page', 1);
         $ke=$this->_adminModel->getTipoEventi();
-        $this->view->assign(array(
-            		'tipoeventi' => $ke,
-            		)
-        );
-        }
+        $elimina = $this->getParam('elimina');
+        $modifica = $this->getParam('modifica');
+        if($elimina){
+            $tip = $this->getParam('tip');
+            $this->view->assign(array('tipoeventi' => $ke,'tip' => $tip,'elimina' => $elimina));
+            } else if($modifica){
+                $tip = $this->getParam('tip');
+                $vecchiatip = $this->getParam('vecchiatip');
+                $this->view->assign(array('tipoeventi' => $ke,'tip' => $tip, 'vecchiatip'=> $vecchiatip, 'modifica' => $modifica)); 
+                } else  {
+                    $this->view->assign(array('tipoeventi' => $ke,));
+                        }    
+    }
+   
+        
     
     public function eliminatipevAction()
         {
         $id = $this->getParam('id_TE');
+        $elimina = true;
         $this->_adminModel->deleteTipev($id);
-        $this->_helper->redirector('gestiscitipev','admin','default');
+        $this->_helper->redirector('gestiscitipev','admin','default',array('tip'=>$id, 'elimina'=>$elimina));
         }
     
+        public function modtipAction() 
+        {
+        $cat = $this->getParam('id_TE');
+        $tipologia = $this->_adminModel->getTipoEvento($cat);
+        $this->_formMT->setValues($tipologia);
+        $this->view->modtipologiaForm = $this->_formMT;
+        }
+        
+        public function modtipoAction() 
+        {
+            if (!$this->getRequest()->isPost()) {
+		$this->_helper->redirector('gestiscitipev','admin');
+	}
+                $form = $this->_formMT;
+                $form->setValues($_POST); //viene creata la form con gli elementi già compilati
+		if (!$form->isValid($_POST)) {
+                    return $this->render('modtip');
+		}   
+                $values = $form->getValues();
+                $vecchiatipologia = $values['id_TE'];
+                unset($values['id_TE']);
+                $modifica = true;  
+                $this->_adminModel->modificaTipologia($values, $vecchiatipologia);             
+                $this->_helper->redirector('gestiscitipev','admin','default',array('cat'=>$values, 'vecchiatip'=> $vecchiatipologia,'modifica'=> $modifica));          
+    }
+           
+        
     private function getAddpartnerForm()
         {
     	$urlHelper = $this->_helper->getHelper('url');
@@ -238,4 +277,15 @@ class AdminController extends Zend_Controller_Action
 		return $this->_formMF;
         }
     
+    public function getModtipoForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->_formMT = new Application_Form_Admin_Modtipologia();
+		$this->_formMT->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modtipo'),
+				'default'
+				));
+		return $this->_formMT;
+    }    
+        
 }

@@ -68,4 +68,13 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Faq')->modificaFaq($faq, $key);
     }
     
+    public function modificaTipologia($tipo, $key)
+    {
+        return $this->getResource('Tipoeventi')->modificaTipologia($tipo, $key);
+    }
+    
+    public function getTipoEvento($key)
+    {
+	return $this->getResource('Tipoeventi')->getTipoEvento($key);
+    }
 }

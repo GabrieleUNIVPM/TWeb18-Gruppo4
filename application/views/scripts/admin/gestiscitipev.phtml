@@ -1,17 +1,31 @@
 <div>
- <h3>Gestisci FAQ</h3>
- <p>Utilizza questa form per gestire le FAQ</p>
+ <h3>Gestisci Categorie</h3>
+ <p>Utilizza questa form per gestire le Categorie</p>
+ 
+<?php if($this->elimina):?>
+<?php echo '<h5 style="color:red">Tipologia '.$this->tip.' eliminata</h4>'?>
+<?php endif ?>
+<?php if($this->modifica):?>
+<?php echo '<h5 style="color:red">Tipologia '.$this->vecchiatip.' modificata in tipologia '.$this->tip.'</h4>'?>
+<?php endif ?>
+ 
 </div>
 <div class=tabella id=gestione><table class=elenco><th>Tipologia</th>
             <?php foreach ($this->tipoeventi as $type):
             echo "<tr><td>$type->tipologia</td><td>";
             ?>
-             <a  class="ancora" type="submit" href=" <?= $this->url(array(
+            <a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'eliminatipev',
                         'id_TE'       => $type->id_TE), 
                         'default',true
-                    );?>" value="Elimina">Elimina</a>
-            <?php echo '</td><td><input class"submit" type="submit" value="Modifica"></td></tr>';?>
+                    );?>" >Elimina</a>
+        
+            <a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'modtip',
+                        'id_TE'       => $type->id_TE), 
+                        'default',true
+                    );?>" >Modifica</a></tr>
             <?php endforeach;
             echo '</table></div>'?>

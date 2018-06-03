@@ -32,4 +32,11 @@ class Application_Resource_Tipoeventi extends Zend_Db_Table_Abstract
         $where=$this->getAdapter()->quoteInto('id_TE=?', $id);
     	return $this->delete($where);
     }
+    
+    public function modificaTipologia($data, $key)
+    {
+        $where = $this->getAdapter()->quoteInto('id_TE = ?', $key);
+        return $this->update($data, $where);
+    }
+    
 }
