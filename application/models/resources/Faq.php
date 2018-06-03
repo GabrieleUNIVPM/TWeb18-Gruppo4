@@ -33,4 +33,9 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
     	return $this->insert($f);
     }
     
+    public function modificaFaq ($data, $key)
+    {
+        $where = $this->getAdapter()->quoteInto('id_F = ?', $key);
+        return $this->update($data, $where);
+    }
 }

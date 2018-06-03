@@ -58,5 +58,14 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Tipoeventi')->deleteTipev($t);
     }
     
+     public function getFaqByID($id)
+    {
+        return $this->getResource('Faq')->getFaqByID($id);
+    }
 
+    public function modificaFaq($faq, $key)
+    {
+        return $this->getResource('Faq')->modificaFaq($faq, $key);
+    }
+    
 }

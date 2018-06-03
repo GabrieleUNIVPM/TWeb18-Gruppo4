@@ -7,6 +7,7 @@ class AdminController extends Zend_Controller_Action
 	protected $_form;
         protected $form;
         protected $formF;
+        protected $formMF;
         protected $formP;
 	
 	
@@ -20,6 +21,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->addpartnerForm = $this->getAddpartnerForm();  
         $this->view->addfaqForm = $this->getAddfaqForm();  
         $this->view->addtipevForm = $this->getAddtipevForm();  
+        $this->view->modfaqForm = $this->getModfaqForm();
     }
 
     public function indexAction()
@@ -76,8 +78,18 @@ class AdminController extends Zend_Controller_Action
         $this->_adminModel->cancellaUtente($id);
         $this->_helper->redirector('gestisciutente','admin','default');
     }
+    
+    public function functionName($param) {
+        
+    }
+    
+    
+    
+    
     public function newpartnerAction()
-    {}
+    {
+        
+    }
     public function newpartner1Action()
     {
         if (!$this->getRequest()->isPost()) {
@@ -104,7 +116,11 @@ class AdminController extends Zend_Controller_Action
 		));
 		return $this->formP;
     }
-    public function newfaqAction(){}
+    public function newfaqAction()
+        {
+        
+        }
+    
     public function newfaq1Action()
         {
         if (!$this->getRequest()->isPost()) {
@@ -120,6 +136,7 @@ class AdminController extends Zend_Controller_Action
        	$this->_adminModel->addFaq($values);
 	$this->_helper->redirector('index'); 
         }
+        
      private function getAddfaqForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
@@ -131,7 +148,12 @@ class AdminController extends Zend_Controller_Action
 		));
 		return $this->formF;
     }
-    public function newtipevAction(){}
+    
+    public function newtipevAction()
+    {
+        
+    }
+    
     public function newtipev1Action()
         {
             if (!$this->getRequest()->isPost()) {
@@ -147,6 +169,7 @@ class AdminController extends Zend_Controller_Action
        	$this->_adminModel->addTipev($values);
 	$this->_helper->redirector('index'); 
             }
+            
     private function getAddtipevForm()
     {
         $urlHelper = $this->_helper->getHelper('url');
@@ -158,6 +181,45 @@ class AdminController extends Zend_Controller_Action
 		));
 		return $this->_form;
     }
+    
+    public function modfaqAction() 
+    {
+        $id = $this->getParam('id_F');
+        $faq = $this->_adminModel->getFaqByID($id);
+        $this->_formMF->setValues($faq);
+        $this->view->modfaqForm = $this->_formMF;
+    }
+    
+    public function modificafaqAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+		}
+                $form = $this->_formMF;
+                $form->setValues($_POST); //viene creata la form con gli elementi già compilati
+		if (!$form->isValid($_POST)) {
+                    return $this->render('modfaq');
+		}
+                $values = $form->getValues();
+                $id = $values['id_F'];
+                unset($values['id_F']);
+		$this->_adminModel->modificaFaq($values, $id);
+                $modifica = true;
+                $this->_helper->redirector('gestiscifaq','admin','default',array('modifica'=> $modifica));
+    }
+    
+    private function getModfaqForm() 
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+	$this->_formMF = new Application_Form_Admin_Modfaq();
+    	$this->_formMF->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificafaq'),
+				'default'
+		));
+		return $this->_formMF;
+    }
+    
     public function gestiscitipevAction()
     {
         $ke=$this->_adminModel->getTipoEventi();
@@ -166,6 +228,7 @@ class AdminController extends Zend_Controller_Action
             		)
         );
     }
+    
     public function eliminatipevAction()
     {
         $id = $this->getParam('id_TE');

@@ -6,7 +6,16 @@
             foreach ($this->faq as $type):
             echo "<p><li> $type->domanda</li>"; 
             echo "<br>$type->risposta<br></p>";?>
-            <td><input type="submit" value="Modifica"></td>
+            <td><a class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'modfaq',
+                        'id_F'       => $type->id_F), 
+                        'default',true
+                    );?>" >Modifica</a></td>
+            
+            
+            
+            
             <td><a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'eliminafaq',
