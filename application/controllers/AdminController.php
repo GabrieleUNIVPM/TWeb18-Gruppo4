@@ -226,7 +226,7 @@ class AdminController extends Zend_Controller_Action
                 unset($values['id_TE']);
                 $modifica = true;  
                 $this->_adminModel->modificaTipologia($values, $vecchiatipologia);             
-                $this->_helper->redirector('gestiscitipev','admin','default',array('cat'=>$values, 'vecchiatip'=> $vecchiatipologia,'modifica'=> $modifica));          
+                $this->_helper->redirector('gestiscitipev','admin','default',array('tip'=>$values, 'vecchiatip'=> $vecchiatipologia,'modifica'=> $modifica));          
     }
     public function moduserAction() {
         $user = $this->getParam('username');
