@@ -210,6 +210,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->modtipologiaForm = $this->_formMT;
         }
         
+        
         public function modtipoAction() 
         {
             if (!$this->getRequest()->isPost()) {
