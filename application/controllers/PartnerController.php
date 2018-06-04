@@ -133,7 +133,13 @@ class PartnerController extends Zend_Controller_Action
                 $values = $form->getValues();
                 $id = $values['id_E'];
                 unset($values['id_E']);
-		$this->_organizzazioniModel->modificaEvento($values, $id);
+                    if ($values['immagine']==null){
+                        unset($values['immagine']);
+                        $this->_organizzazioniModel->modificaEvento($values, $id);
+                    }
+                    else {
+                        $this->_organizzazioniModel->modificaEvento($values, $id);
+                    }   
                 $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
             //    $modifica = true;
                 $this->_helper->redirector('index');
