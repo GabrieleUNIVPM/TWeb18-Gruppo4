@@ -58,4 +58,8 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part, $paged);
     }
+     public function salvaAcquisto($a)
+    {
+        return $this->getResource('Acquisti')->salvaAcquisto($a);
+    }
 }

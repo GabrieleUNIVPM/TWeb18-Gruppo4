@@ -16,5 +16,9 @@ class Application_Resource_Acquisti extends Zend_Db_Table_Abstract
         $select = $this->select();//->where('nomeevento IN(?)', $key);
         return $this->fetchAll($select);
     }
+    public function salvaAcquisto($a)
+    {
+        $this->insert($a);
+    }
     
 }

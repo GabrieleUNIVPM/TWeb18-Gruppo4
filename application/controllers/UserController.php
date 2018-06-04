@@ -16,6 +16,7 @@ class UserController extends Zend_Controller_Action
         
         $this->_userModel = new Application_Model_User();
         $this->view->moduserForm = $this->getModuserForm();
+       
         
         
     }
