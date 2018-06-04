@@ -26,9 +26,7 @@ class PublicController extends Zend_Controller_Action
         }
         else {$ruolo=false;}        
         $this->view->assign(array('ruolo' => $ruolo));
-        $this->_authServiceA = new Application_Service_Auth();
-        $user = $this->_authServiceA->getIdentity()->username;
-        $this->view->assign(array('user' => $user));
+        
         
     }
 
@@ -169,7 +167,7 @@ class PublicController extends Zend_Controller_Action
         
     }
     public function acquisto1Action()
-    {
+    {   
         if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index','public');
 	}
@@ -177,9 +175,10 @@ class PublicController extends Zend_Controller_Action
 	if (!$form->isValid($_POST)) {
 			return $this->render('acquisto');
 	}
+        $form->setValues($this->_authService->getIdentity()->username);
 	$values = $form->getValues();
         $this->_publicModel->salvaAcquisto($values);
-	$this->_helper->redirector('index');
+	$this->_helper->redirector('acquisti','user');
     }
     
     public function getAcquistoForm(){

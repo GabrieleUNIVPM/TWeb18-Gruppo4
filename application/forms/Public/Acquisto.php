@@ -12,7 +12,7 @@ class Application_Form_Public_Acquisto extends App_Form_Abstract
         $this->setName('acquisto');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
-        $num=array('0','1','2','3');
+        $num=array('1'=>'1','2'=>'2','3'=>'3');
         $this->addElement('select', 'numerobiglietti', array(
             'label' => 'Numero biglietti',
             'required' => true,
@@ -28,9 +28,7 @@ class Application_Form_Public_Acquisto extends App_Form_Abstract
             'values'=>$pag,
             'decorators' => $this->elementDecorators,
         ));
-         $this->addElement('hidden', 'username', array(
-            'value' => $this->user
-		));
+         
         $this->addElement('submit', 'add', array(
             'label' => 'Acquista',
             'decorators' => $this->buttonDecorators,
@@ -42,5 +40,10 @@ class Application_Form_Public_Acquisto extends App_Form_Abstract
         		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+    }
+    public function setValues($v){
+        $this->addElement('hidden', 'username', array(
+            'value' => $v
+		));
     }
 }
