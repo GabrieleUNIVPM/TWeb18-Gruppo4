@@ -6,6 +6,7 @@
         echo "<td>$type->numerobiglietti</td><td>";?>
         <?php if($type->metodo==='V'){echo 'Visa';}
               if($type->metodo==='M'){echo 'Mastercard';}
+              if($type->metodo==='B'){echo 'Bonifico bancario';}
         
         echo '</td></tr>';
         endif;
