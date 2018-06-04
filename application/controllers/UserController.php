@@ -66,5 +66,13 @@ class UserController extends Zend_Controller_Action
 				));
 		return $this->_form;
     }
+    public function acquistiAction()
+    {
+        $user = $this->_authService->getIdentity()->username;
+        $acquisti = $this->_userModel->getAcquisti();
+        $this->view->assign(array('utente' => $user));
+        $this->view->assign(array('acquisti' => $acquisti));
+        
+    }
 
 }

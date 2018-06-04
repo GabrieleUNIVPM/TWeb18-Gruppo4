@@ -1,0 +1,13 @@
+<h2>I miei acquisti</h2>
+<?php   echo "<div class=tabella><table class=elenco><th>Evento</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th>";
+        foreach ($this->acquisti as $type):
+        if($this->utente===$type->username):
+        echo "<tr><td>$type->nomeevento</td>";
+        echo "<td>$type->numerobiglietti</td><td>";?>
+        <?php if($type->metodo==='V'){echo 'Visa';}
+              if($type->metodo==='M'){echo 'Mastercard';}
+        
+        echo '</td></tr>';
+        endif;
+        endforeach;
+        echo '</table></div>';

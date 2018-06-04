@@ -11,7 +11,7 @@ class Application_Resource_Acquisti extends Zend_Db_Table_Abstract
         
     }
     
-    public function getAcquisti($key)
+    public function getAcquisti()
     {
         $select = $this->select();//->where('nomeevento IN(?)', $key);
         return $this->fetchAll($select);
