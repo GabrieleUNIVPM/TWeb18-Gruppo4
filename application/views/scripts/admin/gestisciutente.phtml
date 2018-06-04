@@ -1,7 +1,6 @@
 <?php
-$filename='toggleEventi.js';
-echo $this->toggleEventi($filename);
-$id=0;?>
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?>
 <div>
  <h3>Gestisci utenti</h3>
  <p>Utilizza questa form per gestire i dati degli utenti</p>
@@ -13,7 +12,7 @@ $id=0;?>
             echo "<td>$type->ruolo</td>";
             echo "<td>$type->nome</td>";
             echo "<td>$type->cognome</td><td>";?>
-            <a  class="ancora" type="submit" href=" <?= $this->url(array(
+            <a  class="ancora" type="submit" onClick=" return conferma()"  href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'elimina',
                         'id_U'       => $type->id_U,
@@ -27,6 +26,6 @@ $id=0;?>
                         'username'   => $type->username,
                         ), 
                         'default',true
-                    );?>" value="Elimina">Modifica</a></td></tr>
+                    );?>" value="Modifica">Modifica</a></td></tr>
             <?php endif; endforeach;
             echo '</table></div>'?>

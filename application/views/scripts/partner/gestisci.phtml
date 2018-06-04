@@ -1,14 +1,6 @@
-<!--<script>
-function cancella() {
-  var domanda = confirm("Sei sicuro di voler cancellare?");
-  if (domanda === true) {
-    alert('Qui metti un redirect alla URL che effettua la cancellazione...')  
-  }else{
-    alert('Operazione annullata');
-  }
-}
-}</script>-->
-
+<?php
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?>
 <div class="form_settings">
  <h3>Gestisci eventi</h3>
  <p>Utilizza questa sezione per gestire gli eventi nel Catalogo</p>
@@ -20,7 +12,7 @@ function cancella() {
           echo $this->img($type->immagine);
           echo "</td><td>";
            ?>
- <a  class="ancora" type="submit" href="<?= $this->url(array(
+        <a  class="ancora" type="submit" onclick="return conferma()" href="<?= $this->url(array(
                         'controller' => 'partner',
                         'action'     => 'elimina',
                         'id_E'       => $type->id_E,

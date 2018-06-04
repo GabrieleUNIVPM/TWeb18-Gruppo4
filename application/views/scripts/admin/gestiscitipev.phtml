@@ -1,4 +1,6 @@
-<div>
+<?php
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?><div>
  <h3>Gestisci Categorie</h3>
  <p>Utilizza questa form per gestire le Categorie</p>
  
@@ -14,7 +16,7 @@
             <?php foreach ($this->tipoeventi as $type):
             echo "<tr><td>$type->tipologia</td><td>";
             ?>
-            <a  class="ancora" type="submit" href=" <?= $this->url(array(
+        <a  class="ancora" type="submit" onclick="return conferma()" href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'eliminatipev',
                         'id_TE'       => $type->id_TE), 

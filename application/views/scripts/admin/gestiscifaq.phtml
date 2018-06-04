@@ -1,4 +1,6 @@
-<div>
+<?php
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?><div>
  <h3>Gestisci FAQ</h3>
  <p>Utilizza questa form per gestire le FAQ</p>
 </div>
@@ -16,7 +18,7 @@
             
             
             
-            <td><a  class="ancora" type="submit" href=" <?= $this->url(array(
+            <td><a  class="ancora" onclick="return conferma()" type="submit" href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'eliminafaq',
                         'id_F'       => $type->id_F), 
