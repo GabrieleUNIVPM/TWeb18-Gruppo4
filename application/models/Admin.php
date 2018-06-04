@@ -77,4 +77,8 @@ class Application_Model_Admin extends App_Model_Abstract
     {
 	return $this->getResource('Tipoeventi')->getTipoEvento($key);
     }
+    public function modificaUtente($utente, $key)
+    {
+        return $this->getResource('Utenti')->modificaUtente($utente, $key);
+    }
 }

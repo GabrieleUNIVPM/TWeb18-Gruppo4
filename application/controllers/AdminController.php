@@ -10,9 +10,8 @@ class AdminController extends Zend_Controller_Action
         protected $_formP;
         protected $_formT;
         protected $_formMT;
-
-
-
+        protected $_formMU;
+        protected $_userModel;
 
         public function init()
         {
@@ -26,6 +25,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->addtipevForm = $this->getAddtipevForm();  
         $this->view->modfaqForm = $this->getModfaqForm();
         $this->view->modtipoForm = $this->getModtipoForm();  
+        $this->view->moduserForm = $this->getModuserForm();  
 
         }
 
@@ -228,6 +228,28 @@ class AdminController extends Zend_Controller_Action
                 $this->_adminModel->modificaTipologia($values, $vecchiatipologia);             
                 $this->_helper->redirector('gestiscitipev','admin','default',array('cat'=>$values, 'vecchiatip'=> $vecchiatipologia,'modifica'=> $modifica));          
     }
+    public function moduserAction() {
+        $user = $this->getParam('username');
+        $utente = $this->_adminModel->getUtente($user);
+        $this->formMU->setValues($utente);
+        $this->view->moduserForm = $this->formMU;
+    }
+    public function modificauserAction(){
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+		}
+		$form = $this->formMU;
+                $form->setValues($_POST);
+		if (!$form->isValid($_POST)) {
+			return $this->render('moduser');
+		}
+		$values = $form->getValues();
+                $id = $values['id_U'];
+                unset($values['id_U']);
+		$this->_adminModel->modificaUtente($values, $id);
+		$this->_helper->redirector('index');
+    }
+    
            
         
     private function getAddpartnerForm()
@@ -287,6 +309,17 @@ class AdminController extends Zend_Controller_Action
 				'default'
 				));
 		return $this->_formMT;
-    }    
+    }
+    public function getModuserForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->formMU = new Application_Form_Admin_Moduser();
+		$this->formMU->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificauser'),//
+				'default'
+				));
+		return $this->formMU;
+    }
+    
         
 }

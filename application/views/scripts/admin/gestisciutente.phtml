@@ -21,6 +21,12 @@ $id=0;?>
                         ), 
                         'default',true
                     );?>" value="Elimina">Elimina</a>
-            <?php echo '</td><td><input class"submit" type="submit" value="Modifica"></td></tr>';?>
+             </td><td><a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'moduser',
+                        'username'   => $type->username,
+                        ), 
+                        'default',true
+                    );?>" value="Elimina">Modifica</a></td></tr>
             <?php endif; endforeach;
             echo '</table></div>'?>
