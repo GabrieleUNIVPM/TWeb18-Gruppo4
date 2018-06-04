@@ -27,4 +27,12 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
         return $this->getResource('Eventi')->deleteEvento($ev);
     }
+    public function modificaEvento($data,$key)
+    {
+    	return $this->getResource('Eventi')->modificaEvento($data,$key);
+    }
+    public function getEventoById($key)
+    {
+    	return $this->getResource('Eventi')->getEventoById($key);
+    }
 }

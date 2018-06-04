@@ -27,7 +27,14 @@ function cancella() {
                         'nome'       => $type->nome,
                         ), 
                         'default',true
-         );?>">Elimina</a>
+         );?>">Elimina</a><br><br>
+          <a  class="ancora" type="submit" href="<?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'modev',
+                        'id_E'       => $type->id_E,
+                        ), 
+                        'default',true
+         );?>">Modifica</a>
           <?php echo '</td></tr>' ?>
           <?php endif; endforeach;
           echo '</table></div>'?>

@@ -69,4 +69,13 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
 		}
         return $this->fetchAll($select);
     }
+     public function modificaEvento ($data, $key)
+    {
+        $where = $this->getAdapter()->quoteInto('id_E = ?', $key);
+        return $this->update($data, $where);
+    }
+    public function getEventoByID($key)
+    {
+        return $this->fetchRow($this->select()->where('id_E = ?', $key));
+    }
 }

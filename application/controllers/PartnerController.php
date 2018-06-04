@@ -7,6 +7,7 @@ class PartnerController extends Zend_Controller_Action
     protected $_form1;
     protected $_authService;
     protected $nome;
+    protected $formME;
 
     public function init()
     {
@@ -17,6 +18,7 @@ class PartnerController extends Zend_Controller_Action
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
+        $this->view->modevForm = $this->getModevForm();  
     }
 
     public function indexAction()
@@ -67,7 +69,7 @@ class PartnerController extends Zend_Controller_Action
         }
         $values = $form->getValues();
        	$this->_organizzazioniModel->saveProduct($values);
-        $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
+        //$this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
 	$this->_helper->redirector('index'); 
     }
     private function getProductForm()
@@ -111,5 +113,41 @@ class PartnerController extends Zend_Controller_Action
     return $this->_form1;
         
     }*/
+    public function modevAction() 
+        {   
+        $id = $this->getParam('id_E');
+        $ev = $this->_organizzazioniModel->getEventoByID($id);
+        $this->formME->setValues($ev);
+        $this->view->modevForm = $this->formME;//
+        }
+    public function modificaeventoAction()
+        {
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+		}
+                $form = $this->formME;
+                $form->setValues($_POST); //viene creata la form con gli elementi già compilati
+		if (!$form->isValid($_POST)) {
+                    return $this->render('modev');
+		}
+                $values = $form->getValues();
+                $id = $values['id_E'];
+                unset($values['id_E']);
+		$this->_organizzazioniModel->modificaEvento($values, $id);
+                $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
+            //    $modifica = true;
+                $this->_helper->redirector('index');
+        }
+    private function getModevForm() 
+        {
+        $urlHelper = $this->_helper->getHelper('url');
+	$this->formME = new Application_Form_Organizzazioni_Product_Modev();
+    	$this->formME->setAction($urlHelper->url(array(
+				'controller' => 'partner',
+				'action' => 'modificaevento'),//
+				'default'
+		));
+		return $this->formME;
+        }
 }
 
