@@ -34,7 +34,10 @@ class PartnerController extends Zend_Controller_Action
     }
 
     public function newproductAction() 
-    {}
+    {
+        
+    }
+    
     public function gestisciAction(){
         
         $paged = $this->_getParam('page', 1);
@@ -60,14 +63,17 @@ class PartnerController extends Zend_Controller_Action
     public function addproductAction() 
     {
         if (!$this->getRequest()->isPost()) {
-            $this->_helper->redirector('index');
+            $this->_helper->redirector('index','public');
         }
-		$form=$this->_form;
+        $form=$this->_form;
         if (!$form->isValid($_POST)) {
-            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
-            return $this->render('newproduct');
+        $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+        return $this->render('newproduct');
         }
         $values = $form->getValues();
+        if($values['immagine'] === null){
+                            $values['immagine']='immagineBase.png';
+                }
        	$this->_organizzazioniModel->saveProduct($values);
         //$this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
 	$this->_helper->redirector('index'); 
