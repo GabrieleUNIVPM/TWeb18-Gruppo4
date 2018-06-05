@@ -1,0 +1,23 @@
+<?php
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?>
+<div class="form_settings">
+ <h3>Analisi vendite</h3>
+</div>
+        <?php echo "<div class=tabella><table class=elenco><th></th><th>Evento</th><th>Biglietti venduti</th><th>Percentuale biglietti venduti</th>";
+          foreach ($this->Eventi as $type):
+          if($type->organizzatore==$this->Nome):
+          
+          $A=0;  
+          foreach ($this->Acquisti as $t){if($t->nomeevento===$type->nome){$A=$A+$t->numerobiglietti;}}
+          $P=($A*100)/($type->numerobiglietti);
+              
+	  echo "<tr><td>";
+          echo $this->img($type->immagine);
+          echo "</td><td>$type->nome</td>";
+          echo "<td>$A</td><td>$P %</td></tr>";
+          
+          
+          endif; endforeach;
+          echo '</table></div>';
+          

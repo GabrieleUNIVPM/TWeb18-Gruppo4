@@ -33,7 +33,13 @@
                         'default',true
                     ); 
                     ?>">Gestisci eventi</a></li>
-                    <li><a>Analisi vendite</a></li>
+                    <li><a class="" href="<?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'anavend',
+                        ), 
+                        'default',true
+                    ); 
+                    ?>">Analisi vendite</a></li>
                 </ul>
       </div>
             <?php echo $this->layout()->content; ?>

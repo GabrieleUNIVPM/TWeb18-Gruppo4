@@ -161,5 +161,14 @@ class PartnerController extends Zend_Controller_Action
 		));
 		return $this->formME;
         }
+        public function anavendAction()
+        {
+        $key= $this->_getParam('getEventi', null);
+        $eventi=$this->_organizzazioniModel->getEventi($key);
+        $this->view->assign(array('Nome' => $this->_authService->getIdentity()->nome));
+        $this->view->assign(array('Eventi' => $eventi)); 
+        $num=$this->_organizzazioniModel->getAcquisti();
+        $this->view->assign(array('Acquisti' => $num)); 
+        }
 }
 

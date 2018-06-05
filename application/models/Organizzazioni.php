@@ -35,4 +35,8 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
     	return $this->getResource('Eventi')->getEventoById($key);
     }
+    public function getAcquisti()
+    {
+        return $this->getResource('Acquisti')->getAcquisti();
+    }
 }
