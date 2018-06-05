@@ -41,7 +41,7 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-        /* $this->addElement('file', 'logo', array(
+         $this->addElement('file', 'immagine', array(
         	'label' => 'Logo',
         	'destination' => APPLICATION_PATH . '/../public/images',
         	'validators' => array( 
@@ -49,7 +49,7 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
         			array('Size', false, 1024000),
         			array('Extension', false, array('jpg', 'gif'))),
             'decorators' => $this->fileDecorators,
-        			));*/
+        			));
         $this->addElement('text', 'email', array(
             'label' => 'Email',
             'filters' => array('StringTrim'),
