@@ -100,7 +100,13 @@ class AdminController extends Zend_Controller_Action
         }
         
         $values = $form->getValues();
+        $e=$values['email'];$u=$values['username'];$p=$values['password'];
+        unset ($values['email']);unset ($values['username']);unset ($values['password']);
        	$this->_adminModel->savePartner($values);
+        
+        
+        $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');
+        $this->_adminModel->salvaUtente($ut);
 	$this->_helper->redirector('index'); 
         }
      

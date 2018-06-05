@@ -50,6 +50,31 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
         			array('Extension', false, array('jpg', 'gif'))),
             'decorators' => $this->fileDecorators,
         			));*/
+        $this->addElement('text', 'email', array(
+            'label' => 'Email',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array('EmailAddress',array('StringLength',true, array(1,30))),
+            'decorators' => $this->elementDecorators,
+		));
+        $this->addElement('text', 'username', array(
+            'label' => 'Username',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array('Alnum',array('StringLength',true, array(3,15)),
+                array('Db_NoRecordExists',true, 
+                array('table'   => 'utenti',
+                      'field'   => 'username'))),
+            'decorators' => $this->elementDecorators,
+		));
+        
+        $this->addElement('password', 'password', array(
+            'label' => 'Password',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array('Alnum',array('StringLength',true, array(3,15))),
+            'decorators' => $this->elementDecorators,
+		));
         
         $this->addElement('submit', 'add', array(
             'label' => 'Aggiungi Partner',
