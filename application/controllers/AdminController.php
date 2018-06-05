@@ -320,6 +320,13 @@ class AdminController extends Zend_Controller_Action
 				));
 		return $this->formMU;
     }
+    public function profacquiAction()
+    {
+        $nome = $this->getParam('nome');
+        $cognome = $this->getParam('cognome');
+        $this->view->assign(array('nome' => $nome,'cognome'=>$cognome));
+        
+    }
     
         
 }
