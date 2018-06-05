@@ -1,1 +1,11 @@
 <h3>Profilo acquisto di <?php echo "$this->nome $this->cognome" ?></h3>
+<div class=tabella id=gestione><table class=elenco><th>Eventi</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th>
+<?php foreach ($this->acq as $type):
+    if($type->username===$this->username):
+    echo "<tr><td>$type->nomeevento</td>";
+    echo "<td>$type->numerobiglietti</td>";
+    echo "<td>$type->metodo</td></tr>";
+        
+    
+endif; endforeach;?>
+    </table></div>
