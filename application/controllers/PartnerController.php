@@ -93,13 +93,6 @@ class PartnerController extends Zend_Controller_Action
     {
         
     }
-    /*public function eliminaAction()
-    {
-        //$form=$this->_form1;
-        
-       	$this->_organizzazioniModel->deleteEvento($this->$_POST['id_E']);
-        $this->_helper->redirector('index'); 
-    }*/
     
     public function eliminaAction(){
         $nome = $this->getParam('id_E');

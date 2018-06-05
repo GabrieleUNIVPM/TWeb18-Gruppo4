@@ -33,6 +33,7 @@ class Application_Form_Organizzazioni_Product_Modev extends App_Form_Abstract
             'label' => 'Tipologia',
             'required' => true,
             'multiOptions' => $tipologia,
+            'selected'=>$values['tipologia'],
             'values'=>$tipologia,
             'decorators' => $this->elementDecorators,
         ));
@@ -84,7 +85,7 @@ class Application_Form_Organizzazioni_Product_Modev extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-          /*$this->addElement('file', 'immagine', array(
+          $this->addElement('file', 'immagine', array(
         	'label' => 'Immagine',
               'value' => $values['immagine'],
         	'destination' => APPLICATION_PATH . '/../public/images',
@@ -93,7 +94,7 @@ class Application_Form_Organizzazioni_Product_Modev extends App_Form_Abstract
         			array('Size', false, 1024000),
         			array('Extension', false, array('jpg', 'gif'))),
             'decorators' => $this->fileDecorators,
-        			));*/
+        			));
                
         $this->addElement('textarea', 'programma', array(
             'label' => 'Programma',
