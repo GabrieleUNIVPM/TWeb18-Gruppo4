@@ -20,7 +20,7 @@ class Application_Form_User_Acquisto extends App_Form_Abstract
             'values'=>$num,
             'decorators' => $this->elementDecorators,
         ));
-        $pag=array('Mastercard'=>'M','Visa'=>'V','Bonifico'=>'B');
+        $pag=array('Mastercard'=>'Mastercard','Visa'=>'Visa','Bonifico'=>'Bonifico bancario');
         $this->addElement('select', 'metodo', array(
             'label' => 'Metodo di pagamento',
             'required' => true,
