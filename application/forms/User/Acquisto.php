@@ -46,4 +46,4 @@ class Application_Form_User_Acquisto extends App_Form_Abstract
             'value' => $v
 		));
     }
-}  
+} 
