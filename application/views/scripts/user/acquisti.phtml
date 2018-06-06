@@ -1,5 +1,5 @@
 <h2>I miei acquisti</h2>
-<?php   echo "<div class=tabella id=gestione><table class=elenco><th>Evento</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th>";
+<?php   echo "<div class=tabella id=gestione><table class=elenco><th>Evento</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th><th>Ricevuta di acquisto</th>";
         foreach ($this->acquisti as $type):
         if($this->utente===$type->username):
         echo "<tr><td>$type->nomeevento</td>";
@@ -8,7 +8,13 @@
               if($type->metodo==='M'){echo 'Mastercard';}
               if($type->metodo==='B'){echo 'Bonifico bancario';}
         
-        echo '</td></tr>';
+        echo '</td><td>';?>
+        <a  class="ancora" type="submit" href="<?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'index'), 
+                        'default',true
+         );?>">Stampa</a>
+        <?php
         endif;
         endforeach;
-        echo '</table></div>';
+        echo '</tr></table></div>';
