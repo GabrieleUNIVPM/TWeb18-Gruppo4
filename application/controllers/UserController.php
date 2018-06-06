@@ -97,7 +97,7 @@ class UserController extends Zend_Controller_Action
 	if (!$form->isValid($_POST)) {
 			return $this->render('acquisto');
 	}
-        $form->setValues($this->_authService->getIdentity()->username);
+        $form->setValues($this->_authService->getIdentity()->username,$this->getParam('nomeevento'));
 	$values = $form->getValues();
         $this->_publicModel->salvaAcquisto($values);
 	$this->_helper->redirector('acquisti','user');
@@ -115,8 +115,6 @@ class UserController extends Zend_Controller_Action
     }
     public function confermaacqAction()
     {
-        $n = $this->getParam('nomeevento');
-        $this->view->assign(array('nomeevento' => $n));
     }
 
 }
