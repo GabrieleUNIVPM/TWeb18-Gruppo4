@@ -41,9 +41,12 @@ class Application_Form_User_Acquisto extends App_Form_Abstract
             'Form'
         ));
     }
-    public function setValues($v){
+    public function setValues($v,$e){
         $this->addElement('hidden', 'username', array(
             'value' => $v
+		));
+        $this->addElement('hidden', 'nomeevento', array(
+            'value' => $e
 		));
     }
 } 
