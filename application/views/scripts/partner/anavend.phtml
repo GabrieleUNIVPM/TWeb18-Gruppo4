@@ -4,7 +4,7 @@ echo $this->toggleEventi($filename);?>
 <div class="form_settings">
  <h3>Analisi vendite</h3>
 </div>
-        <?php echo "<div class=tabella><table class=elenco><th></th><th>Evento</th><th>Biglietti venduti</th><th>Percentuale biglietti venduti</th>";
+        <?php echo "<div class=tabella id=gestione><table class=elenco><th></th><th>Evento</th><th>Biglietti venduti</th><th>Percentuale biglietti venduti</th><th>Incasso</th>";
           foreach ($this->Eventi as $type):
           if($type->organizzatore==$this->Nome):
           
@@ -15,8 +15,9 @@ echo $this->toggleEventi($filename);?>
 	  echo "<tr><td>";
           echo $this->img($type->immagine);
           echo "</td><td>$type->nome</td>";
-          echo "<td>$A</td><td>$P %</td></tr>";
-          
+          echo "<td>$A</td><td>$P %</td>";
+          $I=$type->prezzo*$A;
+          echo "<td>$I €</td></tr>";
           
           endif; endforeach;
           echo '</table></div>';
