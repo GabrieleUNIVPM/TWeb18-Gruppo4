@@ -17,7 +17,9 @@ $id=0; $numeroacquisti=0;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
           echo $this->img($type->immagine); ?>
-          <?php
+          <?php if($this->ruolo == 'user') :?>
+          <?php echo $this->acquistoForm ?>
+          <?php endif;
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";

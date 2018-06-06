@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Public_Acquisto extends App_Form_Abstract
+class Application_Form_User_Acquisto extends App_Form_Abstract
 {
     
     protected $_publicModel;

@@ -4,19 +4,20 @@ class UserController extends Zend_Controller_Action
 
 {
     protected $_userModel;
+    protected $_publicModel;
     protected $_form;
+    protected $formA;
     
     public function init()
     {
         $this->_helper->layout->setLayout('layuser');
-        
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
-        $this->view->assign(array('ruolo' => $ruolo));
-        
+        $this->view->assign(array('ruolo' => $ruolo));        
         $this->_userModel = new Application_Model_User();
+        $this->_publicModel = new Application_Model_Public();
         $this->view->moduserForm = $this->getModuserForm();
-       
+        $this->view->acquistoForm = $this->getAcquistoForm();//
         
         
     }
@@ -74,6 +75,42 @@ class UserController extends Zend_Controller_Action
         $this->view->assign(array('utente' => $user));
         $this->view->assign(array('acquisti' => $acquisti));
         
+    }
+    public function eventiAction()
+    {
+        $paged = $this->_getParam('page', 1);
+        $key= $this->_getParam('getEventi', null);
+        $eventi=$this->_publicModel->getEventi($key,$paged);
+        $this->view->assign(array('Eventi' => $eventi));
+    }
+    public function acquistoAction()
+    {
+        
+    }
+    public function acquisto1Action()
+    {   
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+	}
+	$form = $this->formA;
+	if (!$form->isValid($_POST)) {
+			return $this->render('acquisto');
+	}
+        $form->setValues($this->_authService->getIdentity()->username);
+	$values = $form->getValues();
+        $this->_publicModel->salvaAcquisto($values);
+	$this->_helper->redirector('acquisti','user');
+    }
+    
+    public function getAcquistoForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->formA = new Application_Form_User_Acquisto();
+		$this->formA->setAction($urlHelper->url(array(
+				'controller' => 'user',
+				'action' => 'acquisto1'),
+				'default'
+				));
+		return $this->formA;
     }
 
 }

@@ -10,7 +10,7 @@ class PublicController extends Zend_Controller_Action
     protected $_authService;
     protected $_authServiceA;
     protected $key;
-    protected $formA;
+    
 
     public function init()
     {
@@ -19,7 +19,6 @@ class PublicController extends Zend_Controller_Action
         $this->view->loginForm = $this->getLoginForm();
         $this->view->registraForm = $this->getRegistraForm();
         $this->view->ricercaForm = $this->getRicercaForm();
-        $this->view->acquistoForm = $this->getAcquistoForm();//
         $this->_authService = new Application_Service_Auth();
         if($this->_authService->getIdentity() != false){
         $ruolo = $this->_authService->getIdentity()->ruolo;
@@ -161,34 +160,5 @@ class PublicController extends Zend_Controller_Action
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
                 $this->view->assign(array('Eventi' => $eventi));
     
-    }
-    public function acquistoAction()
-    {
-        
-    }
-    public function acquisto1Action()
-    {   
-        if (!$this->getRequest()->isPost()) {
-			$this->_helper->redirector('index','public');
-	}
-	$form = $this->formA;
-	if (!$form->isValid($_POST)) {
-			return $this->render('acquisto');
-	}
-        $form->setValues($this->_authService->getIdentity()->username);
-	$values = $form->getValues();
-        $this->_publicModel->salvaAcquisto($values);
-	$this->_helper->redirector('acquisti','user');
-    }
-    
-    public function getAcquistoForm(){
-        $urlHelper = $this->_helper->getHelper('url');
-		$this->formA = new Application_Form_Public_Acquisto();
-		$this->formA->setAction($urlHelper->url(array(
-				'controller' => 'public',
-				'action' => 'acquisto1'),
-				'default'
-				));
-		return $this->formA;
     }
 }

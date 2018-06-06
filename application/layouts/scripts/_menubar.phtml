@@ -8,6 +8,26 @@
                     ); 
                  ?>" >Home</a>
               </li>
+              
+              
+               <?php if($this->ruolo == 'user'):?>         
+         <li ><a href="
+                         <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'eventi',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+                 >Eventi</a></li>  
+         <?php endif ?> 
+              
+              
+              
+              
+              
+              
+               <?php if($this->ruolo!= 'user'):?> 
                      <li><a href="
                          <?= $this->url(array(
                         'controller' => 'public',
@@ -16,6 +36,7 @@
                         'default',true
                     ); 
                  ?>" >Eventi</a>
+                 <?php endif ?> 
               </li>
                      <li><a href="
                          <?= $this->url(array(
