@@ -7,6 +7,7 @@ class UserController extends Zend_Controller_Action
     protected $_publicModel;
     protected $_form;
     protected $formA;
+    public $n;
     
     public function init()
     {
@@ -111,6 +112,11 @@ class UserController extends Zend_Controller_Action
 				'default'
 				));
 		return $this->formA;
+    }
+    public function confermaacqAction()
+    {
+        $n = $this->getParam('nomeevento');
+        $this->view->assign(array('nomeevento' => $n));
     }
 
 }

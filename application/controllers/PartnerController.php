@@ -75,7 +75,7 @@ class PartnerController extends Zend_Controller_Action
                             $values['immagine']='immagineBase.png';
                 }
        	$this->_organizzazioniModel->saveProduct($values);
-        //$this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
+        $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
 	$this->_helper->redirector('index'); 
     }
     private function getProductForm()

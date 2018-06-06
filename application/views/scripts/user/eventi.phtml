@@ -17,9 +17,14 @@ $id=0; $numeroacquisti=0;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
           echo $this->img($type->immagine); ?>
-          <?php if($this->ruolo == 'user') :?>
-          <?php echo $this->acquistoForm ?>
-          <?php endif;
+<br><br><br><a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'confermaacq',
+                        'nomeevento' => $type->nome), 
+                        'default',true
+                    );?>" >Acquista </a>
+          <?php
+          
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
