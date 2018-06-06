@@ -1,5 +1,5 @@
 <h2>I miei acquisti</h2>
-<?php   echo "<div class=tabella><table class=elenco><th>Evento</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th>";
+<?php   echo "<div class=tabella id=gestione><table class=elenco><th>Evento</th><th>Biglietti acquistati</th><th>Metodo di pagamento</th>";
         foreach ($this->acquisti as $type):
         if($this->utente===$type->username):
         echo "<tr><td>$type->nomeevento</td>";
