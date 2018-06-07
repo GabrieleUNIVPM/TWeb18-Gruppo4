@@ -37,7 +37,7 @@ class UserController extends Zend_Controller_Action
     }
     
     public function moduserAction() {
-        $user = $this->getParam('username');
+        $user =$this->_authService->getIdentity()->username;
         $utente = $this->_userModel->getUtente($user);
         $this->_form->setValues($utente);
         $this->view->moduserForm = $this->_form;
