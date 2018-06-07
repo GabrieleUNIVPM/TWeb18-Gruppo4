@@ -1,101 +1,52 @@
 <?php
+
 class Application_Form_User_Acquisto extends App_Form_Abstract
 {
-    protected $_userModel;
     
-    public function init()
+    protected $_publicModel;
+    
+    public function init() 
     {
-        $this->_userModel = new Application_Model_User();
+        $this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
         $this->setName('acquisto');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
-    }
-    
-    public function setValues($values){
-        $this->addElement('text', 'nome', array(
-            'label' => 'Nome',
-            'value' => $values['nome'],
-            'filters' => array('StringTrim'),
+        $num=array('1'=>'1','2'=>'2','3'=>'3');
+        $this->addElement('select', 'numerobiglietti', array(
+            'label' => 'Numero biglietti',
             'required' => true,
-            'validators' => array('Alpha',array('StringLength',true, array(1,20))),
+            'multiOptions' => $num,
+            'values'=>$num,
             'decorators' => $this->elementDecorators,
-		));
-        
-        
-        $this->addElement('text', 'cognome', array(
-            'label' => 'Cognome',
-            'value' => $values['cognome'],
-            'filters' => array('StringTrim'),
+        ));
+        $pag=array('Mastercard'=>'Mastercard','Visa'=>'Visa','Bonifico'=>'Bonifico bancario');
+        $this->addElement('select', 'metodo', array(
+            'label' => 'Metodo di pagamento',
             'required' => true,
-            'validators' => array('Alpha',array('StringLength',true, array(1,20))),
+            'multiOptions' => $pag,
+            'values'=>$pag,
             'decorators' => $this->elementDecorators,
-		));
-        
-        $this->addElement('select', 'genere', array(
-            'label' => 'Genere',
-            'value' => $values['genere'],
-            'filters' => array('StringTrim'),
-            'required' => true,
-            'multiOptions' => array(
-                        'P' => 'Paypal',
-                        'B' => 'Bonifico Bancario',
-                        'V' => 'VISA',
-                        'M' => 'MasterCard'
-                        ),
-            'decorators' => $this->elementDecorators,
-		));
-        
-        $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il (AAAA/MM/GG)',
-            'value' => $values['natoil'],
-            'filters' => array('StringTrim'),
-            'required' => true,
-            'validators' => array (array('date', false, array('yyyy/MM/dd'))),
-            'decorators' => $this->elementDecorators,
-		));
-        
-        $this->addElement('text', 'email', array(
-            'label' => 'Email',
-            'value' => $values['email'],
-            'filters' => array('StringTrim'),
-            'required' => true,
-            'validators' => array('EmailAddress',array('StringLength',true, array(1,30))),
-            'decorators' => $this->elementDecorators,
-		));
-        
-        $this->addElement('password', 'password', array(
-            'label' => 'Password',
-            'value' => $values['password'],
-            'filters' => array('StringTrim'),
-            'required' => true,
-            'validators' => array('Alnum',array('StringLength',true, array(1,15))),
-            'decorators' => $this->elementDecorators,
-		));
+        ));
          
-        $this->addElement('hidden', 'username', array(
-            'value' => $values['username'],
-            
-            ));
-        
-        $this->addElement('hidden', 'ruolo', array(
-            'value' => $values['ruolo'],
-            
-            ));
-        
-        $this->addElement('submit', 'modifica', array(
-            'label' => 'Salva Modifiche',
+        $this->addElement('submit', 'add', array(
+            'label' => 'Acquista',
             'decorators' => $this->buttonDecorators,
-		)); 
-        $this->addElement('hidden', 'id_U', array(
-            'value' => $values['id_U'],));
+		));
         
         $this->setDecorators(array(
-			'FormElements',
-			array('HtmlTag', array('tag' => 'table')),
-			array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
-			'Form'
+            'FormElements',
+            array('HtmlTag', array('tag' => 'table', 'class' => 'zend_form')),
+        		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
+            'Form'
+        ));
+    }
+    public function setValues($v,$e){
+        $this->addElement('hidden', 'username', array(
+            'value' => $v
+		));
+        $this->addElement('hidden', 'nomeevento', array(
+            'value' => $e
 		));
     }
-    
-}
+} 
