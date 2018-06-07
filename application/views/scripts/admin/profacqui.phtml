@@ -9,7 +9,7 @@
               if($type->metodo==='B'){echo 'Bonifico bancario';}
     $tot=0;
     foreach ($this->pr as $t){if($t->nome===$type->nomeevento){$tot=($t->prezzo*$type->numerobiglietti);}}
-    echo "</td><td>$tot</td></tr>";
+    echo "</td><td>$tot €</td></tr>";
         
     
 endif; endforeach;?>
