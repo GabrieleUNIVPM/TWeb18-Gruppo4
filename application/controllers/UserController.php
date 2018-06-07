@@ -146,5 +146,21 @@ class UserController extends Zend_Controller_Action
                 $this->view->assign(array('Eventi' => $eventi));
     
     }
+    public function genpdfAction()
+    {
+        $pdf = new Zend_Pdf();
+        $style = new Zend_Pdf_Style();
+        $style->setFillColor(new Zend_Pdf_Color_Rgb(0, 0, 0.9));
+        $style->setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
+        $style->setLineWidth(3);
+        $style->setLineDashingPattern(array(3, 2, 3, 4), 1.6);
+        $fontH = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+        $style->setFont($fontH, 32);
+        $page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+        $page->setStyle($style)->drawText('Prova', '10', '10');
+        $pdf->pages[0] = ($page);
+        //$pdf->save("prova.pdf");
+        $this->view->assign(array('pdf' => $pdf));
+    }
 
 }
