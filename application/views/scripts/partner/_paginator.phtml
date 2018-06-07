@@ -4,28 +4,28 @@ Pagina <?php echo $this->current; ?> di <?= $this->pageCount; ?> -
 
 <!-- Link alla prima pagina -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'partner', 'action' => 'gestisci', 'page' => $this->first)); ?>">Prima</a> |
+  <a href="<?= $this->url(array('controller' => 'partner', 'page' => $this->first)); ?>">Prima</a> |
 <?php else: ?>
   Prima |
 <?php endif; ?>
 
 <!-- Link alla pagina precedente -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'partner', 'action' => 'gestisci', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
+  <a href="<?= $this->url(array('controller' => 'partner', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
 <?php else: ?>
   &lt; Precedente |
 <?php endif; ?>
 
 <!-- Link alla pagina successiva -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'partner', 'action' => 'gestisci', 'page' => $this->next)); ?>">Successiva &gt;</a> |
+  <a href="<?= $this->url(array('controller' => 'partner', 'page' => $this->next)); ?>">Successiva &gt;</a> |
 <?php else: ?>
   Successiva &gt; |
 <?php endif; ?>
 
 <!-- Link all'ultima pagina -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'partner', 'action' => 'gestisci', 'page' => $this->last)); ?>">Ultima</a>
+  <a href="<?= $this->url(array('controller' => 'partner', 'page' => $this->last)); ?>">Ultima</a>
 <?php else: ?>
   Ultima
 <?php endif; ?>

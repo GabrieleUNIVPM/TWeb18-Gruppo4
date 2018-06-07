@@ -42,6 +42,27 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'unchecked_value' => 'bad',
             'multiOptions' => $part
     ));
+        $this->addElement('select', 'data', array(
+            'label' => 'Mesi',
+            'required' => false,
+            'checked_value' => 'good',
+            'unchecked_value' => 'bad',
+            'multiOptions' => array(
+                         'null' => 'Scegli mese',
+                         '01' => 'Gennaio',
+                         '02' => 'Febbraio',
+                         '03' => 'Marzo',
+                         '04' => 'Aprile',
+                         '05' => 'Maggio',
+                         '06' => 'Giugno',
+                         '07' => 'Luglio',
+                         '08' => 'Agosto',
+                         '09' => 'Settembre',
+                         '10' => 'Ottobre',
+                         '11' => 'Novembre',
+                         '12' => 'Dicembre',
+                         ),
+    ));
         
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',

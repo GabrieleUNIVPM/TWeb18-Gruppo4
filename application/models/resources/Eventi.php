@@ -56,10 +56,12 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
             $string3=("organizzatore = ''");
             foreach ($part as $a) {$string3.=" or organizzatore = '".$a."' ";}
             }
+        if(count($luogo)==0){$string4=("luogo like '%'");}
         $select=$this->select()->where($string1)
                                ->where($string2)
                                ->where($string3)
-                               ->where("'".$date->get('YYYY-MM-dd')."' <= data");
+                               ->where($string4)
+                               ->where("'".$data->get('YYYY-MM-dd')."' <= data");
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
 			$paginator = new Zend_Paginator($adapter);
