@@ -20,7 +20,7 @@ class Application_Form_Admin_Addtipev extends App_Form_Abstract
         ));
         
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Tipologia',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));
         

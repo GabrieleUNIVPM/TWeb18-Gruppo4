@@ -84,6 +84,8 @@ class UserController extends Zend_Controller_Action
         $paged = $this->_getParam('page', 1);
         $key= $this->_getParam('getEventi', null);
         $eventi=$this->_publicModel->getEventi($key,$paged);
+        $this->_helper->getHelper('layout')->disableLayout();
+        $this->_helper->layout->setLayout('layout');
         $this->view->assign(array('Eventi' => $eventi));
     }
     public function acquistoAction()
@@ -117,6 +119,8 @@ class UserController extends Zend_Controller_Action
     }
     public function confermaacqAction()
     {
+        $this->_helper->getHelper('layout')->disableLayout();
+        $this->_helper->layout->setLayout('layout');
     }
     private function getRicercaForm()
     {
@@ -143,6 +147,8 @@ class UserController extends Zend_Controller_Action
                 $nome=array($values['nome']);
                 $paged = $this->_getParam('page', 1);
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->layout->setLayout('layout');
                 $this->view->assign(array('Eventi' => $eventi));
     
     }

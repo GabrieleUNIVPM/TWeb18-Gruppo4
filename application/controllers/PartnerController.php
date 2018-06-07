@@ -72,7 +72,7 @@ class PartnerController extends Zend_Controller_Action
         }
         $values = $form->getValues();
         if($values['immagine'] === null){
-                            $values['immagine']='immagineBase.png';
+                            $values['immagine']='default.png';
                 }
        	$this->_organizzazioniModel->saveProduct($values);
         $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
@@ -100,18 +100,7 @@ class PartnerController extends Zend_Controller_Action
         $this->_organizzazioniModel->deleteEvento($nome);
         $this->_helper->redirector('gestisci','partner','default');
     }
-   /* private function getGestisciForm()
-    {
-        $urlHelper = $this->_helper->getHelper('url');
-	$this->_form1 = new Application_Form_Organizzazioni_Product_Gestisci();
-    	$this->_form1->setAction($urlHelper->url(array(
-				'controller' => 'partner',
-				'action' => 'elimina'),
-				'default'
-		));
-    return $this->_form1;
-        
-    }*/
+ 
     public function modevAction() 
         {   
         $id = $this->getParam('id_E');
@@ -132,13 +121,8 @@ class PartnerController extends Zend_Controller_Action
                 $values = $form->getValues();
                 $id = $values['id_E'];
                 unset($values['id_E']);
-                    if ($values['immagine']==null){
-                        unset($values['immagine']);
+                    if ($values['immagine']==null) unset($values['immagine']);
                         $this->_organizzazioniModel->modificaEvento($values, $id);
-                    }
-                    else {
-                        $this->_organizzazioniModel->modificaEvento($values, $id);
-                    }   
                 $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
             //    $modifica = true;
                 $this->_helper->redirector('index');

@@ -32,7 +32,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     			'host'     => $HOST,
     			'username' => $USER,
     			'password' => $PASSWORD,
-    			'dbname'   => $DB
+    			'dbname'   => $DB,
+                        'charset'  => "utf8",
 				));  
 		Zend_Db_Table_Abstract::setDefaultAdapter($db);
                 //metodo che si può utilizzare direttamente sulla classe dell'oggetto

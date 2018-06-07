@@ -109,7 +109,7 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
         ));
 
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Evento',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));
         

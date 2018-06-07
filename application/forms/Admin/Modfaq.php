@@ -42,7 +42,7 @@ class Application_Form_Admin_Modfaq extends App_Form_Abstract
         
        
         $this->addElement('submit', 'modfaq', array(
-            'label' => 'Modifica',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators, 
 		));
         

@@ -29,7 +29,7 @@ class Application_Form_Admin_Addfaq extends App_Form_Abstract
         ));
         
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Faq',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));
         
