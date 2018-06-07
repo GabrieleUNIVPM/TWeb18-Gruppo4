@@ -3,6 +3,7 @@
 class AdminController extends Zend_Controller_Action
 {
 	protected $_adminModel;
+        protected $_publicModel;
 	protected $_authService;
 	protected $_form;
         protected $_formF;
@@ -16,7 +17,8 @@ class AdminController extends Zend_Controller_Action
         public function init()
         {
     	$this->_helper->layout->setLayout('layadmin');   	
-        $this->_adminModel = new Application_Model_Admin(); 	
+        $this->_adminModel = new Application_Model_Admin(); 
+        $this->_publicModel = new Application_Model_Public(); 	
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
@@ -334,7 +336,8 @@ class AdminController extends Zend_Controller_Action
         $username=$this->getParam('username');
         $this->view->assign(array('nome' => $nome,'cognome'=>$cognome,'username'=>$username));
         $acq=$this->_adminModel->getAcquisti();
-        $this->view->assign(array('acq' => $acq));
+        $pr=$this->_publicModel->getEventi('');
+        $this->view->assign(array('acq' => $acq,'pr'=>$pr));
         
         
     }
