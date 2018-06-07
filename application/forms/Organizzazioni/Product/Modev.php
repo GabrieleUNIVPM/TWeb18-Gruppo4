@@ -123,7 +123,7 @@ class Application_Form_Organizzazioni_Product_Modev extends App_Form_Abstract
         ));
 
         $this->addElement('submit', 'add', array(
-            'label' => 'Modifica Evento',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));
         

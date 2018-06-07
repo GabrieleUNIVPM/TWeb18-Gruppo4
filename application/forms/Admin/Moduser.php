@@ -83,7 +83,7 @@ class Application_Form_Admin_Moduser extends App_Form_Abstract
             ));
         
         $this->addElement('submit', 'modifica', array(
-            'label' => 'Salva Modifiche',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
 		)); 
         $this->addElement('hidden', 'id_U', array(

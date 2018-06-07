@@ -77,7 +77,7 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
 		));
         
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Partner',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));
         

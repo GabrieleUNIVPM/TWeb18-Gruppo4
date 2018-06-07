@@ -16,12 +16,8 @@ class Application_Form_Admin_Modtipologia extends App_Form_Abstract
     }
     
     public function setValues($values){ //per precompilare la form i valori vengono settati dopo l'init
-        $this->addElement('text', 'id_TE', array(
-            'label' => 'ID_TIPOLOGIA',
-            'attribs' => array('readonly' => 'true'),
-            'filters' => array('StringTrim'),
+        $this->addElement('hidden', 'id_TE', array(
             'value' => $values['id_TE'],
-            'decorators' => $this->elementDecorators,
 		));
         
         $this->addElement('text', 'tipologia', array(
@@ -29,13 +25,13 @@ class Application_Form_Admin_Modtipologia extends App_Form_Abstract
             'filters' => array('StringTrim'),
             'required' => true,
             'value' => $values['tipologia'],
-            'validators' => array('Alnum',array('StringLength',true, array(1,20))),
+            'validators' => array(array('StringLength',true, array(1,50))),
             'decorators' => $this->elementDecorators,
 		));
         
        
         $this->addElement('submit', 'modtip', array(
-            'label' => 'Modifica',
+            'label' => 'Conferma',
             'decorators' => $this->buttonDecorators, 
 		));
         
