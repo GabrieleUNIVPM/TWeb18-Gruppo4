@@ -8,6 +8,7 @@ class UserController extends Zend_Controller_Action
     protected $_form;
     protected $formA;
     public $n;
+    protected $formR;
     
     public function init()
     {
@@ -18,8 +19,8 @@ class UserController extends Zend_Controller_Action
         $this->_userModel = new Application_Model_User();
         $this->_publicModel = new Application_Model_Public();
         $this->view->moduserForm = $this->getModuserForm();
-        $this->view->acquistoForm = $this->getAcquistoForm();//
-        
+        $this->view->acquistoForm = $this->getAcquistoForm();
+        $this->view->ricercaForm = $this->getRicercaForm();
         
     }
 
@@ -115,6 +116,34 @@ class UserController extends Zend_Controller_Action
     }
     public function confermaacqAction()
     {
+    }
+    private function getRicercaForm()
+    {
+    		$urlHelper = $this->_helper->getHelper('url');
+		$this->formR = new Application_Form_Public_Ricerca();
+    		$this->formR->setAction($urlHelper->url(array(
+			'controller' => 'user',
+			'action' => 'risultati'),
+			'default'
+		));
+		return $this->formR;
+    }
+    public function risultatiAction() {
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index','public');
+		}
+		$form=$this->formR;
+		if (!$form->isValid($_POST)) {
+			return $this->render('eventi');
+		}
+                $values = $form->getValues();
+                $type=$values['tipologia'];
+                $part=$values['organizzatore'];
+                $nome=array($values['nome']);
+                $paged = $this->_getParam('page', 1);
+		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
+                $this->view->assign(array('Eventi' => $eventi));
+    
     }
 
 }
