@@ -148,19 +148,17 @@ class UserController extends Zend_Controller_Action
     }
     public function genpdfAction()
     {
-        $pdf = new Zend_Pdf();
-        $style = new Zend_Pdf_Style();
-        $style->setFillColor(new Zend_Pdf_Color_Rgb(0, 0, 0.9));
-        $style->setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
-        $style->setLineWidth(3);
-        $style->setLineDashingPattern(array(3, 2, 3, 4), 1.6);
-        $fontH = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-        $style->setFont($fontH, 32);
-        $page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-        $page->setStyle($style)->drawText('Prova', '10', '10');
-        $pdf->pages[0] = ($page);
-        //$pdf->save("prova.pdf");
-        $this->view->assign(array('pdf' => $pdf));
+        $nomeevento = $this->_getParam('nomeevento');
+        $numerobiglietti = $this->_getParam('numerobiglietti');
+        $metodo = $this->_getParam('metodo');
+        $t='';
+        if($metodo==='V'){$t= 'Visa';}
+        if($metodo==='M'){$t= 'Mastercard';}
+        if($metodo==='B'){$t= 'Bonifico bancario';}
+        $this->view->assign(array('nomeevento' => $nomeevento,'numerobiglietti'=>$numerobiglietti,
+                                  'pag'=> $t));
+        $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome));
+        
     }
 
 }

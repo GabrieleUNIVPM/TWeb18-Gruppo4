@@ -11,7 +11,10 @@
         echo '</td><td>';?>
         <a  class="ancora" type="submit" href="<?= $this->url(array(
                         'controller' => 'user',
-                        'action'     => 'genpdf'), 
+                        'action'     => 'genpdf',
+                        'nomeevento'=> $type->nomeevento,
+                        'numerobiglietti'=>$type->numerobiglietti,
+                        'metodo'=>$type->metodo), 
                         'default',true
          );?>">Stampa</a>
         <?php

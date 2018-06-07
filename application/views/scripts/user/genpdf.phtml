@@ -1,3 +1,18 @@
-<?php header('Content-type: application/pdf');
-
+<?php
+Zend_Loader::loadClass('Zend_Pdf');
+$pdf = new Zend_Pdf();
+$page = $pdf->newPage(Zend_Pdf_Page::SIZE_LETTER_LANDSCAPE);
+$pdf->pages[] = $page;
+$page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 20);
+$page->drawText('Biglietto acquistato da:', 50, 350); 
+$page->drawText($this->nome.' '. $this->cognome, 300, 350);
+$page->drawText('Evento:', 50, 300); 
+$page->drawText($this->nomeevento, 300, 300); 
+$page->drawText('Biglietti acquistati:', 50, 250); 
+$page->drawText($this->numerobiglietti, 300, 250); 
+$page->drawText('Metodo di pagamento:', 50, 200); 
+$page->drawText($this->pag, 300, 200); 
+header("Content-Disposition: inline"); 
+header("Content-type: application/pdf"); 
+echo $pdf->render();
 echo $this->pdf->render();
