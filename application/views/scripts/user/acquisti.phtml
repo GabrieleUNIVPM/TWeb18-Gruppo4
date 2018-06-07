@@ -14,7 +14,8 @@
                         'action'     => 'genpdf',
                         'nomeevento'=> $type->nomeevento,
                         'numerobiglietti'=>$type->numerobiglietti,
-                        'metodo'=>$type->metodo), 
+                        'metodo'=>$type->metodo,
+                        'titolo'=>'Biglietto '.$type->nomeevento), 
                         'default',true
          );?>">Stampa</a>
         <?php

@@ -157,6 +157,7 @@ class UserController extends Zend_Controller_Action
         $nomeevento = $this->_getParam('nomeevento');
         $numerobiglietti = $this->_getParam('numerobiglietti');
         $metodo = $this->_getParam('metodo');
+        $titolo = $this->_getParam('titolo');
         $t='';
         if($metodo==='V'){$t= 'Visa';}
         if($metodo==='M'){$t= 'Mastercard';}
