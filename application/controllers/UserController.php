@@ -29,6 +29,7 @@ class UserController extends Zend_Controller_Action
         $user = $this->_authService->getIdentity()->username;
         $utente = $this->_userModel->getUtente($user);
         $this->view->assign(array('utente' => $utente));
+        $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome));
     }  
 
     public function logoutAction()

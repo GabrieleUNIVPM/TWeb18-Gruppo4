@@ -3,7 +3,7 @@
         <?php foreach ($this->Organizzazioni as $type){ 
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
-          echo $this->img($type->logo);
+          echo $this->img($type->immagine);
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Missione: $type->missione";

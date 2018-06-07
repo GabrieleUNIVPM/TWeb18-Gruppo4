@@ -3,8 +3,11 @@
 <?php foreach ($this->acq as $type):
     if($type->username===$this->username):
     echo "<tr><td>$type->nomeevento</td>";
-    echo "<td>$type->numerobiglietti</td>";
-    echo "<td>$type->metodo</td></tr>";
+    echo "<td>$type->numerobiglietti</td><td>";?>
+        <?php if($type->metodo==='V'){echo 'Visa';}
+              if($type->metodo==='M'){echo 'Mastercard';}
+              if($type->metodo==='B'){echo 'Bonifico bancario';}
+    echo "</td></tr>";
         
     
 endif; endforeach;?>
