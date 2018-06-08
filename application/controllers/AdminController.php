@@ -62,8 +62,22 @@ class AdminController extends Zend_Controller_Action
             		'utenti' => $keys,
             		)
         );
-       
     }
+     public function gestiscipartAction()
+    {
+        $keys=$this->_adminModel->getUtenti();
+        $this->view->assign(array(
+            		'utenti' => $keys,
+            		)
+        );
+    }
+     public function eliminapartAction()
+    {
+        $id = $this->getParam('id_U');
+        $this->_adminModel->cancellaUtente($id);
+        $this->_helper->redirector('gestiscipart','admin','default');
+    }
+    
     public function gestiscifaqAction()
     {
         $keys=$this->_adminModel->getFaq();
