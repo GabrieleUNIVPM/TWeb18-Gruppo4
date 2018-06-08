@@ -13,7 +13,7 @@ echo $this->toggleEventi($filename);?>
             echo "<td>$type->cognome</td><td>";?>
             <a  class="ancora" type="submit" onClick=" return conferma()"  href=" <?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'elimina',
+                        'action'     => 'eliminapart',
                         'id_U'       => $type->id_U,
                         'nome'       => $type->nome,
                         ), 

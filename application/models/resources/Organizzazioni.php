@@ -19,4 +19,9 @@ class Application_Resource_Organizzazioni extends Zend_Db_Table_Abstract
     {
         $this->insert($u);
     }
+    public function cancellaPartner($p)
+    {
+        $where=$this->getAdapter()->quoteInto('nome=?',$p);
+    	return $this->delete($where);
+    }
 }

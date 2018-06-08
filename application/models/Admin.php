@@ -85,4 +85,8 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Acquisti')->getAcquisti();
     }
+    public function cancellaPartner($p)
+    {
+        return $this->getResource('Organizzazioni')->cancellaPartner($p);
+    }
 }

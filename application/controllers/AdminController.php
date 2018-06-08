@@ -74,7 +74,9 @@ class AdminController extends Zend_Controller_Action
      public function eliminapartAction()
     {
         $id = $this->getParam('id_U');
+        $nome = $this->getParam('nome');
         $this->_adminModel->cancellaUtente($id);
+        $this->_adminModel->cancellaPartner($nome);
         $this->_helper->redirector('gestiscipart','admin','default');
     }
     
