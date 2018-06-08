@@ -21,8 +21,10 @@ echo $this->toggleEventi($filename);?>
                     );?>" value="Elimina">Elimina</a>
              </td><td><a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'moduser',
+                        'action'     => 'modpart',
                         'username'   => $type->username,
+                        'nome'       => $type->nome,
+                        'id_U'       => $type->id_U,
                         ), 
                         'default',true
                     );?>" value="Modifica">Modifica</a>

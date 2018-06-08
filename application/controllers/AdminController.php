@@ -13,6 +13,7 @@ class AdminController extends Zend_Controller_Action
         protected $_formMT;
         protected $_formMU;
         protected $_userModel;
+        protected $formMP;
 
         public function init()
         {
@@ -28,7 +29,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->modfaqForm = $this->getModfaqForm();
         $this->view->modtipoForm = $this->getModtipoForm();  
         $this->view->moduserForm = $this->getModuserForm();  
-
+        $this->view->modpartnerForm = $this->getModpartnerForm();  
         }
 
     public function indexAction()
@@ -79,6 +80,50 @@ class AdminController extends Zend_Controller_Action
         $this->_adminModel->cancellaPartner($nome);
         $this->_helper->redirector('gestiscipart','admin','default');
     }
+    public function modpartAction() {
+        $user = $this->getParam('username');
+        $nome = $this->getParam('nome');
+        $utente=$this->_adminModel->getUtente($user);
+        $part=$this->_adminModel->getPartner($nome);
+        $this->formMP->setValuesUser($utente);
+        $this->formMP->setValuesPart($part);
+        $this->view->modpartnerForm = $this->formMP;
+    }
+     public function getModpartnerForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->formMP = new Application_Form_Admin_Modpartner();
+		$this->formMP->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificapartner'),//
+				'default'
+				));
+		return $this->formMP;
+    }
+    public function modificapartnerAction(){
+                $id = $this->getParam('id_U');
+                $nome = $this->getParam('nome');
+                if (!$this->getRequest()->isPost()) {
+	            $this->_helper->redirector('index','public');}
+		$form = $this->formMP;
+      		$values = $form->getValues();
+                if($values['immagine'] === null){unset($values['immagine']);}
+                
+                $e=$values['email'];$u=$values['username'];$p=$values['password'];
+                unset ($values['email']);unset ($values['username']);unset ($values['password']);
+                $this->_adminModel->modificaPartner($values,$nome);
+                
+                $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
+		$this->_adminModel->modificaUtente($ut, $id);
+		$this->_helper->redirector('index');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     public function gestiscifaqAction()
     {
