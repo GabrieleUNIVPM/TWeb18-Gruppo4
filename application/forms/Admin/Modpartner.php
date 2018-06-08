@@ -61,10 +61,6 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
         			array('Extension', false, array('jpg', 'gif'))),
             'decorators' => $this->fileDecorators,
         			));
-                 $this->addElement('submit', 'add', array(
-            'label' => 'Conferma',
-            'decorators' => $this->buttonDecorators,
-        ));
         
         $this->setDecorators(array(
             'FormElements',
@@ -101,6 +97,10 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'validators' => array('Alnum',array('StringLength',true, array(3,15))),
             'decorators' => $this->elementDecorators,
 		));
+        $this->addElement('submit', 'add', array(
+            'label' => 'Conferma',
+            'decorators' => $this->buttonDecorators,
+        ));
         
 
     }

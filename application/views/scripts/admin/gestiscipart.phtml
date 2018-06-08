@@ -27,17 +27,7 @@ echo $this->toggleEventi($filename);?>
                         'id_U'       => $type->id_U,
                         ), 
                         'default',true
-                    );?>" value="Modifica">Modifica</a>
-             </td><?php if($type->ruolo==='user'):?>
-             <td><a  class="ancora" type="submit" href=" <?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'profacqui',
-                        'username'   => $type->username,
-                        'nome'       => $type->nome,
-                        'cognome'    => $type->cognome
-                        ), 
-                        'default',true
-                    );?>" value="Modifica">Profilo di acquisto</a></td>
-            <?php endif;echo '</tr>' ?>
-            <?php endif; endforeach;
-            echo '</table></div>'?>
+                    );?>" value="Modifica">Modifica</a></td>
+            <?php echo '</tr>';
+            endif; endforeach;
+            echo '</table></div>';

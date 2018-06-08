@@ -85,8 +85,8 @@ class AdminController extends Zend_Controller_Action
         $nome = $this->getParam('nome');
         $utente=$this->_adminModel->getUtente($user);
         $part=$this->_adminModel->getPartner($nome);
-        $this->formMP->setValuesUser($utente);
         $this->formMP->setValuesPart($part);
+        $this->formMP->setValuesUser($utente);  
         $this->view->modpartnerForm = $this->formMP;
     }
      public function getModpartnerForm(){
@@ -94,7 +94,7 @@ class AdminController extends Zend_Controller_Action
 		$this->formMP = new Application_Form_Admin_Modpartner();
 		$this->formMP->setAction($urlHelper->url(array(
 				'controller' => 'admin',
-				'action' => 'modificapartner'),//
+				'action' => 'modificapartner'),
 				'default'
 				));
 		return $this->formMP;
