@@ -3,6 +3,7 @@
 class AdminController extends Zend_Controller_Action
 {
 	protected $_adminModel;
+        protected $_publicModel;
 	protected $_authService;
 	protected $_form;
         protected $_formF;
@@ -12,11 +13,13 @@ class AdminController extends Zend_Controller_Action
         protected $_formMT;
         protected $_formMU;
         protected $_userModel;
+        protected $formMP;
 
         public function init()
         {
     	$this->_helper->layout->setLayout('layadmin');   	
-        $this->_adminModel = new Application_Model_Admin(); 	
+        $this->_adminModel = new Application_Model_Admin(); 
+        $this->_publicModel = new Application_Model_Public(); 	
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
@@ -26,7 +29,7 @@ class AdminController extends Zend_Controller_Action
         $this->view->modfaqForm = $this->getModfaqForm();
         $this->view->modtipoForm = $this->getModtipoForm();  
         $this->view->moduserForm = $this->getModuserForm();  
-
+        $this->view->modpartnerForm = $this->getModpartnerForm();  
         }
 
     public function indexAction()
@@ -60,8 +63,68 @@ class AdminController extends Zend_Controller_Action
             		'utenti' => $keys,
             		)
         );
-       
     }
+     public function gestiscipartAction()
+    {
+        $keys=$this->_adminModel->getUtenti();
+        $this->view->assign(array(
+            		'utenti' => $keys,
+            		)
+        );
+    }
+     public function eliminapartAction()
+    {
+        $id = $this->getParam('id_U');
+        $nome = $this->getParam('nome');
+        $this->_adminModel->cancellaUtente($id);
+        $this->_adminModel->cancellaPartner($nome);
+        $this->_helper->redirector('gestiscipart','admin','default');
+    }
+    public function modpartAction() {
+        $user = $this->getParam('username');
+        $nome = $this->getParam('nome');
+        $utente=$this->_adminModel->getUtente($user);
+        $part=$this->_adminModel->getPartner($nome);
+        $this->formMP->setValuesPart($part);
+        $this->formMP->setValuesUser($utente);  
+        $this->view->modpartnerForm = $this->formMP;
+    }
+     public function getModpartnerForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+		$this->formMP = new Application_Form_Admin_Modpartner();
+		$this->formMP->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificapartner'),
+				'default'
+				));
+		return $this->formMP;
+    }
+    public function modificapartnerAction(){
+                $id = $this->getParam('id_U');
+                $nome = $this->getParam('nome');
+                if (!$this->getRequest()->isPost()) {
+	            $this->_helper->redirector('index','public');}
+		$form = $this->formMP;
+      		$values = $form->getValues();
+                if($values['immagine'] === null){unset($values['immagine']);}
+                
+                $e=$values['email'];$u=$values['username'];$p=$values['password'];
+                unset ($values['email']);unset ($values['username']);unset ($values['password']);
+                $this->_adminModel->modificaPartner($values,$nome);
+                
+                $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
+		$this->_adminModel->modificaUtente($ut, $id);
+		$this->_helper->redirector('index');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public function gestiscifaqAction()
     {
         $keys=$this->_adminModel->getFaq();
@@ -334,7 +397,8 @@ class AdminController extends Zend_Controller_Action
         $username=$this->getParam('username');
         $this->view->assign(array('nome' => $nome,'cognome'=>$cognome,'username'=>$username));
         $acq=$this->_adminModel->getAcquisti();
-        $this->view->assign(array('acq' => $acq));
+        $pr=$this->_publicModel->getEventi('');
+        $this->view->assign(array('acq' => $acq,'pr'=>$pr));
         
         
     }

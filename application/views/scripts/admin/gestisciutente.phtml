@@ -2,16 +2,15 @@
  <h3>Gestisci utenti</h3>
  <p>Utilizza questa form per gestire i dati degli utenti</p>
 </div>
-<div class=tabella id=gestione><table class=elenco><th>Username</th><th>Ruolo</th><th>Nome</th><th>Cognome</th>
+<div class=tabella id=gestione><table class=elenco><th>Username</th><th>Nome</th><th>Cognome</th>
             <?php foreach ($this->utenti as $type):
-            if($type->ruolo!='admin'):
+            if($type->ruolo!='admin' && $type->ruolo!='partner'):
             echo "<tr><td>$type->username</td>";
-            echo "<td>$type->ruolo</td>";
             echo "<td>$type->nome</td>";
             echo "<td>$type->cognome</td><td>";?>
             <a  class="ancora" type="submit" onClick=" return conferma()"  href=" <?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'elimina',
+                        'action'     => 'eliminapart',
                         'id_U'       => $type->id_U,
                         'nome'       => $type->nome,
                         ), 

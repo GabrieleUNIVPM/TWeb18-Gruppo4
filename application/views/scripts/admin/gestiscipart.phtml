@@ -1,0 +1,33 @@
+<?php
+$filename='conferma.js';
+echo $this->toggleEventi($filename);?>
+<div>
+ <h3>Gestisci Organizzatori</h3>
+ <p>Utilizza questa form per gestire i dati degli organizzatori</p>
+</div>
+<div class=tabella id=gestione><table class=elenco><th>Username</th><th>Nome</th>
+            <?php foreach ($this->utenti as $type):
+            if($type->ruolo==='partner'):
+            echo "<tr><td>$type->username</td>";
+            echo "<td>$type->nome</td>";
+            echo "<td>";?>
+            <a  class="ancora" type="submit" onClick=" return conferma()"  href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'eliminapart',
+                        'id_U'       => $type->id_U,
+                        'nome'       => $type->nome,
+                        ), 
+                        'default',true
+                    );?>" value="Elimina">Elimina</a>
+             </td><td><a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'modpart',
+                        'username'   => $type->username,
+                        'nome'       => $type->nome,
+                        'id_U'       => $type->id_U,
+                        ), 
+                        'default',true
+                    );?>" value="Modifica">Modifica</a></td>
+            <?php echo '</tr>';
+            endif; endforeach;
+            echo '</table></div>';
