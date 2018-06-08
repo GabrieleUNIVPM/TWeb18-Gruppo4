@@ -28,7 +28,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     	$this->insert($info);
     }
     
-     public function deleteEvento($ev)//
+     public function deleteEvento($ev)
     {
         $where=$this->getAdapter()->quoteInto('id_E=?', $ev);
     	return $this->delete($where);
@@ -61,7 +61,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
                                ->where($string2)
                                ->where($string3)
                                ->where($string4)
-                               ->where("'".$data->get('YYYY-MM-dd')."' <= data");
+                               ->where("'".$date->get('YYYY-MM-dd')."' <= data");
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
 			$paginator = new Zend_Paginator($adapter);

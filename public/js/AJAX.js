@@ -1,6 +1,6 @@
             $(function () {
                 $('#selReg').change(function (event) {
-                    if ($('#selReg').val() == "Seleziona") {
+                    if ($('#selReg').val() == "->Seleziona<-") {
                         $('#selProv').find('option').remove();
                         return
                     }
@@ -14,7 +14,7 @@
             });
             $(function () {
              $('#selProv').change(function (event){
-                    if ($('#selProv').val() == "Seleziona"){
+                    if ($('#selProv').val() == "->Seleziona<-"){
                         $('#selCit').find('option').remove(); 
                         return 
                     }

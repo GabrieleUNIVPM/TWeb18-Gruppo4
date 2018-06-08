@@ -23,7 +23,7 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
     $categories[$cat->tipologia] = $cat->tipologia;
   }
         $this->addElement('multiCheckbox', 'tipologia', array(
-            'label' => 'Tipologia',
+            'label' => 'Tipologie',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
@@ -43,12 +43,12 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'multiOptions' => $part
     ));
         $this->addElement('select', 'data', array(
-            'label' => 'Mesi',
+            'label' => 'Mese',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
             'multiOptions' => array(
-                         'null' => 'Scegli mese',
+                         'null' => '->Seleziona<-',
                          '01' => 'Gennaio',
                          '02' => 'Febbraio',
                          '03' => 'Marzo',
@@ -62,6 +62,35 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
                          '11' => 'Novembre',
                          '12' => 'Dicembre',
                          ),
+    ));
+        $regs = array();
+        $regs=['->Seleziona<-'];
+  $reg = $this->_publicModel->getRegioni();
+  foreach ($reg as $r) {
+    $regs[$r->nome] = $r->nome;
+  }
+        $this->addElement('select', 'reg', array(
+            'label' => 'Regione',
+            'required' => false,
+            'checked_value' => 'good',
+            'unchecked_value' => 'bad',
+            'multiOptions' => $regs,
+    ));
+        $prov=array();
+        $this->addElement('select', 'prov', array(
+            'label' => 'Provincia',
+            'required' => false,
+            'checked_value' => 'good',
+            'unchecked_value' => 'bad',
+            'multiOptions' => $prov,
+    ));
+        $city=array();
+        $this->addElement('select', 'city', array(
+            'label' => 'Città',
+            'required' => false,
+            'checked_value' => 'good',
+            'unchecked_value' => 'bad',
+            'multiOptions' => $city,
     ));
         
         $this->addElement('submit', 'riceroff', array(
