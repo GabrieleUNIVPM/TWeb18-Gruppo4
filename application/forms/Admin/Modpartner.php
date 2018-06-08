@@ -58,7 +58,7 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
         	'validators' => array( 
         			array('Count', false, 1),
         			array('Size', false, 1024000),
-        			array('Extension', false, array('jpg', 'gif'))),
+        			array('Extension', false, array('jpg', 'gif', 'png'))),
             'decorators' => $this->fileDecorators,
         			));
         

@@ -12,15 +12,20 @@ class Application_Form_User_Acquisto extends App_Form_Abstract
         $this->setName('acquisto');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
-        $num=array('1'=>'1','2'=>'2','3'=>'3');
+        
+        
+        
+        $num=array('1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10');
         $this->addElement('select', 'numerobiglietti', array(
             'label' => 'Numero biglietti',
             'required' => true,
             'multiOptions' => $num,
-            'values'=>$num,
+        //    'values'=>'$num',
             'decorators' => $this->elementDecorators,
         ));
-        $pag=array('Mastercard'=>'Mastercard','Visa'=>'Visa','Bonifico'=>'Bonifico bancario');
+        
+        
+        $pag=array('P'=>'Paypal', 'M'=>'Mastercard','V'=>'Visa','B'=>'Bonifico bancario');
         $this->addElement('select', 'metodo', array(
             'label' => 'Metodo di pagamento',
             'required' => true,
