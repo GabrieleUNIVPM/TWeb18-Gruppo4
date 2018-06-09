@@ -1,12 +1,12 @@
             $(function () {
-                $('#selReg').change(function (event) {
-                    if ($('#selReg').val() == "->Seleziona<-") {
-                        $('#selProv').find('option').remove();
+                $('#reg').change(function (event) {
+                    if ($('#reg').val() == "->Seleziona<-") {
+                        $('#prov').find('option').remove();
                         return
                     }
                     $.ajax({
                         type: 'GET',
-                        data: "nome=" + $('#selReg').val(),
+                        data: "nome=" + $('#reg').val(),
                         dataType: 'json',
                         success: setProvince
                     });
@@ -14,13 +14,13 @@
             });
             $(function () {
              $('#selProv').change(function (event){
-                    if ($('#selProv').val() == "->Seleziona<-"){
-                        $('#selCit').find('option').remove(); 
+                    if ($('#prov').val() == "->Seleziona<-"){
+                        $('#city').find('option').remove(); 
                         return 
                     }
                     $.ajax({
                         type: 'GET',
-                        data: "nome=" + $('#selProv').val(),
+                        data: "nome=" + $('#prov').val(),
                         dataType: 'json',
                         success: setCity
                     });
@@ -28,14 +28,14 @@
             });
 
             function setProvince(data) {
-                $('#selProv').find('option').remove();
+                $('#prov').find('option').remove();
                 $.each(data, function (key, val) {
-                    $('#selProv').append('<option>' + val + '</option>');
+                    $('#prov').append('<option>' + val + '</option>');
                 });
             }
             function setCity(data) {
-                $('#selCit').find('option').remove();
+                $('#city').find('option').remove();
                 $.each(data, function (key, val) {
-                    $('#selCit').append('<option>' + val + '</option>');
+                    $('#city').append('<option>' + val + '</option>');
                 });
             }

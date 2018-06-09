@@ -1,6 +1,3 @@
 $(function () {
-                $('table tr:nth-child(even)').addClass('striped');
-                $('#attiva').on('load', function () {
-                    $('tr').toggleClass('striped');
-                })
-            });
+    $('table tr:nth-child(odd) td').addClass('striped');
+});

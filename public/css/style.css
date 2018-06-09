@@ -6,9 +6,11 @@ html
   padding: 0;}
 
 body
-{ font: normal .80em 'trebuchet ms', arial, sans-serif;
+{
+  font: normal .80em 'trebuchet ms', arial, sans-serif;
   background: #F0EFE2;
-  color: #777;}
+  color: #777;
+  }
 
 p
 { padding: 0 0 20px 0;
@@ -280,17 +282,19 @@ table
  border-collapse: collapse;
 }
 
-table tr th, table tr td
+table tr th, table tr td 
 { background: #3B3B3B;
   color: #FFF;
   padding: 7px 4px;
   text-align: left;
 }
-  
+
 table tr td
-{ background: #F0EFE2;
+{
+  background: #f0efe2; 
   color: #47433F;
-  border-top: 1px solid #FFF;}
+  border-top: 1px solid #FFF;
+  }
 
 td.button, td.errors
 {background:none;}
@@ -339,3 +343,6 @@ dd#nome-element input#nome
 
 div.hand
 {background: url(images/hand.png) no-repeat;}
+
+.striped
+{background: #82bae2;}
