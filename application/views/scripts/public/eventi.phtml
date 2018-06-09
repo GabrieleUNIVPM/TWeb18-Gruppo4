@@ -15,7 +15,7 @@ $id=0; $numeroacquisti=0;
     </div>
 
     
-        <?php foreach ($this->Eventi as $type){
+        <?php foreach ($this->Eventi as $type):
           $biglietti=$type->numerobiglietti-$this->Biglietti;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
@@ -34,10 +34,11 @@ $id=0; $numeroacquisti=0;
           echo "Biglietti rimanenti: $biglietti<br>";
           echo "Evento organizzato da $type->organizzatore";
           //echo "<br><b>$type->partecipazioni sono interessate a partecipare</b>"; qua va fatta la query che calcola quanti partecipazioni sono collegate all'evento
-          echo "<iframe src=$type->mappa width='400px' height='240px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>";
+          if($type->mappa != null):?> <iframe src= <?= $type->mappa ?> width='400px' height='240px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>; 
+          <?php endif;
           echo "</td></tr></table></div></div>";
           $id++;
-        }
+          endforeach;
           ?>
 
 <?php if($this->Eventi instanceof Zend_Paginator) {
