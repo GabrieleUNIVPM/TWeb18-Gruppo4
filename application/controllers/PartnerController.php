@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class PartnerController extends Zend_Controller_Action
 {
