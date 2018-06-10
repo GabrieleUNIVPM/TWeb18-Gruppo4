@@ -76,25 +76,44 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'unchecked_value' => 'bad',
             'multiOptions' => $regs,
     ));
-        $prov=array();
+        /*$this->addElement('hidden', 'id_reg', array(
+            'value' => $regs['id'],
+            ));
+        
+        $provs=array();
+        $provs=['->Seleziona<-'];
+  $prov = $this->_publicModel->getProvince($key);
+  foreach ($prov as $p) {
+    $provs[$p->nome] = $p->nome;
+  }
         $this->addElement('select', 'prov', array(
             'label' => 'Provincia',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
-            'multiOptions' => $prov,
-    ));
-        $city=array();
+            'multiOptions' => $provs,
+            ));
+            
+        $this->addElement('hidden', 'id_prov', array(
+        'value' => $provs['id'],
+        ));
+        
+        $cities=array();
+        $cities=['->Seleziona<-'];
+  $city = $this->_publicModel->getComuni($key);
+  foreach ($city as $c) {
+    $cities[$c->nome] = $c->nome;
+  }     
         $this->addElement('select', 'city', array(
             'label' => 'Città',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
-            'multiOptions' => $city,
+            'multiOptions' => $cities,
     ));
         
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',
-    ));
+    ));*/
     }
 }
