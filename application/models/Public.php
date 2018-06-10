@@ -72,6 +72,6 @@ class Application_Model_Public extends App_Model_Abstract
     }
     public function getComuni($key)
     {
-        return $this->getResource('Comuni')->getProvince($key);
+        return $this->getResource('Comuni')->getComuni($key);
     }
 }

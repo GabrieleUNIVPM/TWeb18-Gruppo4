@@ -4,26 +4,26 @@
                         $('#prov').find('option').remove();
                         return
                     }
-                    $.ajax({
+                    /*$.ajax({
                         type: 'GET',
                         data: "nome=" + $('#reg').val(),
                         dataType: 'json',
                         success: setProvince
-                    });
+                    });*/
                 });
             });
             $(function () {
-             $('#selProv').change(function (event){
+             $('#prov').change(function (event){
                     if ($('#prov').val() == "->Seleziona<-"){
                         $('#city').find('option').remove(); 
                         return 
                     }
-                    $.ajax({
+                    /*$.ajax({
                         type: 'GET',
                         data: "nome=" + $('#prov').val(),
                         dataType: 'json',
                         success: setCity
-                    });
+                    });*/
                 });
             });
 
