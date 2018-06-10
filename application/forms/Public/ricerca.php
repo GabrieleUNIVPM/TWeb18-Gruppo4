@@ -82,10 +82,10 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
         
         $provs=array();
         $provs=['->Seleziona<-'];
-        $prov = $this->_publicModel->getProvince('3');
+        /*$prov = $this->_publicModel->getProvince('3');
         foreach ($prov as $p) {
         $provs[$p->nome] = $p->nome;
-  }
+  }*/
         $this->addElement('select', 'prov', array(
             'label' => 'Provincia',
             'required' => false,
@@ -100,10 +100,10 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
         
         $cities=array();
         $cities=['->Seleziona<-'];
-  $city = $this->_publicModel->getComuni('15');
+  /*$city = $this->_publicModel->getComuni('15');
   foreach ($city as $c) {
     $cities[$c->nome] = $c->nome;
-  }     
+  }*/     
         $this->addElement('select', 'city', array(
             'label' => 'Città',
             'required' => false,
