@@ -66,4 +66,12 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Regioni')->getRegioni();
     }
+    public function getProvince($key)
+    {
+        return $this->getResource('Province')->getProvince($key);
+    }
+    public function getComuni($key)
+    {
+        return $this->getResource('Comuni')->getProvince($key);
+    }
 }
