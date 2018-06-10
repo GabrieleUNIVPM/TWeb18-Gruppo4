@@ -169,11 +169,15 @@ class PublicController extends Zend_Controller_Action
     		$this->_helper->viewRenderer->setNoRender();
 
         $province= new Application_Model_Public_Province();
-        $response = $province->getProvince($_GET);
-        if ($response !== null) {
+        $form = new Application_Form_Public_Ricerca();
+ 
+        $response = $form->processAjax($_GET); 
+        $temp=$province->getProvince($response);
+        /*if ($response !== null) {
         	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
-        }
-            echo json_encode($response);
+        }*/
+        $this->_helper->json($temp);
+           // echo json_encode($temp);
 
     }
 }
