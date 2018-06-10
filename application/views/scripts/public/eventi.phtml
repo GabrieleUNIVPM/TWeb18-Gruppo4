@@ -6,7 +6,18 @@ echo $this->jS($filename);
 $filename='AJAX.js';
 echo $this->jS($filename);
 $id=0; $numeroacquisti=0;
+$this->headscript()->captureStart();
 ?>
+
+$(function()
+{
+	var actionUrl='<?= $this->url(array('controller' => 'public', 'action' => 'iniettaValori',), 'default'); ?>';
+	var formName='<?= $this->ricercaForm->getName() ?>';
+	$(":input").on('change', function(event) {
+        var formElementId = $(this).attr('id');
+        province(formElementId, 'prov', actionUrl, formName);
+    });
+});
 
 <div class="sidebar">
                 <div class="ricerca">

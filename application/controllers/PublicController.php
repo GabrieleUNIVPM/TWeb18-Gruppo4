@@ -169,7 +169,7 @@ class PublicController extends Zend_Controller_Action
     		$this->_helper->viewRenderer->setNoRender();
 
         $ricercaform = new Application_Form_Public_Ricerca();
-        $response = $ricercaform->processAjax($_POST);
+        $response = $ricercaform->processAjax($_GET);
         if ($response !== null) {
         	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
         }

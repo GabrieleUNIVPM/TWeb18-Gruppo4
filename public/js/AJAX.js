@@ -1,29 +1,31 @@
-            $(function () {
+            $(function province(id_reg, id_prov, actionUrl, formName) {
                 $('#reg').change(function (event) {
                     if ($('#reg').val() == "->Seleziona<-") {
                         $('#prov').find('option').remove();
                         return
                     }
-                    /*$.ajax({
+                    $.ajax({
                         type: 'GET',
-                        data: "nome=" + $('#reg').val(),
+                        url : actionUrl,
+                        data : $("#" + formName).serialize(),
                         dataType: 'json',
                         success: setProvince
-                    });*/
+                    });
                 });
             });
-            $(function () {
+            $(function comuni(id_prov, id_city, actionUrl, formName) {
              $('#prov').change(function (event){
                     if ($('#prov').val() == "->Seleziona<-"){
                         $('#city').find('option').remove(); 
                         return 
                     }
-                    /*$.ajax({
+                    $.ajax({
                         type: 'GET',
-                        data: "nome=" + $('#prov').val(),
+                        url : actionUrl,
+                        data : $("#" + formName).serialize(),
                         dataType: 'json',
                         success: setCity
-                    });*/
+                    });
                 });
             });
 
