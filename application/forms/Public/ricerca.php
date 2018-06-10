@@ -76,15 +76,15 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'unchecked_value' => 'bad',
             'multiOptions' => $regs,
     ));
-        /*$this->addElement('hidden', 'id_reg', array(
+        $this->addElement('hidden', 'id_reg', array(
             'value' => $regs['id'],
             ));
         
         $provs=array();
         $provs=['->Seleziona<-'];
-  $prov = $this->_publicModel->getProvince($key);
-  foreach ($prov as $p) {
-    $provs[$p->nome] = $p->nome;
+        $prov = $this->_publicModel->getProvince('3');
+        foreach ($prov as $p) {
+        $provs[$p->nome] = $p->nome;
   }
         $this->addElement('select', 'prov', array(
             'label' => 'Provincia',
@@ -94,13 +94,13 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'multiOptions' => $provs,
             ));
             
-        $this->addElement('hidden', 'id_prov', array(
+        $this->addElement('hidden', 'id', array(
         'value' => $provs['id'],
         ));
         
         $cities=array();
         $cities=['->Seleziona<-'];
-  $city = $this->_publicModel->getComuni($key);
+  $city = $this->_publicModel->getComuni('15');
   foreach ($city as $c) {
     $cities[$c->nome] = $c->nome;
   }     
@@ -114,6 +114,6 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
         
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',
-    ));*/
+    ));
     }
 }
