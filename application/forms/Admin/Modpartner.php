@@ -25,12 +25,13 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-         $this->addElement('text', 'missione', array(
+         $this->addElement('textarea', 'missione', array(
             'label' => 'Missione',
             'value' => $part['missione'],
+            'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
 
@@ -40,7 +41,7 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'recapiti', array(
@@ -97,7 +98,7 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'validators' => array('Alnum',array('StringLength',true, array(3,15))),
             'decorators' => $this->elementDecorators,
 		));
-        $this->addElement('submit', 'add', array(
+        $this->addElement('submit', 'modpartner', array(
             'label' => 'Conferma',
             'decorators' => $this->buttonDecorators,
         ));

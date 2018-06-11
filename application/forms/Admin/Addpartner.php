@@ -18,11 +18,12 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
             'validators' => array(array('StringLength',true, array(1,25))),
             'decorators' => $this->elementDecorators,
         ));
-         $this->addElement('text', 'missione', array(
+         $this->addElement('textarea', 'missione', array(
             'label' => 'Missione',
+            'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
 
@@ -31,7 +32,7 @@ class Application_Form_Admin_Addpartner extends App_Form_Abstract
             'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'recapiti', array(

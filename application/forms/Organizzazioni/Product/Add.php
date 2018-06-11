@@ -37,7 +37,7 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
             'cols' => '22', 'rows' => '7',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'data', array(
@@ -58,13 +58,13 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
             'label' => 'Luogo',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,50))),
             'decorators' => $this->elementDecorators,
         ));
          $this->addElement('text', 'numerobiglietti', array(
             'label' => 'Numero Biglietti',
             'filters' => array('StringTrim'),
-            'required' => false,
+            'required' => true,
             'decorators' => $this->elementDecorators,
         ));
          $this->addElement('text', 'prezzo', array(
