@@ -92,4 +92,9 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
 		}
         return $this->fetchAll($select);
     }
+    public function aggiornabiglietti($key,$b)
+    {
+        $where = $this->getAdapter()->quoteInto('nome = ?', $key);
+        return $this->update($b, $where);
+    }
 }

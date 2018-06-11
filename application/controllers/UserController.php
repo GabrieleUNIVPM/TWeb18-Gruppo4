@@ -112,7 +112,13 @@ class UserController extends Zend_Controller_Action
             {$bool=true;$this->_helper->redirector('bigliettifiniti','user');}}
         }
         if($bool===false){   
-        $this->_publicModel->salvaAcquisto($values);}
+        $this->_publicModel->salvaAcquisto($values);
+        $nb=0;
+        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){$nb=$nb->numerobiglietti;}}
+        $nba=$nb-$values['numerobiglietti'];
+        $a=array('numerobiglietti'=>$nba);
+        $this->_publicModel->aggiornabiglietti($this->getParam('nomeevento'),$a);
+        }
         $this->_helper->redirector('acquisti','user');
     }
     
