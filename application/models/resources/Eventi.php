@@ -64,7 +64,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
         $select=$this->select()->where($string1)
                                ->where($string2)
                                ->where($string3)
-                               //->where($string4)
+                               ->where($string4)
                                ->where("'".$date->get('YYYY-MM-dd')."' <= data");
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
