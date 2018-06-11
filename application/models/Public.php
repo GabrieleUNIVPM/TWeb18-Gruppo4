@@ -54,9 +54,9 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Utenti')->salvaUtente($utente);
     }
-    public function getEventiCercati($type, $nome, $part, $luogo, $paged=null)
+    public function getEventiCercati($type, $nome, $part, $data, $luogo, $paged=null)
     {
-        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part, $luogo, $paged=null);
+        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part,$data, $luogo, $paged=null);
     }
      public function salvaAcquisto($a)
     {

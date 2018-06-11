@@ -42,27 +42,6 @@ public function init()
             'unchecked_value' => 'bad',
             'multiOptions' => $part
     ));
-        $this->addElement('select', 'data', array(
-            'label' => 'Mese',
-            'required' => false,
-            'checked_value' => 'good',
-            'unchecked_value' => 'bad',
-            'multiOptions' => array(
-                         'null' => '->Seleziona<-',
-                         '01' => 'Gennaio',
-                         '02' => 'Febbraio',
-                         '03' => 'Marzo',
-                         '04' => 'Aprile',
-                         '05' => 'Maggio',
-                         '06' => 'Giugno',
-                         '07' => 'Luglio',
-                         '08' => 'Agosto',
-                         '09' => 'Settembre',
-                         '10' => 'Ottobre',
-                         '11' => 'Novembre',
-                         '12' => 'Dicembre',
-                         ),
-    ));
         $luogo = array();
   $luog = $this->_publicModel->getEventi($luogo);
   foreach ($luog as $l) {
@@ -75,6 +54,12 @@ public function init()
             'unchecked_value' => 'bad',
             'multiOptions' => $luogo
     ));
+        $this->addElement('text', 'data', array(
+            'label' => 'Data (AAAA-MM-GG)',
+            'required' => true,
+            'validators' => array (array('date', false, array('yyyy/MM/dd'))),
+            'decorators' => $this->elementDecorators,
+        ));
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',
     ));
