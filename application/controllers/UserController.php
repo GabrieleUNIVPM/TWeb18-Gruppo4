@@ -113,9 +113,9 @@ class UserController extends Zend_Controller_Action
         }
         if($bool===false){   
         $this->_publicModel->salvaAcquisto($values);
-        $nb=0;
-        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){$nb=$nb->numerobiglietti;}}
-        $nba=$nb-$values['numerobiglietti'];
+        $nbr=0;
+        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){$nbr=$nb->numerobiglietti;}}
+        $nba=$nbr-$values['numerobiglietti'];
         $a=array('numerobiglietti'=>$nba);
         $this->_publicModel->aggiornabiglietti($this->getParam('nomeevento'),$a);
         }
