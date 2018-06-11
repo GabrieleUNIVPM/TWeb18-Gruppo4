@@ -37,14 +37,17 @@ $(function()
           echo "Prezzo: $type->prezzo €";
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
-          echo "<br>Orario di inizio: $type->orario</p>";
+          echo "<br>Orario di inizio: $type->orario";
+          $partecipazioni=0;
+          foreach ($this->Part as $part){if($part->nomeevento===$type->nome){$partecipazioni=($partecipazioni+1);}}
+          echo "<br><b>$partecipazioni persone sono interessate a partecipare</b></p>";
           echo '<br><a class=ancora onclick='."toggleEventi($id)".'>Clicca qui per saperne di più</a></td></tr></table></div>';
           echo '<div class='."estensione".' id='."$id".'>';
           echo "<div class=tabella><table class=elenco><tr colspan=2>";
           echo "<td>Programma:<p>$type->programma</p>";
           echo "Biglietti rimanenti: $biglietti<br>";
           echo "Evento organizzato da $type->organizzatore";
-          //echo "<br><b>$type->partecipazioni sono interessate a partecipare</b>"; qua va fatta la query che calcola quanti partecipazioni sono collegate all'evento
+          echo "<br>";
           if($type->mappa != null):?> <iframe src= <?= $type->mappa ?> width='400px' height='240px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>; 
           <?php endif;
           echo "</td></tr></table></div></div>";

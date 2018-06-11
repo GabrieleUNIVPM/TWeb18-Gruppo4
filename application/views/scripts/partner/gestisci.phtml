@@ -10,7 +10,6 @@ echo $this->jS($filename);
  <p>Utilizza questa sezione per gestire gli eventi nel Catalogo</p>
 </div>
         <?php foreach ($this->Eventi as $type):
-           if($type->organizzatore==$this->Nome):
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
           echo $this->img($type->immagine);
@@ -32,12 +31,11 @@ echo $this->jS($filename);
                         'default',true
          );?>">Modifica</a>
           <?php echo '</td></tr>' ?>
-          <?php endif; endforeach;
+          <?php endforeach;
           echo '</table></div>'?>
 
          
     <?php if($this->Eventi instanceof Zend_Paginator) {
-    if($type->organizzatore==$this->Nome){
     echo $this->paginationControl($this->Eventi,'Sliding','partner/_paginator.phtml');
     }
-    }
+    

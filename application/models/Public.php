@@ -74,4 +74,8 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Comuni')->getComuni($key);
     }
+    public function aggiornabiglietti($key,$b)
+    {
+        return $this->getResource('Eventi')->aggiornabiglietti($key,$b);
+    }
 }

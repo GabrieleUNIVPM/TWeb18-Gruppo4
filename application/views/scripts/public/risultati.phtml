@@ -22,31 +22,16 @@ $id=0; $numeroacquisti=0;
           $biglietti=$type->numerobiglietti-$this->Biglietti;
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
 	  echo "<tr><td>";
-          echo $this->img($type->immagine); ?>
-          <?php if($this->ruolo == 'user') :?>
-          <form id="acquista" method="post">
-          <div class="form_settings">
-              Numero biglietti<br>
-              <select class="numerobiglietti"><option>1</option><option>2</option><option>3</option><option>4</option>
-              <option>5</option><option>6</option><option>7</option><option>8</option></select>
-              <br>Metodo di pagamento
-              <select class="pagamento"><option>Paypal</option><option>Bonifico Bancario</option><option>VISA</option>
-              <option>MasterCard</option></select>
-          <input class="submit" type="submit" name="contact_submitted" value="Acquista" href="
-                        <?=$this->url(array(
-                        'controller' => 'user',
-                        'action'     => 'acquisto',
-                        ), 
-                        'default',true
-                    )?>
-          "></div></form><?php endif?>
-          <?php
+          echo $this->img($type->immagine);
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
-          echo "<br>Orario di inizio: $type->orario</p>";
+          echo "<br>Orario di inizio: $type->orario";
+          $partecipazioni=0;
+          foreach ($this->Part as $part){if($part->nomeevento===$type->nome){$partecipazioni=($partecipazioni+1);}}
+          echo "<br><b>$partecipazioni persone sono interessate a partecipare</b></p>";
           echo '<br><a class=ancora onclick='."toggleEventi($id)".'>Clicca qui per saperne di più</a></td></tr></table></div>';
           echo '<div class='."estensione".' id='."$id".'>';
           echo "<div class=tabella><table class=elenco><tr colspan=2>";

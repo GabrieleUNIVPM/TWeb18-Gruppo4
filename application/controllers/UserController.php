@@ -86,7 +86,9 @@ class UserController extends Zend_Controller_Action
         $eventi=$this->_publicModel->getEventi($key,$paged);
         $this->_helper->getHelper('layout')->disableLayout();
         $this->_helper->layout->setLayout('layout');
-        $this->view->assign(array('Eventi' => $eventi));
+        $partecipazioni=$this->_publicModel->getPartecipazioni();
+        
+        $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni,'Username'=>$this->_authService->getIdentity()->username));
     }
     public function acquistoAction()
     {
@@ -103,8 +105,21 @@ class UserController extends Zend_Controller_Action
 	}
         $form->setValues($this->_authService->getIdentity()->username,$this->getParam('nomeevento'));
 	$values = $form->getValues();
+        
+        $eventi=$this->_publicModel->getEventi($key);
+        $bool=false;
+        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){if($nb->numerobiglietti < $values['numerobiglietti'])
+            {$bool=true;$this->_helper->redirector('bigliettifiniti','user');}}
+        }
+        if($bool===false){   
         $this->_publicModel->salvaAcquisto($values);
-	$this->_helper->redirector('acquisti','user');
+        $nbr=0;
+        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){$nbr=$nb->numerobiglietti;}}
+        $nba=$nbr-$values['numerobiglietti'];
+        $a=array('numerobiglietti'=>$nba);
+        $this->_publicModel->aggiornabiglietti($this->getParam('nomeevento'),$a);
+        }
+        $this->_helper->redirector('acquisti','user');
     }
     
     public function getAcquistoForm(){
@@ -149,7 +164,8 @@ class UserController extends Zend_Controller_Action
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
                 $this->_helper->getHelper('layout')->disableLayout();
                 $this->_helper->layout->setLayout('layout');
-                $this->view->assign(array('Eventi' => $eventi));
+                $partecipazioni=$this->_publicModel->getPartecipazioni();
+                $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni,'Username'=>$this->_authService->getIdentity()->username));
     
     }
     public function genpdfAction()
@@ -167,5 +183,17 @@ class UserController extends Zend_Controller_Action
         $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome));
         
     }
+     public function partecipazioneAction()
+     {
+        $this->_helper->getHelper('layout')->disableLayout();
+    	$this->_helper->viewRenderer->setNoRender();
+        
+        $nomeevento = $this->getParam('nomeevento');
+        $add=array('nomeevento'=>$nomeevento,'username'=>$this->_authService->getIdentity()->username);
+        $this->_userModel->addPartecipazione($add);
+        $this->_helper->redirector('eventi','user');
+     }
+     public function bigliettifinitiAction()
+     {}
 
 }

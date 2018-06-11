@@ -11,7 +11,8 @@ echo $this->jS($filename);
         if($this->utente===$type->username):
         echo "<tr><td>$type->nomeevento</td>";
         echo "<td>$type->numerobiglietti</td><td>";?>
-        <?php if($type->metodo==='V'){echo 'Visa';}
+        <?php if($type->metodo==='P'){echo 'Paypal';}
+              if($type->metodo==='V'){echo 'Visa';}
               if($type->metodo==='M'){echo 'Mastercard';}
               if($type->metodo==='B'){echo 'Bonifico bancario';}
         

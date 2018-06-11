@@ -39,4 +39,12 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
         return $this->getResource('Acquisti')->getAcquisti();
     }
+    public function getUtenti()
+    {
+        return $this->getResource('Utenti')->getUtenti();
+    }
+    public function getEventiPart($org,$paged=null)
+    {
+        return $this->getResource('Eventi')->getEventiPart($org,$paged);
+    }
 }
