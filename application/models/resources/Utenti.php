@@ -38,4 +38,10 @@ class Application_Resource_Utenti extends Zend_Db_Table_Abstract
         return $this->update($data, $where);
     }
     
+    public function insertNome($nome,$id)
+    {
+        $a=array('organizzatore'=>$nome);
+        $where=$this->getAdapter()->quoteInto('id_E=?', $id);
+        return $this->update($a,$where);
+    }
 }

@@ -49,4 +49,8 @@ class Application_Model_User extends App_Model_Abstract
         return $this->getResource('Partecipazioni')->addPartecipazione($info);
     }
     
+    public function getEventiAttivi($paged=null){
+        return $this->getResource('Eventi')->getEventiAttivi($paged);
+    }
+    
 }

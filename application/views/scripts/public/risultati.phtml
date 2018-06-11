@@ -43,6 +43,6 @@ $id=0; $numeroacquisti=0;
         }
           ?>
 
-<?php //if($this->Eventi instanceof Zend_Paginator) {
-    //echo $this->paginationControl($this->Eventi,'Sliding','public/_paginator.phtml');
-//}
+<?php if($this->Eventi instanceof Zend_Paginator) {
+    echo $this->paginationControl($this->Eventi,'Sliding','public/_paginator.phtml');
+    } ?>

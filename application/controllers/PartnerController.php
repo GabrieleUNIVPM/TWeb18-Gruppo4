@@ -18,6 +18,7 @@ class PartnerController extends Zend_Controller_Action
         $this->_publicModel = new Application_Model_Public();    
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
+        $name = $this->_authService->getIdentity()->nome;
         $this->view->assign(array('ruolo' => $ruolo));
         $this->view->modevForm = $this->getModevForm();  
     }
@@ -76,8 +77,11 @@ class PartnerController extends Zend_Controller_Action
         if($values['immagine'] === null){
                             $values['immagine']='default.png';
                 }
+        if($values['organizzatore'] === null) {
+                            $values['organizzatore'] = 'minchia';
+        }
        	$this->_organizzazioniModel->saveProduct($values);
-        $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
+    //    $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
 	$this->_helper->redirector('index'); 
     }
     private function getProductAddForm()

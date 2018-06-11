@@ -11,9 +11,9 @@ class Application_Model_Public extends App_Model_Abstract
     {
 	return $this->getResource('Tipoeventi')->getTipoEventi();
     }
-    public function getEventi($key,$paged=null)
+    public function getEventi($paged=null)
     {
-        return $this->getResource('Eventi')->getEventi($key,$paged);
+        return $this->getResource('Eventi')->getEventi($paged);
     }
     public function getEvento($key)
     {
@@ -56,7 +56,7 @@ class Application_Model_Public extends App_Model_Abstract
     }
     public function getEventiCercati($type, $nome, $part, $data, $luogo, $paged=null)
     {
-        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part,$data, $luogo, $paged=null);
+        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part,$data, $luogo, $paged);
     }
      public function salvaAcquisto($a)
     {
@@ -65,5 +65,9 @@ class Application_Model_Public extends App_Model_Abstract
     public function aggiornabiglietti($key,$b)
     {
         return $this->getResource('Eventi')->aggiornabiglietti($key,$b);
+    }
+    
+    public function getEventiAttivi($paged=null){
+        return $this->getResource('Eventi')->getEventiAttivi($paged);
     }
 }

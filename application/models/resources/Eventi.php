@@ -10,7 +10,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     {
         
     }
-    public function getEventi($key,$paged=null)
+    public function getEventi($paged=null)
     {
         $select = $this->select();
 		if (null !== $paged) {
@@ -101,4 +101,20 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
         $where = $this->getAdapter()->quoteInto('nome = ?', $key);
         return $this->update($b, $where);
     }
+    
+    public function getEventiAttivi($paged=null)
+    {
+        $date = new Zend_Date();
+	$select = $this->select()
+                       ->where("'".$date->get('YYYY-MM-dd')."' <= data");
+        if (null !== $paged) {
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+			$paginator = new Zend_Paginator($adapter);
+			$paginator->setItemCountPerPage(2)
+		          	  ->setCurrentPageNumber((int) $paged);
+			return $paginator;
+		}
+        return $this->fetchAll($select);
+    }
+    
 }
