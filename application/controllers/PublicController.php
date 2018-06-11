@@ -167,15 +167,4 @@ class PublicController extends Zend_Controller_Action
                 $this->view->assign(array('Part'=>$partecipazioni));
     
     }
-    public function ajaxLogin() 
-    {
-        $this->_helper->getHelper('layout')->disableLayout();
-    		$this->_helper->viewRenderer->setNoRender();
-
-        $loginform = new Application_Form_Public_Auth_Login();
-        $response = $loginform->processAjax($_POST); 
-        if ($response !== null) {
-        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
-        }
-    }
 }

@@ -1,19 +1,10 @@
-<?php $this->headScript()
-	->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
-	->appendFile($this->baseUrl('js/AJAX.js'))
-        ->appendFile($this->baseUrl('js/rowColor.js'))
-	->captureStart() ?>
-$(function()
-{
-	var actionUrl='<?= $this->url(array('controller' => 'public', 'action' => 'ajaxLogin',), 'default'); ?>';
-	var formName='<?= $this->loginForm->getName() ?>';
-	$(":input").on('blur', function(event) {
-        var formElementId = $(this).attr('id');
-        doValidation(formElementId, actionUrl, formName);
-    });
-});
-
-<?php $this->headScript()->captureEnd() ?>
+<?php
+echo '<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>';
+$filename='conferma.js';
+echo $this->jS($filename);
+$filename='rowColor.js';
+echo $this->jS($filename);
+?>
 <div class="sidebar">
     <br><br><br><h2>Non sei registrato?</h2>
     <a class="ancora" href="
