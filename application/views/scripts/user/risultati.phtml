@@ -29,13 +29,17 @@ $id=0; $numeroacquisti=0;
                         'nomeevento' => $type->nome), 
                         'default',true
                   );?>" >Acquista </a><br><br>
-           <a  class="ancora" type="submit" href=" <?= $this->url(array(
+        <?php $bool=false; foreach ($this->Part as $part){if($part->username===$this->Username and $part->nomeevento===$type->nome){$bool=true;}}
+        if($bool===false):?>
+        <a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'user',
                         'action'     => 'partecipazione',
                         'nomeevento' => $type->nome), 
                         'default',true
                     );?>" >Parteciperò</a>
-          <?php
+          <?php endif;
+          if($bool===true):?> <a class="ancora" type="submit" onclick="alert('Hai già espresso la tua intenzione a partecipare a questo evento!')"> Parteciperò</a>
+          <?php endif;
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo";
