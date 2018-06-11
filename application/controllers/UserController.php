@@ -87,7 +87,8 @@ class UserController extends Zend_Controller_Action
         $this->_helper->getHelper('layout')->disableLayout();
         $this->_helper->layout->setLayout('layout');
         $partecipazioni=$this->_publicModel->getPartecipazioni();
-        $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni));
+        
+        $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni,'Username'=>$this->_authService->getIdentity()->username));
     }
     public function acquistoAction()
     {

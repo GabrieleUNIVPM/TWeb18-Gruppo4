@@ -26,13 +26,15 @@ $id=0; $numeroacquisti=0;
                         'nomeevento' => $type->nome), 
                         'default',true
         );?>" >Acquista </a><br><br>
+        <?php $bool=0; foreach ($this->Part as $part){if($part->username===$this->Username){$bool=1;}}
+        if($bool===0):?>
         <a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'user',
                         'action'     => 'partecipazione',
                         'nomeevento' => $type->nome), 
                         'default',true
                     );?>" >Parteciperò</a>
-          <?php
+          <?php endif;
           
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
