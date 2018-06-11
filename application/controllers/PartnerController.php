@@ -8,13 +8,12 @@ class PartnerController extends Zend_Controller_Action
     protected $_form1;
     protected $_authService;
     protected $nome;
-    protected $formME;
+    protected $_formME;
 
     public function init()
     {
         $this->_helper->layout->setLayout('laypartner');  
-     	$this->view->addForm = $this->getProductForm();  
-        /*$this->view->gestisciForm = $this->getGestisciForm(); */
+     	$this->view->addForm = $this->getProductAddForm();
         $this->_organizzazioniModel = new Application_Model_Organizzazioni();    
         $this->_publicModel = new Application_Model_Public();    
         $this->_authService = new Application_Service_Auth();
@@ -81,7 +80,7 @@ class PartnerController extends Zend_Controller_Action
         $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
 	$this->_helper->redirector('index'); 
     }
-    private function getProductForm()
+    private function getProductAddForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
 	$this->_form = new Application_Form_Organizzazioni_Product_Add();
@@ -108,15 +107,15 @@ class PartnerController extends Zend_Controller_Action
         {   
         $id = $this->getParam('id_E');
         $ev = $this->_organizzazioniModel->getEventoByID($id);
-        $this->formME->setValues($ev);
-        $this->view->modevForm = $this->formME;//
+        $this->_formME->setValues($ev);
+        $this->view->modevForm = $this->_formME;//
         }
     public function modificaeventoAction()
         {
         if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index','public');
 		}
-                $form = $this->formME;
+                $form = $this->_formME;
                 $form->setValues($_POST); //viene creata la form con gli elementi già compilati
 		if (!$form->isValid($_POST)) {
                     return $this->render('modev');
@@ -133,13 +132,13 @@ class PartnerController extends Zend_Controller_Action
     private function getModevForm() 
         {
         $urlHelper = $this->_helper->getHelper('url');
-	$this->formME = new Application_Form_Organizzazioni_Product_Modev();
-    	$this->formME->setAction($urlHelper->url(array(
+	$this->_formME = new Application_Form_Organizzazioni_Product_Modev();
+    	$this->_formME->setAction($urlHelper->url(array(
 				'controller' => 'partner',
 				'action' => 'modificaevento'),//
 				'default'
 		));
-		return $this->formME;
+		return $this->_formME;
         }
         public function anavendAction()
         {

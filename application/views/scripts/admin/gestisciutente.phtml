@@ -8,6 +8,14 @@ echo $this->jS($filename);
 <div>
  <h3>Gestisci utenti</h3>
  <p>Utilizza questa form per gestire i dati degli utenti</p>
+ 
+<?php if($this->elimina):?>
+<?php echo '<h5 style="color:red">Utente '.$this->user.' eliminato</h4>'?>
+<?php endif ?>
+<?php if($this->modifica):?>
+<?php echo '<h5 style="color:red">Utente '.$this->user.' modificato.</h4>'?>
+<?php endif ?>
+
 </div>
 <div class=tabella id=gestione><table class=elenco><th>Username</th><th>Nome</th><th>Cognome</th>
             <?php foreach ($this->utenti as $type):
@@ -17,7 +25,7 @@ echo $this->jS($filename);
             echo "<td>$type->cognome</td><td>";?>
             <a  class="ancora" type="submit" onClick=" return conferma()"  href=" <?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'eliminapart',
+                        'action'     => 'elimina',
                         'id_U'       => $type->id_U,
                         'nome'       => $type->nome,
                         ), 
