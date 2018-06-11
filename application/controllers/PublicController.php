@@ -60,8 +60,8 @@ class PublicController extends Zend_Controller_Action
         $paged = $this->_getParam('page', 1);
         $key= $this->_getParam('getEventi', null);
         $eventi=$this->_publicModel->getEventi($key,$paged);
-        $part=$this->_publicModel->getPartecipazioni();
-        $this->view->assign(array('Eventi' => $eventi,'Part'=>$part));
+        $partecipazioni=$this->_publicModel->getPartecipazioni();
+        $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni));
         
     }
 
@@ -163,6 +163,8 @@ class PublicController extends Zend_Controller_Action
                 $paged = $this->_getParam('page', 1);
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $data, $luogo, $paged);
                 $this->view->assign(array('Eventi' => $eventi));
+                $partecipazioni=$this->_publicModel->getPartecipazioni();
+                $this->view->assign(array('Part'=>$partecipazioni));
     
     }
     public function iniettaValori() 

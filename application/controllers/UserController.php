@@ -86,7 +86,8 @@ class UserController extends Zend_Controller_Action
         $eventi=$this->_publicModel->getEventi($key,$paged);
         $this->_helper->getHelper('layout')->disableLayout();
         $this->_helper->layout->setLayout('layout');
-        $this->view->assign(array('Eventi' => $eventi));
+        $partecipazioni=$this->_publicModel->getPartecipazioni();
+        $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni));
     }
     public function acquistoAction()
     {
@@ -149,7 +150,8 @@ class UserController extends Zend_Controller_Action
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
                 $this->_helper->getHelper('layout')->disableLayout();
                 $this->_helper->layout->setLayout('layout');
-                $this->view->assign(array('Eventi' => $eventi));
+                $partecipazioni=$this->_publicModel->getPartecipazioni();
+                $this->view->assign(array('Eventi' => $eventi,'Part'=>$partecipazioni));
     
     }
     public function genpdfAction()

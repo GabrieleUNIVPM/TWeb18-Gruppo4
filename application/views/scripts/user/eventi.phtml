@@ -33,7 +33,10 @@ $id=0; $numeroacquisti=0;
           echo "Prezzo: $type->prezzo €";
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
-          echo "<br>Orario di inizio: $type->orario</p>";
+          echo "<br>Orario di inizio: $type->orario";
+          $partecipazioni=0;
+          foreach ($this->Part as $part){if($part->nomeevento===$type->nome){$partecipazioni=($partecipazioni+1);}}
+          echo "<br><b>$partecipazioni persone sono interessate a partecipare</b></p>";
           echo '<br><a class=ancora onclick='."toggleEventi($id)".'>Clicca qui per saperne di più</a></td></tr></table></div>';
           echo '<div class='."estensione".' id='."$id".'>';
           echo "<div class=tabella><table class=elenco><tr colspan=2>";
