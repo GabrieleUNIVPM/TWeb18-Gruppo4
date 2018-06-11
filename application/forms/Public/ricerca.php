@@ -77,7 +77,7 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             'multiOptions' => $regs,
     ));
         $this->addElement('hidden', 'id_reg', array(
-            'value' => $regs['id'],
+            //'value' => $regs['id'],
             ));
         
         $provs=array();
@@ -95,7 +95,7 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
             ));
             
         $this->addElement('hidden', 'id', array(
-        'value' => $provs['id'],
+        //'value' => $provs['id'],
         ));
         
         $cities=array();

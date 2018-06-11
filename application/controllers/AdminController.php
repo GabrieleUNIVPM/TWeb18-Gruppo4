@@ -59,27 +59,49 @@ class AdminController extends Zend_Controller_Action
     public function gestisciutenteAction()
     {
         $keys=$this->_adminModel->getUtenti();
-        $this->view->assign(array(
-            		'utenti' => $keys,
-            		)
-        );
+        
+        $elimina = $this->getParam('elimina');
+        $modifica = $this->getParam('modifica');
+        if($elimina){
+            $user = $this->getParam('user');
+            $this->view->assign(array('utenti' => $keys,'user' => $user,'elimina' => $elimina));
+            } else if($modifica){
+                $user = $this->getParam('user');
+                $this->view->assign(array('utenti' => $keys,'user' => $user, 'modifica' => $modifica)); 
+                } else  {
+                    $this->view->assign(array('utenti' => $keys));
+                        }    
+        
+     //   $this->view->assign(array('utenti' => $keys,));
     }
      public function gestiscipartAction()
     {
+        $paged = $this->_getParam('page', 1);
         $keys=$this->_adminModel->getUtenti();
-        $this->view->assign(array(
-            		'utenti' => $keys,
-            		)
-        );
+        
+        $elimina = $this->getParam('elimina');
+        $modifica = $this->getParam('modifica');
+        if($elimina){
+            $user = $this->getParam('user');
+            $this->view->assign(array('utenti' => $keys,'user' => $user,'elimina' => $elimina));
+        }else if($modifica){
+            $user = $this->getParam('user');
+            $this->view->assign(array('utenti' => $keys,'user' => $user,'modifica' => $modifica)); 
+        }else{
+           $this->view->assign(array('utenti' => $keys)); 
+        }
     }
+    
      public function eliminapartAction()
     {
         $id = $this->getParam('id_U');
         $nome = $this->getParam('nome');
+        $elimina = true;
         $this->_adminModel->cancellaUtente($id);
         $this->_adminModel->cancellaPartner($nome);
-        $this->_helper->redirector('gestiscipart','admin','default');
+        $this->_helper->redirector('gestiscipart','admin','default', array('part'=>$id, 'elimina' => $elimina));
     }
+    
     public function modpartAction() {
         $user = $this->getParam('username');
         $nome = $this->getParam('nome');
@@ -89,7 +111,8 @@ class AdminController extends Zend_Controller_Action
         $this->formMP->setValuesUser($utente);  
         $this->view->modpartnerForm = $this->formMP;
     }
-     public function getModpartnerForm(){
+    
+    private function getModpartnerForm(){
         $urlHelper = $this->_helper->getHelper('url');
 		$this->formMP = new Application_Form_Admin_Modpartner();
 		$this->formMP->setAction($urlHelper->url(array(
@@ -99,22 +122,31 @@ class AdminController extends Zend_Controller_Action
 				));
 		return $this->formMP;
     }
+    
     public function modificapartnerAction(){
-                $id = $this->getParam('id_U');
-                $nome = $this->getParam('nome');
+            //    $id = $this->getParam('id_U');
+           //     $nome = $this->getParam('nome');
                 if (!$this->getRequest()->isPost()) {
 	            $this->_helper->redirector('index','public');}
-		$form = $this->formMP;
-      		$values = $form->getValues();
-                if($values['immagine'] === null){unset($values['immagine']);}
+                $form = $this->formMP;
+        //        $form->setValues($_POST);
                 
-                $e=$values['email'];$u=$values['username'];$p=$values['password'];
+                if (!$form->isValid($_POST)) {return $this->render('modpart');}
+                
+      		$values = $form->getValues();
+                $id = $values['id_U'];
+                if($values['immagine'] === null){unset($values['immagine']);}
+              //    $id = $values['id_U'];
+                  unset($values['id_U']);
+                
+            /*    $e=$values['email'];$u=$values['username'];$p=$values['password'];
                 unset ($values['email']);unset ($values['username']);unset ($values['password']);
                 $this->_adminModel->modificaPartner($values,$nome);
-                
-                $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
-		$this->_adminModel->modificaUtente($ut, $id);
-		$this->_helper->redirector('index');
+               */ 
+              //  $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
+		$modifica = true;
+                $this->_adminModel->modificaUtente($values, $id);
+		$this->_helper->redirector('gestiscipart', 'admin', 'default', array('modifica' => $modifica));
     }
     
     
@@ -128,28 +160,41 @@ class AdminController extends Zend_Controller_Action
     public function gestiscifaqAction()
     {
         $keys=$this->_adminModel->getFaq();
-        $this->view->assign(array(
-            		'faq' => $keys,
-            		)
-        );
+        $elimina = $this->getParam('elimina');
+        $modifica = $this->getParam('modifica');
+        if($elimina){
+            $faqs = $this->getParam('faqs');
+            $this->view->assign(array('faq' => $keys,'faqs' => $faqs,'elimina' => $elimina));
+      } else if($modifica){
+            $faqs = $this->getParam('faqs');
+            $this->view->assign(array('faq' => $keys,'faqs' => $faqs, 'modifica' => $modifica)); 
+      } else  {
+                    $this->view->assign(array('faq' => $keys,));
+              }
     }
+    
     public function eliminafaqAction()
     {
         $id = $this->getParam('id_F');
+        $elimina = true;
         $this->_adminModel->deleteFaq($id);
-        $this->_helper->redirector('gestiscifaq','admin','default');
+        $this->_helper->redirector('gestiscifaq','admin','default', array('faqs'=>$id,'elimina' => $elimina));
     }
+    
     public function eliminaAction()
     {
+        $user = $this->getParam('username');
         $id = $this->getParam('id_U');
+        $elimina = true;
         $this->_adminModel->cancellaUtente($id);
-        $this->_helper->redirector('gestisciutente','admin','default');
+        $this->_helper->redirector('gestisciutente','admin','default', array('user'=>$user, 'elimina' => $elimina));
     }
        
     public function newpartnerAction()
         {
         
         }
+        
     public function newpartner1Action()
         {
         if (!$this->getRequest()->isPost()) {
@@ -240,8 +285,8 @@ class AdminController extends Zend_Controller_Action
                 $id = $values['id_F'];
                 unset($values['id_F']);
 		$this->_adminModel->modificaFaq($values, $id);
-            //    $modifica = true;
-                $this->_helper->redirector('gestiscifaq','admin','default'/*,array('modifica'=> $modifica)*/);
+                $modifica = true;
+                $this->_helper->redirector('gestiscifaq','admin','default',array('faqs'=>$id,'modifica'=> $modifica));
         }
     
     public function gestiscitipevAction()
@@ -317,7 +362,8 @@ class AdminController extends Zend_Controller_Action
                 $id = $values['id_U'];
                 unset($values['id_U']);
 		$this->_adminModel->modificaUtente($values, $id);
-		$this->_helper->redirector('index');
+                $modifica = true;
+		$this->_helper->redirector('gestisciutente', 'admin', 'default', array('user' => $values['username'] , 'modifica' => $modifica));
     }
     
            
@@ -370,7 +416,7 @@ class AdminController extends Zend_Controller_Action
 		return $this->_formMF;
         }
     
-    public function getModtipoForm(){
+    private function getModtipoForm(){
         $urlHelper = $this->_helper->getHelper('url');
 		$this->_formMT = new Application_Form_Admin_Modtipologia();
 		$this->_formMT->setAction($urlHelper->url(array(
@@ -380,7 +426,7 @@ class AdminController extends Zend_Controller_Action
 				));
 		return $this->_formMT;
     }
-    public function getModuserForm(){
+    private function getModuserForm(){
         $urlHelper = $this->_helper->getHelper('url');
 		$this->formMU = new Application_Form_Admin_Moduser();
 		$this->formMU->setAction($urlHelper->url(array(

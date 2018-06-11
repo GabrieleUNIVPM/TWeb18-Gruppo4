@@ -16,7 +16,7 @@ class Application_Form_Admin_Addfaq extends App_Form_Abstract
             'cols' => '22', 'rows' => '3',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('textarea', 'risposta', array(
@@ -24,7 +24,7 @@ class Application_Form_Admin_Addfaq extends App_Form_Abstract
             'cols' => '22', 'rows' => '3',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,2000))),
             'decorators' => $this->elementDecorators,
         ));
         

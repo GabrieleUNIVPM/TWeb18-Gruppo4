@@ -175,7 +175,7 @@ class PublicController extends Zend_Controller_Action
         $province= new Application_Model_Public_Province();
         $form = new Application_Form_Public_Ricerca();
  
-        $response = $form->processAjax($_GET); 
+        $response = $form->processAjax($_POST); 
         $temp=$province->getProvince($response);
         /*if ($response !== null) {
         	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
