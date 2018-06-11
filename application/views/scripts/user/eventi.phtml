@@ -28,7 +28,7 @@ $id=0; $numeroacquisti=0;
                         'default',true
         );?>" >Acquista </a><br><br><?php endif;?>
         <?php if($type->numerobiglietti == 0):?><a  class="ancora" type="submit">Biglietti terminati </a><br><br><?php endif;?>
-        
+        <?php if($type->numerobiglietti != 0):?>
         <?php $bool=false; foreach ($this->Part as $part){if($part->username===$this->Username and $part->nomeevento===$type->nome){$bool=true;}}
         if($bool===false):?>
         <a  class="ancora" type="submit" href=" <?= $this->url(array(
@@ -39,7 +39,7 @@ $id=0; $numeroacquisti=0;
                     );?>" >Parteciperò</a>
           <?php endif;
           if($bool===true):?> <a class="ancora" type="submit" onclick="alert('Hai già espresso la tua intenzione a partecipare a questo evento!')"> Parteciperò</a>
-          <?php endif;
+          <?php endif;endif;
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
           echo "Prezzo: $type->prezzo €";
