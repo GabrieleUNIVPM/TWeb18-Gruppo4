@@ -105,8 +105,15 @@ class UserController extends Zend_Controller_Action
 	}
         $form->setValues($this->_authService->getIdentity()->username,$this->getParam('nomeevento'));
 	$values = $form->getValues();
-        $this->_publicModel->salvaAcquisto($values);
-	$this->_helper->redirector('acquisti','user');
+        
+        $eventi=$this->_publicModel->getEventi($key);
+        $bool=false;
+        foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){if($nb->numerobiglietti < $values['numerobiglietti'])
+            {$bool=true;$this->_helper->redirector('bigliettifiniti','user');}}
+        }
+        if($bool===false){   
+        $this->_publicModel->salvaAcquisto($values);}
+        $this->_helper->redirector('acquisti','user');
     }
     
     public function getAcquistoForm(){
@@ -180,5 +187,7 @@ class UserController extends Zend_Controller_Action
         $this->_userModel->addPartecipazione($add);
         $this->_helper->redirector('eventi','user');
      }
+     public function bigliettifinitiAction()
+     {}
 
 }
