@@ -16,4 +16,8 @@ class Application_Resource_Partecipazioni extends Zend_Db_Table_Abstract
         $select = $this->select();
         return $this->fetchAll($select);
     }
+    public function addPartecipazione($info)
+    {
+        return $this->insert($info);
+    }
 }

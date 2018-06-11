@@ -169,5 +169,15 @@ class UserController extends Zend_Controller_Action
         $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome));
         
     }
+     public function partecipazioneAction()
+     {
+        $this->_helper->getHelper('layout')->disableLayout();
+    	$this->_helper->viewRenderer->setNoRender();
+        
+        $nomeevento = $this->getParam('nomeevento');
+        $add=array('nomeevento'=>$nomeevento,'username'=>$this->_authService->getIdentity()->username);
+        $this->_userModel->addPartecipazione($add);
+        $this->_helper->redirector('eventi','user');
+     }
 
 }

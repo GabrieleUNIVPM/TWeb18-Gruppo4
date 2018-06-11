@@ -25,7 +25,13 @@ $id=0; $numeroacquisti=0;
                         'action'     => 'confermaacq',
                         'nomeevento' => $type->nome), 
                         'default',true
-                    );?>" >Acquista </a>
+        );?>" >Acquista </a><br><br>
+        <a  class="ancora" type="submit" href=" <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'partecipazione',
+                        'nomeevento' => $type->nome), 
+                        'default',true
+                    );?>" >Parteciperò</a>
           <?php
           
           echo "</td>"; 
