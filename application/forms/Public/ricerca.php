@@ -43,7 +43,7 @@ public function init()
             'multiOptions' => $part
     ));
         $luogo = array();
-  $luog = $this->_publicModel->getEventi($luogo);
+  $luog = $this->_publicModel->getEventi();
   foreach ($luog as $l) {
     $luogo[$l->luogo] = $l->luogo;
   }

@@ -161,6 +161,8 @@ class PublicController extends Zend_Controller_Action
                 $paged = $this->_getParam('page', 1);
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $data, $luogo, $paged);
                 $this->view->assign(array('Eventi' => $eventi));
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->layout->setLayout('layout');
                 $partecipazioni=$this->_publicModel->getPartecipazioni();
                 $this->view->assign(array('Part'=>$partecipazioni));
     

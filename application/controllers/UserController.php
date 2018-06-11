@@ -82,8 +82,7 @@ class UserController extends Zend_Controller_Action
     public function eventiAction()
     {
         $paged = $this->_getParam('page', 1);
-        $key= $this->_getParam('getEventi', null);
-        $eventi=$this->_publicModel->getEventi($key,$paged);
+        $eventi=$this->_publicModel->getEventiAttivi($paged);
         $this->_helper->getHelper('layout')->disableLayout();
         $this->_helper->layout->setLayout('layout');
         $partecipazioni=$this->_publicModel->getPartecipazioni();
@@ -161,8 +160,10 @@ class UserController extends Zend_Controller_Action
                 $type=$values['tipologia'];
                 $part=$values['organizzatore'];
                 $nome=array($values['nome']);
+                $data=$values['data'];
+                $luogo=$values['luogo'];
                 $paged = $this->_getParam('page', 1);
-		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $paged);
+		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $data, $luogo, $paged);
                 $this->_helper->getHelper('layout')->disableLayout();
                 $this->_helper->layout->setLayout('layout');
                 $partecipazioni=$this->_publicModel->getPartecipazioni();

@@ -41,7 +41,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
         return $this->update($a,$where);
     }
     
-    public function getEventiCercati($type, $nome, $part,$data, $luogo, $paged=null)
+    public function getEventiCercati($type, $nome, $part, $data, $luogo, $paged=null)
     {
         $date = new Zend_Date();
         if(count($type)==0){$string1=("tipologia like '%'");} //se l'utente non ha selezionato nessuna tipologia vanno bene tutte
@@ -61,10 +61,17 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
             $string4=("luogo = ''");
             foreach ($luogo as $l) {$string4.=" or luogo = '".$l."' ";}
             }   
+        /*if(count($data)==0){$string5=("data like '%'");}//se l'utente non ha selezionato nessun luogo vanno bene tutti
+        else{
+            $string5=("data = ''");
+            foreach ($data as $da) {$string5.=" or data = '".$da."' ";}
+            } */
         $select=$this->select()->where($string1)
                                ->where($string2)
                                ->where($string3)
-                               ->where($string4)->where('data = ?',$data)
+                               ->where($string4)
+                            //   ->where($string5)
+                               ->where('data = ?',$data)
                                ->where("'".$date->get('YYYY-MM-dd')."' <= data");
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);

@@ -104,7 +104,7 @@ class PartnerController extends Zend_Controller_Action
         $nome = $this->getParam('id_E');
         $elimina = true;
         $this->_organizzazioniModel->deleteEvento($nome);
-        $this->_helper->redirector('gestisci','partner','default');
+        $this->_helper->redirector('gestisci','partner','default', array('elimina' => $elimina, ));
     }
  
     public function modevAction() 
@@ -130,8 +130,8 @@ class PartnerController extends Zend_Controller_Action
                     if ($values['immagine']==null) unset($values['immagine']);
                         $this->_organizzazioniModel->modificaEvento($values, $id);
                 $this->_organizzazioniModel->insertNome($this->_authService->getIdentity()->nome,$this->_authService->getIdentity()->id_U);
-            //    $modifica = true;
-                $this->_helper->redirector('index');
+                $modifica = true;
+                $this->_helper->redirector('gestisci', 'partner', 'default', array('modifica' => $modifica, 'id_E' => $id));
         }
     private function getModevForm() 
         {

@@ -34,7 +34,7 @@ $id=0; $numeroacquisti=0;
           echo "Biglietti rimanenti: $biglietti<br>";
           echo "Evento organizzato da $type->organizzatore";
           echo "<br>";
-          if($type->mappa != null):?> <iframe src= <?= $type->mappa ?> width='400px' height='240px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+          if($type->mappa != null):?> <iframe src= '<?= $type->mappa ?>' width='400px' height='240px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
           <?php endif;
           echo "</td></tr></table></div></div>";
           $id++;
