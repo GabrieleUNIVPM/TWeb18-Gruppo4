@@ -60,7 +60,9 @@ class PublicController extends Zend_Controller_Action
         $paged = $this->_getParam('page', 1);
         $key= $this->_getParam('getEventi', null);
         $eventi=$this->_publicModel->getEventi($key,$paged);
-        $this->view->assign(array('Eventi' => $eventi));
+        $part=$this->_publicModel->getPartecipazioni();
+        $this->view->assign(array('Eventi' => $eventi,'Part'=>$part));
+        
     }
 
     
