@@ -56,7 +56,7 @@ public function init()
     ));
         $this->addElement('text', 'data', array(
             'label' => 'Data (AAAA-MM-GG)',
-            'required' => true,
+            'required' => false,
             'validators' => array (array('date', false, array('yyyy/MM/dd'))),
             'decorators' => $this->elementDecorators,
         ));

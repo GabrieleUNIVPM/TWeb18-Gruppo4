@@ -71,6 +71,9 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
         ));
     }
     public function setValuesUser($u){
+        $this->addElement('hidden', 'id_U', array(
+            'value' =>$u['id_U']
+		));
         $this->addElement('text', 'email', array(
             'label' => 'Email',
             'value' => $u['email'],

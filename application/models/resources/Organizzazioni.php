@@ -28,9 +28,9 @@ class Application_Resource_Organizzazioni extends Zend_Db_Table_Abstract
     {
         return $this->fetchRow($this->select()->where('nome = ?', $nome));
     }
-    public function modificaPartner ($data,$nome)
+    public function modificaPartner ($data,$id_O)
     {
-        $where=$this->getAdapter()->quoteInto('nome =?',$nome);
+        $where=$this->getAdapter()->quoteInto('id_O =?',$id_O);
         return $this->update($data, $where);
     }
 }

@@ -8,7 +8,6 @@ class PublicController extends Zend_Controller_Action
     protected $_formlogin;
     protected $_logger;
     protected $_authService;
-    protected $_authServiceA;
     protected $key;
     
 

@@ -2,6 +2,8 @@
 class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
 {
 	protected $_organizzazioniModel;
+        protected $_authService;
+
 
         public function init()
     {
@@ -119,8 +121,11 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
         	array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+        $nome=array();
+        $this->_authService = new Application_Service_Auth();
+        $nome=$this->_authService->getIdentity()->nome;
         $this->addElement('hidden', 'organizzatore', array(
-            'value' => $this->nome
+            'value' => $nome
 		));
     }
 }

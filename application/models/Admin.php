@@ -93,9 +93,9 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Organizzazioni')->getPartner($nome);
     }
-    public function modificaPartner($data,$nome)
+    public function modificaPartner($data,$id_O)
     {
-        return $this->getResource('Organizzazioni')->modificaPartner($data,$nome);
+        return $this->getResource('Organizzazioni')->modificaPartner($data,$id_O);
     }
     
 }

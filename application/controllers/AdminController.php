@@ -124,26 +124,27 @@ class AdminController extends Zend_Controller_Action
     }
     
     public function modificapartnerAction(){
-            //    $id = $this->getParam('id_U');
-           //     $nome = $this->getParam('nome');
+                $id = $this->getParam('id_U');
+                $id_O = $this->getParam('id_O');
                 if (!$this->getRequest()->isPost()) {
 	            $this->_helper->redirector('index','public');}
                 $form = $this->formMP;
-        //        $form->setValues($_POST);
                 
                 if (!$form->isValid($_POST)) {return $this->render('modpart');}
                 
       		$values = $form->getValues();
-                $id = $values['id_U'];
-                if($values['immagine'] === null){unset($values['immagine']);}
-              //    $id = $values['id_U'];
-                  unset($values['id_U']);
+                if($values['immagine'] === null){unset($values['immagine']);}                
+                $e=$values['email'];
+                $u=$values['username'];
+                $p=$values['password'];
+                unset ($values['email']);
+                unset ($values['username']);
+                unset ($values['password']);
+                unset($values['id_O']);
+                unset($values['id_U']);
+                $this->_adminModel->modificaPartner($values,$id_O);
                 
-            /*    $e=$values['email'];$u=$values['username'];$p=$values['password'];
-                unset ($values['email']);unset ($values['username']);unset ($values['password']);
-                $this->_adminModel->modificaPartner($values,$nome);
-               */ 
-              //  $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
+                $ut=array('nome'=>$values['nome'],'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');        
 		$modifica = true;
                 $this->_adminModel->modificaUtente($values, $id);
 		$this->_helper->redirector('gestiscipart', 'admin', 'default', array('modifica' => $modifica));
