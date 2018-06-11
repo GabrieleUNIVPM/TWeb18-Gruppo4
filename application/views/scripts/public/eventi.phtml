@@ -15,7 +15,7 @@ $(function()
 	var formName='<?= $this->ricercaForm->getName() ?>';
 	$(":input").on('change', function(event) {
         var formElementId = $(this).attr('id');
-        province(formElementId, 'prov', actionUrl, formName);
+        province(actionUrl, formName);
     });
 });
 <?php $this->headScript()->captureEnd() ?>
