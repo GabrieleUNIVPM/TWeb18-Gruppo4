@@ -43,8 +43,9 @@ class PartnerController extends Zend_Controller_Action
     public function gestisciAction(){
         
         $paged = $this->_getParam('page', 1);
-        $key= $this->_getParam('getEventi', null);
-        $eventi=$this->_organizzazioniModel->getEventi($key,$paged);
+        $org = $this->_authService->getIdentity()->nome;
+        //$key= $this->_getParam('getEventiPart', null);
+        $eventi=$this->_organizzazioniModel->getEventiPart($org,$paged);
         
         $elimina = $this->getParam('elimina');
         $modifica = $this->getParam('modifica');

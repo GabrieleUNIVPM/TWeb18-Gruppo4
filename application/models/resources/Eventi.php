@@ -80,4 +80,16 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
     {
         return $this->fetchRow($this->select()->where('id_E = ?', $key));
     }
+    public function getEventiPart($org,$paged=null)
+    {
+        $select = $this->select()->where('organizzatore = ?',$org);
+		if (null !== $paged) {
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+			$paginator = new Zend_Paginator($adapter);
+			$paginator->setItemCountPerPage(2)
+		          	  ->setCurrentPageNumber((int) $paged);
+			return $paginator;
+		}
+        return $this->fetchAll($select);
+    }
 }
