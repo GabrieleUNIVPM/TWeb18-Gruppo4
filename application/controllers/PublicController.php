@@ -159,7 +159,7 @@ class PublicController extends Zend_Controller_Action
                 $part=$values['organizzatore'];
                 $nome=array($values['nome']);
                 $data=$values['data'];
-                $luogo=$values['nome'];
+                $luogo=$values['luogo'];
                 $paged = $this->_getParam('page', 1);
 		$eventi=$this->_publicModel->getEventiCercati($type, $nome, $part, $data, $luogo, $paged);
                 $this->view->assign(array('Eventi' => $eventi));
@@ -167,21 +167,15 @@ class PublicController extends Zend_Controller_Action
                 $this->view->assign(array('Part'=>$partecipazioni));
     
     }
-    public function iniettaValori() 
+    public function ajaxLogin() 
     {
         $this->_helper->getHelper('layout')->disableLayout();
     		$this->_helper->viewRenderer->setNoRender();
 
-        $province= new Application_Model_Public_Province();
-        $form = new Application_Form_Public_Ricerca();
- 
-        $response = $form->processAjax($_POST); 
-        $temp=$province->getProvince($response);
-        /*if ($response !== null) {
+        $loginform = new Application_Form_Public_Auth_Login();
+        $response = $loginform->processAjax($_POST); 
+        if ($response !== null) {
         	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
-        }*/
-        $this->_helper->json($temp);
-           // echo json_encode($temp);
-
+        }
     }
 }

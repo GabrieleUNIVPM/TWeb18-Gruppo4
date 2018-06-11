@@ -1,8 +1,8 @@
 <?php
 class Application_Form_Public_Ricerca extends App_Form_Abstract
 {protected $_publicModel;
-    
-    public function init()
+
+public function init()
     {
         $this->setMethod('post');
         $this->setName('Cerca');
@@ -63,55 +63,18 @@ class Application_Form_Public_Ricerca extends App_Form_Abstract
                          '12' => 'Dicembre',
                          ),
     ));
-        $regs = array();
-        $regs=['->Seleziona<-'];
-  $reg = $this->_publicModel->getRegioni();
-  foreach ($reg as $r) {
-    $regs[$r->nome] = $r->nome;
+        $luogo = array();
+  $luog = $this->_publicModel->getEventi($luogo);
+  foreach ($luog as $l) {
+    $luogo[$l->luogo] = $l->luogo;
   }
-        $this->addElement('select', 'reg', array(
-            'label' => 'Regione',
+        $this->addElement('multiCheckbox', 'luogo', array(
+            'label' => 'Luogo',
             'required' => false,
             'checked_value' => 'good',
             'unchecked_value' => 'bad',
-            'multiOptions' => $regs,
+            'multiOptions' => $luogo
     ));
-        $this->addElement('hidden', 'id_reg', array(
-            //'value' => $regs['id'],
-            ));
-        
-        $provs=array();
-        $provs=['->Seleziona<-'];
-        /*$prov = $this->_publicModel->getProvince('3');
-        foreach ($prov as $p) {
-        $provs[$p->nome] = $p->nome;
-  }*/
-        $this->addElement('select', 'prov', array(
-            'label' => 'Provincia',
-            'required' => false,
-            'checked_value' => 'good',
-            'unchecked_value' => 'bad',
-            'multiOptions' => $provs,
-            ));
-            
-        $this->addElement('hidden', 'id', array(
-        //'value' => $provs['id'],
-        ));
-        
-        $cities=array();
-        $cities=['->Seleziona<-'];
-  /*$city = $this->_publicModel->getComuni('15');
-  foreach ($city as $c) {
-    $cities[$c->nome] = $c->nome;
-  }*/     
-        $this->addElement('select', 'city', array(
-            'label' => 'Città',
-            'required' => false,
-            'checked_value' => 'good',
-            'unchecked_value' => 'bad',
-            'multiOptions' => $cities,
-    ));
-        
         $this->addElement('submit', 'riceroff', array(
             'label' => 'Cerca',
     ));

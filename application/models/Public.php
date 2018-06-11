@@ -54,25 +54,13 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Utenti')->salvaUtente($utente);
     }
-    public function getEventiCercati($type, $nome, $part /*$paged=null*/)
+    public function getEventiCercati($type, $nome, $part, $luogo, $paged=null)
     {
-        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part/* $paged*/);
+        return $this->getResource('Eventi')->getEventiCercati($type, $nome, $part, $luogo, $paged=null);
     }
      public function salvaAcquisto($a)
     {
         return $this->getResource('Acquisti')->salvaAcquisto($a);
-    }
-    public function getRegioni()
-    {
-        return $this->getResource('Regioni')->getRegioni();
-    }
-    public function getProvince($key)
-    {
-        return $this->getResource('Province')->getProvince($key);
-    }
-    public function getComuni($key)
-    {
-        return $this->getResource('Comuni')->getComuni($key);
     }
     public function aggiornabiglietti($key,$b)
     {

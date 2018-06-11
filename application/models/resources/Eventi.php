@@ -41,7 +41,7 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
         return $this->update($a,$where);
     }
     
-    public function getEventiCercati($type, $nome, $part, $paged=null)
+    public function getEventiCercati($type, $nome, $part, $luogo, $paged=null)
     {
         $date = new Zend_Date();
         if(count($type)==0){$string1=("tipologia like '%'");} //se l'utente non ha selezionato nessuna tipologia vanno bene tutte
@@ -51,16 +51,20 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
             }
         $string2=("descrizione like '%'");
               foreach ($nome as $d) {$string2.=" and descrizione like '%".$d."%' ";}
-        if(count($part)==0){$string3=("organizzatore like '%'");} //se l'utente non ha selezionato nessun organizzatore vanno bene tutte
+        if(count($part)==0){$string3=("organizzatore like '%'");} //se l'utente non ha selezionato nessun organizzatore vanno bene tutti
         else{
             $string3=("organizzatore = ''");
             foreach ($part as $a) {$string3.=" or organizzatore = '".$a."' ";}
             }
-        if(count($luogo)==0){$string4=("luogo like '%'");}
+        if(count($luogo)==0){$string4=("luogo like '%'");}//se l'utente non ha selezionato nessun luogo vanno bene tutti
+        else{
+            $string4=("luogo = ''");
+            foreach ($luogo as $l) {$string4.=" or luogo = '".$l."' ";}
+            }   
         $select=$this->select()->where($string1)
                                ->where($string2)
                                ->where($string3)
-                               ->where($string4)
+                               //->where($string4)
                                ->where("'".$date->get('YYYY-MM-dd')."' <= data");
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
