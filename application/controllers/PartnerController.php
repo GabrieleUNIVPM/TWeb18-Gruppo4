@@ -3,6 +3,7 @@
 class PartnerController extends Zend_Controller_Action
 {
     protected $_organizzazioniModel;
+    protected $_publicModel;
     protected $_form; 
     protected $_form1;
     protected $_authService;
@@ -14,7 +15,8 @@ class PartnerController extends Zend_Controller_Action
         $this->_helper->layout->setLayout('laypartner');  
      	$this->view->addForm = $this->getProductForm();  
         /*$this->view->gestisciForm = $this->getGestisciForm(); */
-        $this->_organizzazioniModel = new Application_Model_Organizzazioni();        
+        $this->_organizzazioniModel = new Application_Model_Organizzazioni();    
+        $this->_publicModel = new Application_Model_Public();    
         $this->_authService = new Application_Service_Auth();
         $ruolo = $this->_authService->getIdentity()->ruolo;
         $this->view->assign(array('ruolo' => $ruolo));
@@ -145,7 +147,11 @@ class PartnerController extends Zend_Controller_Action
         $this->view->assign(array('Nome' => $this->_authService->getIdentity()->nome));
         $this->view->assign(array('Eventi' => $eventi)); 
         $num=$this->_organizzazioniModel->getAcquisti();
-        $this->view->assign(array('Acquisti' => $num)); 
+        $this->view->assign(array('Acquisti' => $num));
+        
+        $partecipazioni=$this->_publicModel->getPartecipazioni();
+        $utenti=$this->_organizzazioniModel->getUtenti();
+        $this->view->assign(array('Part'=>$partecipazioni,'Utenti'=>$utenti));
         }
 }
 
