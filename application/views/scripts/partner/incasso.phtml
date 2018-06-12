@@ -1,1 +1,7 @@
-<?php echo $this->prof;
+<?php 
+echo "<h3>L' incasso nel periodo selezionato è : </h3><h2><b>$this->prof €<b></h2>";?>
+<a  class="ancora" type="submit" href="<?= $this->url(array(
+                        'controller' => 'partner',
+                        'action'     => 'anavend',), 
+                        'default',true
+         );?>">Torna all' analisi vendite</a>

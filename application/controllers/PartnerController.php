@@ -171,6 +171,8 @@ class PartnerController extends Zend_Controller_Action
         
         public function incassoAction()
         {
+            
+            
         $form1 = $this->formD;
         $ev = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$this->getParam('datastart'),$this->getParam('dataend'));
         $prof=0;$b=0;
@@ -179,14 +181,8 @@ class PartnerController extends Zend_Controller_Action
             foreach ($acq as $a){
                 if($i->nome===$a->nomeevento){
                     $b=$b+$a->numerobiglietti;}
-                  $prof=$prof + ($b*$i->prezzo);
-                }
-            
-        }
-        
-        
-        
-        $this->view->assign(array('prof'=>$prof));
+                  $prof=$prof + ($b*$i->prezzo);$b=0;}}
+       $this->view->assign(array('prof'=>$prof));
         
         }
 }
