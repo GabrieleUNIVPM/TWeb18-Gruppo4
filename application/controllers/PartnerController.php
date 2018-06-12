@@ -172,9 +172,22 @@ class PartnerController extends Zend_Controller_Action
         public function incassoAction()
         {
         $form1 = $this->formD;
-        $incasso = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$this->getParam('datastart'),$this->getParam('dataend'));
-        $this->view->assign(array('Incasso'=>$incasso));
+        $ev = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$this->getParam('datastart'),$this->getParam('dataend'));
+        $prof=0;$b=0;
+        $acq=$this->_organizzazioniModel->getAcquisti();
+        foreach ($ev as $i){
+            foreach ($acq as $a){
+                if($i->nome===$a->nomeevento){
+                    $b=$b+$a->numerobiglietti;}
+                  $prof=$prof + ($b*$i->prezzo);
+                }
             
+        }
+        
+        
+        
+        $this->view->assign(array('prof'=>$prof));
+        
         }
 }
 
