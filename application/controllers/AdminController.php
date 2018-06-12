@@ -144,11 +144,6 @@ class AdminController extends Zend_Controller_Action
                 $e=$this->getParam('email');
                 $u=$this->getParam('username');
                 $p=$this->getParam('password');
-                /*unset ($values['email']);
-                unset ($values['username']);
-                unset ($values['password']);
-                unset($values['id_O']);
-                unset($values['id_U']);*/
                 $this->_adminModel->modificaPartner($org,$id_O);
                 
                 $ut=array('nome'=>$n,'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');
