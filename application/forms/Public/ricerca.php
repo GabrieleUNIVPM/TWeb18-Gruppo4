@@ -55,7 +55,7 @@ public function init()
             'multiOptions' => $luogo
     ));
         $this->addElement('text', 'data', array(
-            'label' => 'Data',
+            'label' => 'Data dal',
             'class'=> 'datepicker',
             'required' => false,
             'validators' => array (array('date', false, array('yyyy/MM/dd'))),
