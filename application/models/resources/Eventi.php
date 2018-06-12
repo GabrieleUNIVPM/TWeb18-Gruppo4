@@ -118,10 +118,10 @@ class Application_Resource_Eventi extends Zend_Db_Table_Abstract
 		}
         return $this->fetchAll($select);
     }
-    public function calcolaIncasso($org,$datastart,$dataend,$evento)
+    public function calcolaIncasso($org,$datastart,$dataend)
     {
         $select=$this->select()->where('organizzatore=?',$org)
-                               ->where('nome=?',$evento)
+                              
                                ->where('data >=?',$datastart)
                                ->where('data <=?',$dataend);
         return $this->fetchAll($select);

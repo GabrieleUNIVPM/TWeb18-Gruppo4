@@ -15,20 +15,6 @@ class Application_Form_Organizzazioni_Product_Data extends App_Form_Abstract
         $this->_authService = new Application_Service_Auth();
         $nome=$this->_authService->getIdentity()->nome;
         
-        $eventi = array();
-        $tip = $this->_organizzazioniModel->getEventiPart($nome);
-        foreach ($tip as $cat) {
-        	$eventi[$cat -> nome] = $cat->nome;       
-        }
-
-        $this->addElement('select', 'nomeevento', array(
-            'label' => 'Evento',
-            'required' => true,
-            'multiOptions' => $eventi,
-            'values'=>$eventi,
-            'decorators' => $this->elementDecorators,
-        ));
-        
          $this->addElement('text', 'datastart', array(
             'label' => 'Inizio',
             'class'=> 'datepicker',

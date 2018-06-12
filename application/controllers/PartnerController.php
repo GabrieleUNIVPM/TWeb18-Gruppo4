@@ -158,12 +158,7 @@ class PartnerController extends Zend_Controller_Action
         $partecipazioni=$this->_publicModel->getPartecipazioni();
         $utenti=$this->_organizzazioniModel->getUtenti();
         $this->view->assign(array('Part'=>$partecipazioni,'Utenti'=>$utenti));
-        
-        
-        
-        
-        
-        
+               
         $urlHelper = $this->_helper->getHelper('url');
 	$this->formD = new Application_Form_Organizzazioni_Product_Data();
     	$this->formD->setAction($urlHelper->url(array(
@@ -173,23 +168,11 @@ class PartnerController extends Zend_Controller_Action
 		));
 		return $this->formD;
         }
-        private function getDataForm() 
-        {
-        /*$urlHelper = $this->_helper->getHelper('url');
-	$this->formD = new Application_Form_Organizzazioni_Product_Data();
-    	$this->formD->setAction($urlHelper->url(array(
-				'controller' => 'partner',
-				'action' => 'incasso'),
-				'default'
-		));
-		return $this->formD;*/
-        }
+        
         public function incassoAction()
         {
         $form1 = $this->formD;
-        $values = $form1->getValues();
-        $datastart=$values['datastart']; $dataend=$values['dataend'];$evento=$values['nomeevento'];
-        $incasso = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$datastart,$dataend,$evento);
+        $incasso = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$this->getParam('datastart'),$this->getParam('dataend'));
         $this->view->assign(array('Incasso'=>$incasso));
             
         }
