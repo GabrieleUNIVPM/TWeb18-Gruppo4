@@ -138,8 +138,9 @@ class AdminController extends Zend_Controller_Action
                 $m=$this->getParam('missione');
                 $d=$this->getParam('descrizione');
                 $r=$this->getParam('recapiti');
-                if($values['immagine'] === null){$org=array('nome'=>$n,'missione'=>$m,'descrizione'=>$d,'recapiti'=>$r);}
-                else{$org=array('nome'=>$n,'missione'=>$m,'descrizione'=>$d,'recapiti'=>$r,'immagine'=>$im);}
+                
+                $org=array('nome'=>$n,'missione'=>$m,'descrizione'=>$d,'recapiti'=>$r,'immagine'=>$im);
+                if($im===null){unset($org['immagine']);}
                 $e=$this->getParam('email');
                 $u=$this->getParam('username');
                 $p=$this->getParam('password');
@@ -150,7 +151,8 @@ class AdminController extends Zend_Controller_Action
                 unset($values['id_U']);*/
                 $this->_adminModel->modificaPartner($org,$id_O);
                 
-                $ut=array('nome'=>$n,'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');      
+                $ut=array('nome'=>$n,'email'=>$e,'username'=>$u,'password'=>$p,'ruolo'=>'partner');
+                if($p===''){unset($ut['password']);}
 		$modifica = true;
                 $this->_adminModel->modificaUtente($ut, $id);
 		$this->_helper->redirector('gestiscipart', 'admin', 'default', array('modifica' => $modifica));
