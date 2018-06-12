@@ -39,5 +39,6 @@ echo $this->jS($filename);
           echo '</td><tr>';
           endif; endforeach;
           echo '</table></div>';
-          echo "<div class=tabella id=gestione><table class=elenco><th>Calcola incasso in un intervallo di tempo specificato</td><tr><td>$this->dataForm</td></tr></table></div>";
-          
+          ?>
+          <h3>Seleziona un periodo di cui vuoi sapere l'incasso totale</h3>
+          <?php echo $this->dataForm; 
