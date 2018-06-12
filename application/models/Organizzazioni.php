@@ -47,4 +47,8 @@ class Application_Model_Organizzazioni extends App_Model_Abstract
     {
         return $this->getResource('Eventi')->getEventiPart($org,$paged);
     }
+    public function calcolaIncasso($org,$datastart,$dataend,$evento)
+    {
+        return $this->getResource('Eventi')->calcolaIncasso($org,$datastart,$dataend,$evento);
+    }
 }
