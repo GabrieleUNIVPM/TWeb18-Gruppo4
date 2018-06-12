@@ -26,7 +26,7 @@ $id=0; $numeroacquisti=0;
           <?php
           echo "</td>"; 
           echo "<td><p>$type->descrizione</p>";
-          echo "Prezzo: $type->prezzo €";
+          echo $this->price($type);
           echo "<br>Luogo: $type->luogo"; 
           echo "<br>Data: $type->data";
           echo "<br>Orario di inizio: $type->orario";
