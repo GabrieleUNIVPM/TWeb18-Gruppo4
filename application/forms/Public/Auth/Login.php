@@ -22,10 +22,9 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
         
         $this->addElement('password', 'password', array(
             'filters'    => array('StringTrim'),
-            'validators' => array('alnum',array('StringLength', true, array(3, 25)),
-                            array('Db_RecordExists',true,
-                            array('table' => 'utenti',
-                                  'field' => 'username'))),
+            'validators' => array(
+                array('StringLength', true, array(3, 25))
+            ),
             'required'   => true,
             'label'      => 'Password',
             'decorators' => $this->elementDecorators,
