@@ -1,7 +1,7 @@
 <?php
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
-{
+{   
     protected function _initRequest()
     {
         $this->bootstrap('FrontController');
@@ -39,6 +39,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 //metodo che si può utilizzare direttamente sulla classe dell'oggetto
                 //prende come parametro un adapter
 	}
+        
+        protected function _initFrontControllerPlugin()
+    {
+    	$front = Zend_Controller_Front::getInstance();
+    	$front->registerPlugin(new App_Controller_Plugin_Acl());
+    }
 
 }
 
