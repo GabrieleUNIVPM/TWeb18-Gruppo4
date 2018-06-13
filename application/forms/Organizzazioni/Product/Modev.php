@@ -47,7 +47,8 @@ class Application_Form_Organizzazioni_Product_Modev extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'data', array(
-            'label' => 'Data (AAAA/MM/GG)',
+            'label' => 'Data ',
+             'class' => 'datepicker',
             'value' => $values['data'],
             'filters' => array('StringTrim'),
             'required' => true,

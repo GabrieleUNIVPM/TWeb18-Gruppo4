@@ -43,7 +43,8 @@ class Application_Form_Organizzazioni_Product_Add extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
         ));
         $this->addElement('text', 'data', array(
-            'label' => 'Data (AAAA/MM/GG)',
+            'label' => 'Data ',
+             'class' => 'datepicker',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array (array('date', false, array('yyyy/MM/dd'))),

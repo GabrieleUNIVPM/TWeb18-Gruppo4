@@ -43,7 +43,8 @@ class Application_Form_Public_Registra extends App_Form_Abstract
                 ));
         
         $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il (AAAA/MM/GG)',
+            'label' => 'Nato il',
+            'class' => 'datepicker',
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array (array('date', false, array('yyyy/MM/dd'))),

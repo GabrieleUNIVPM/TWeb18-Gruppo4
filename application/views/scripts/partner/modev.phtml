@@ -1,8 +1,13 @@
 <?php
-echo '<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>';
+echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">';
+echo  '<link rel="stylesheet" href="/resources/demos/style.css">';
+echo '<script src="https://code.jquery.com/jquery-1.12.4.js"></script>';
+echo '<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>';
 $filename='conferma.js';
 echo $this->jS($filename);
 $filename='rowColor.js';
+echo $this->jS($filename);
+$filename='dp.js';
 echo $this->jS($filename);
 ?>
 <div class="static">

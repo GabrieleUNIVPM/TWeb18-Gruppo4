@@ -46,7 +46,8 @@ class Application_Form_User_Moduser extends App_Form_Abstract
 		));
         
         $this->addElement('text', 'natoil', array(
-            'label' => 'Nato il (AAAA/MM/GG)',
+            'label' => 'Nato il ',
+             'class' => 'datepicker',
             'value' => $values['natoil'],
             'filters' => array('StringTrim'),
             'required' => true,
