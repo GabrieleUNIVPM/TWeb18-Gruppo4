@@ -8,14 +8,6 @@ echo $this->jS($filename);
 <div>
  <h3>Gestisci Organizzatori</h3>
  <p>Utilizza questa form per gestire i dati degli organizzatori</p>
- 
-<?php if($this->elimina):?>
-<?php echo '<h5 style="color:red">Organizzatore eliminato</h4>'?>
-<?php endif ?>
-<?php if($this->modifica):?>
-<?php echo '<h5 style="color:red">Organizzatore '.$this->part.' modificato.</h4>'?>
-<?php endif ?>
- 
 </div>
 <div class=tabella id=gestione><table class=elenco><th>Username</th><th>Nome</th>
             <?php foreach ($this->utenti as $type):

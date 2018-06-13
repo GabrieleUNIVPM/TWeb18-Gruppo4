@@ -82,11 +82,11 @@ class AdminController extends Zend_Controller_Action
         $elimina = $this->getParam('elimina');
         $modifica = $this->getParam('modifica');
         if($elimina){
-            $u = $this->getParam('part');
-            $this->view->assign(array('utenti' => $keys,'part' => $u,'elimina' => $elimina));
+            $user = $this->getParam('user');
+            $this->view->assign(array('utenti' => $keys,'user' => $user,'elimina' => $elimina));
         }else if($modifica){
-            $u = $this->getParam('part');
-            $this->view->assign(array('utenti' => $keys,'part' => $u,'modifica' => $modifica)); 
+            $user = $this->getParam('user');
+            $this->view->assign(array('utenti' => $keys,'user' => $user,'modifica' => $modifica)); 
         }else{
            $this->view->assign(array('utenti' => $keys)); 
         }
@@ -95,11 +95,11 @@ class AdminController extends Zend_Controller_Action
      public function eliminapartAction()
     {
         $id = $this->getParam('id_U');
-        $user = $this->getParam('username');
+        $nome = $this->getParam('nome');
         $elimina = true;
         $this->_adminModel->cancellaUtente($id);
         $this->_adminModel->cancellaPartner($nome);
-        $this->_helper->redirector('gestiscipart','admin','default', array('elimina' => $elimina));
+        $this->_helper->redirector('gestiscipart','admin','default', array('part'=>$id, 'elimina' => $elimina));
     }
     
     public function modpartAction() {
@@ -138,7 +138,7 @@ class AdminController extends Zend_Controller_Action
                 $m=$this->getParam('missione');
                 $d=$this->getParam('descrizione');
                 $r=$this->getParam('recapiti');
-                    
+                
                 $org=array('nome'=>$n,'missione'=>$m,'descrizione'=>$d,'recapiti'=>$r,'immagine'=>$im);
                 if($im===null){unset($org['immagine']);}
                 $e=$this->getParam('email');
@@ -150,7 +150,7 @@ class AdminController extends Zend_Controller_Action
                 if($p===''){unset($ut['password']);}
 		$modifica = true;
                 $this->_adminModel->modificaUtente($ut, $id);
-		$this->_helper->redirector('gestiscipart', 'admin', 'default', array('part' => $u, 'modifica' => $modifica));
+		$this->_helper->redirector('gestiscipart', 'admin', 'default', array('modifica' => $modifica));
     }
     
     
@@ -363,10 +363,8 @@ class AdminController extends Zend_Controller_Action
 			return $this->render('moduser');
 		}
 		$values = $form->getValues();
-                
                 $id = $values['id_U'];
                 unset($values['id_U']);
-                if($values['password']==='') unset ($values['password']);
 		$this->_adminModel->modificaUtente($values, $id);
                 $modifica = true;
 		$this->_helper->redirector('gestisciutente', 'admin', 'default', array('user' => $values['username'] , 'modifica' => $modifica));

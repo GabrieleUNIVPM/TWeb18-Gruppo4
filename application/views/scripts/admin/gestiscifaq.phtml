@@ -8,14 +8,6 @@ echo $this->jS($filename);
 <div>
  <h3>Gestisci FAQ</h3>
  <p>Utilizza questa form per gestire le FAQ</p>
- 
-<?php if($this->elimina):?>
-<?php echo '<h5 style="color:red">FAQ eliminata</h4>'?>
-<?php endif ?>
-<?php if($this->modifica):?>
-<?php echo '<h5 style="color:red">FAQ modificata</h4>'?>
-<?php endif ?>
- 
 </div>
 <?php       
             foreach ($this->faq as $type):

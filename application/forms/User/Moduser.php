@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Admin_Moduser extends App_Form_Abstract
+class Application_Form_User_Moduser extends App_Form_Abstract
 {
     protected $_userModel;
     
@@ -84,7 +84,7 @@ class Application_Form_Admin_Moduser extends App_Form_Abstract
             ));
         
         $this->addElement('submit', 'modifica', array(
-            'label' => 'Conferma',
+            'label' => 'Salva Modifiche',
             'decorators' => $this->buttonDecorators,
 		)); 
         $this->addElement('hidden', 'id_U', array(
