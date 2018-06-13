@@ -68,7 +68,7 @@ class Application_Form_Admin_Moduser extends App_Form_Abstract
             'label' => 'Password',
             'value' => $values['password'],
             'filters' => array('StringTrim'),
-            'required' => true,
+            'required' => false,
             'validators' => array('Alnum',array('StringLength',true, array(1,15))),
             'decorators' => $this->elementDecorators,
 		));
