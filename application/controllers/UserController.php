@@ -29,6 +29,10 @@ class UserController extends Zend_Controller_Action
         $user = $this->_authService->getIdentity()->username;
         $utente = $this->_userModel->getUtente($user);
         $this->view->assign(array('utente' => $utente));
+        $modifica = $this->getParam('modifica');
+        if($modifica){
+            $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome,'modifica' => $modifica)); 
+        }
         $this->view->assign(array('nome' => $this->_authService->getIdentity()->nome,'cognome'=>$this->_authService->getIdentity()->cognome));
     }  
 
@@ -58,7 +62,8 @@ class UserController extends Zend_Controller_Action
                 $id = $values['id_U'];
                 unset($values['id_U']);
 		$this->_userModel->modificaUtente($values, $id);
-		$this->_helper->redirector('index','user');
+                $modifica=true;
+		$this->_helper->redirector('index','user','default', array('modifica' => $modifica));
     }
     
     public function getModuserForm(){

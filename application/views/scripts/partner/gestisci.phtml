@@ -8,6 +8,14 @@ echo $this->jS($filename);
 <div class="form_settings">
  <h3>Gestisci eventi</h3>
  <p>Utilizza questa sezione per gestire gli eventi nel Catalogo</p>
+ 
+<?php if($this->elimina):?>
+<?php echo '<h5 style="color:red">Evento eliminato</h4>'?>
+<?php endif ?>
+<?php if($this->modifica):?>
+<?php echo '<h5 style="color:red">Evento modificato.</h4>'?>
+<?php endif ?>
+ 
 </div>
         <?php foreach ($this->Eventi as $type):
           echo "<div class=tabella><table class=elenco><th colspan=2>$type->nome</th>";
