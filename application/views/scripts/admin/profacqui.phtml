@@ -14,8 +14,13 @@ echo $this->jS($filename);
         <?php if($type->metodo==='V'){echo 'Visa';}
               if($type->metodo==='M'){echo 'Mastercard';}
               if($type->metodo==='B'){echo 'Bonifico bancario';}
+              if($type->metodo==='P'){echo 'Paypal';}
     $tot=0;
-    foreach ($this->pr as $t){if($t->nome===$type->nomeevento){$tot=($t->prezzo*$type->numerobiglietti);}}
+    foreach ($this->pr as $t){
+        if($t->nome===$type->nomeevento){
+            if($type->sconto!=0){$sco=(($t->prezzo*$type->sconto)/100);$tot=(($t->prezzo-$sco)*$type->numerobiglietti);}
+            else {$tot=($t->prezzo*$type->numerobiglietti);}}
+        }
     echo "</td><td>$tot €</td></tr>";
         
     

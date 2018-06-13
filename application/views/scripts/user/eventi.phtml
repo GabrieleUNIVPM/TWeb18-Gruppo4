@@ -27,7 +27,8 @@ $id=0; $numeroacquisti=0;
           <?php if($type->numerobiglietti != 0):?><a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'user',
                         'action'     => 'confermaacq',
-                        'nomeevento' => $type->nome), 
+                        'nomeevento' => $type->nome,
+                        'sconto' => $type->sconto), 
                         'default',true
         );?>" >Acquista </a><br><br><?php endif;?>
         <?php if($type->numerobiglietti == 0):?><a  class="ancora" type="submit">Biglietti terminati </a><br><br><?php endif;?>

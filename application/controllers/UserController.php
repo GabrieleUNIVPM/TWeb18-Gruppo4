@@ -111,7 +111,8 @@ class UserController extends Zend_Controller_Action
             {$bool=true;
             $this->_helper->redirector('bigliettifiniti','user');
         }}}
-        if($bool===false){   
+        if($bool===false){
+        if($this->getParam('sconto')!=0){$values['sconto']=$this->getParam('sconto');}
         $this->_publicModel->salvaAcquisto($values);
         $nbr=0;
         foreach ($eventi as $nb){if($this->getParam('nomeevento')===$nb->nome){$nbr=$nb->numerobiglietti;}}
@@ -177,6 +178,7 @@ class UserController extends Zend_Controller_Action
         $metodo = $this->_getParam('metodo');
         $titolo = $this->_getParam('titolo');
         $t='';
+        if($metodo==='P'){$t= 'Paypal';}
         if($metodo==='V'){$t= 'Visa';}
         if($metodo==='M'){$t= 'Mastercard';}
         if($metodo==='B'){$t= 'Bonifico bancario';}

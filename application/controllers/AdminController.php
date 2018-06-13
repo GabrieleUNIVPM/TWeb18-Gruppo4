@@ -447,7 +447,7 @@ class AdminController extends Zend_Controller_Action
         $username=$this->getParam('username');
         $this->view->assign(array('nome' => $nome,'cognome'=>$cognome,'username'=>$username));
         $acq=$this->_adminModel->getAcquisti();
-        $pr=$this->_publicModel->getEventi('');
+        $pr=$this->_publicModel->getEventi();
         $this->view->assign(array('acq' => $acq,'pr'=>$pr));
         
         

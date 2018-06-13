@@ -18,15 +18,20 @@ echo $this->jS($filename);
           foreach ($this->Eventi as $type):
           if($type->organizzatore==$this->Nome):
           
-          $A=0;  
-          foreach ($this->Acquisti as $t){if($t->nomeevento===$type->nome){$A=$A+$t->numerobiglietti;}}
+          $A=0;$sconto=0;$sco=0;  
+          foreach ($this->Acquisti as $t){
+              if($t->nomeevento===$type->nome){
+                  $A=$A+$t->numerobiglietti;
+                  if($t->sconto !=0 ){$sconto=$t->sconto;}
+              }}
           $P=($A*100)/($type->numerobiglietti);
               
 	  echo "<tr><td>";
           echo $this->img($type->immagine);
           echo "</td><td>$type->nome</td>";
           echo "<td>$A</td><td>$P %</td>";
-          $I=$type->prezzo*$A;
+          if($sconto != 0){$sco=(($type->prezzo*$sconto)/100);$I=(($type->prezzo-$sco)*$A);}
+          else {$I=$type->prezzo*$A;}
           echo "<td>$I €</td><td>";
           
           foreach ($this->Part as $part){
