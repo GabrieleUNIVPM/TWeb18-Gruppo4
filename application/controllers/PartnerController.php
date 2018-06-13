@@ -175,13 +175,15 @@ class PartnerController extends Zend_Controller_Action
             
         $form1 = $this->formD;
         $ev = $this->_organizzazioniModel->calcolaIncasso($this->_authService->getIdentity()->nome,$this->getParam('datastart'),$this->getParam('dataend'));
-        $prof=0;$b=0;
+        $prof=0;$b=0;$sconto=0;
         $acq=$this->_organizzazioniModel->getAcquisti();
         foreach ($ev as $i){
             foreach ($acq as $a){
                 if($i->nome===$a->nomeevento){
-                    $b=$b+$a->numerobiglietti;}
-                  $prof=$prof + ($b*$i->prezzo);$b=0;}}
+                    $b=$b+$a->numerobiglietti;
+                    if($a->sconto != 0){$sconto=$a->sconto;}}
+                   if($sconto != 0) {$sco=(($i->prezzo*$sconto)/100);$prof=$prof + ($b*($i->prezzo-$sco));$b=0;$sco=0;$sconto=0;}
+                   else{$prof=$prof + ($b*$i->prezzo);$b=0;}}}
        $this->view->assign(array('prof'=>$prof));
         
         }
