@@ -1,0 +1,7 @@
+<?php
+Zend_Loader::loadClass('Zend_Pdf');
+$filename = '../../../docs/relazione-gruppo_04-2018.pdf';
+$pdf = Zend_Pdf::load($fileName, null);
+header("Content-type: application/pdf"); 
+echo $pdf->render();
+echo $this->pdf->render();

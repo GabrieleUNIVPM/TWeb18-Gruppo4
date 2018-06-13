@@ -178,4 +178,7 @@ class PublicController extends Zend_Controller_Action
         	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
         }
     }
+    
+    public function relpdfAction()
+    {}
 }

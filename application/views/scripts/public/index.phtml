@@ -4,7 +4,14 @@
       </div>
       <div id="content">
         <p>In questo sito potrai acquistare biglietti per i tuoi eventi preferiti</p>
-               <a class="ancora" target="_blank" href="../../../TWeb18-Gruppo4/docs/relazione-gruppo_04-2018.pdf">Documentazione Sito</a>
+        <a class="ancora" target="_blank" href="
+                         <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'relpdf',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">Documentazione Sito</a>
         <h2>Eventi che gestiamo:</h2>
         <ul><?php foreach ($this->tipologie as $type) 
 	  echo "<li> $type->tipologia </li>"?>
