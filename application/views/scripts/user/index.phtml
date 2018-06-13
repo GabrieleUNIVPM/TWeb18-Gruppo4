@@ -2,4 +2,9 @@
  <h3>Area Personale</h3>
  <p>Benvenuto <?php echo "$this->nome $this->cognome !"?></p>
  <p>Seleziona la funzione da attivare</p>
+ 
+<?php if($this->modifica):?>
+<?php echo '<h5 style="color:red">Dati modificati.</h4>'?>
+<?php endif ?>
+ 
 </div>
