@@ -94,12 +94,13 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
 		));
         
-        $this->addElement('password', 'password', array(
-            'label' => 'Password',
-            'filters' => array('StringTrim'),
-            'required' => true,
-            'validators' => array('Alnum',array('StringLength',true, array(3,15))),
-            'decorators' => $this->elementDecorators,
+        $this->addElement('hidden', 'password', array(
+            'value' => null,
+         //   'label' => 'Password',
+           // 'filters' => array('StringTrim'),
+          //  'required' => true,
+         //   'validators' => array('Alnum',array('StringLength',true, array(3,15))),
+         //   'decorators' => $this->elementDecorators,
 		));
         $this->addElement('submit', 'modpartner', array(
             'label' => 'Conferma',
