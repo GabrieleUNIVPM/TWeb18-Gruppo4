@@ -45,8 +45,3 @@ $id=0; $numeroacquisti=0;
           echo "</td></tr></table></div></div>";
           $id++;
           endforeach;
-          ?>
-
-<?php if($this->Eventi instanceof Zend_Paginator) {
-    echo $this->paginationControl($this->Eventi,'Sliding','public/_paginator.phtml');
-}
