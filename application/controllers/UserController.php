@@ -142,6 +142,9 @@ class UserController extends Zend_Controller_Action
     {
         $this->_helper->getHelper('layout')->disableLayout();
         $this->_helper->layout->setLayout('layout');
+        $numerobiglietti = $this->getParam('numerobiglietti');
+    //    $evento = $this->_userModel->getEvento($id);
+        $this->view->assign(array('numerobiglietti' => $numerobiglietti));
     }
     private function getRicercaForm()
     {
@@ -204,6 +207,8 @@ class UserController extends Zend_Controller_Action
      }
      public function bigliettifinitiAction()
      {
+         $this->_helper->getHelper('layout')->disableLayout();
+        $this->_helper->layout->setLayout('layout');
      }
 
 }

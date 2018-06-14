@@ -28,7 +28,8 @@ $id=0; $numeroacquisti=0;
                         'controller' => 'user',
                         'action'     => 'confermaacq',
                         'nomeevento' => $type->nome,
-                        'sconto' => $type->sconto), 
+                        'sconto' => $type->sconto,
+                        'numerobiglietti'=>$type->numerobiglietti,),
                         'default',true
         );?>" >Acquista </a><br><br><?php endif;?>
         <?php if($type->numerobiglietti == 0):?><a  class="ancora" type="submit">Biglietti terminati </a><br><br><?php endif;?>

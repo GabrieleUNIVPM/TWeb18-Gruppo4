@@ -29,7 +29,9 @@ $id=0; $numeroacquisti=0;
           <br><br><br><a  class="ancora" type="submit" href=" <?= $this->url(array(
                         'controller' => 'user',
                         'action'     => 'confermaacq',
-                        'nomeevento' => $type->nome), 
+                        'nomeevento' => $type->nome,
+                        'sconto' => $type->sconto,
+                        'numerobiglietti'=>$type->numerobiglietti), 
                         'default',true
                   );?>" >Acquista </a><br><br>
         <?php $bool=false; foreach ($this->Part as $part){if($part->username===$this->Username and $part->nomeevento===$type->nome){$bool=true;}}

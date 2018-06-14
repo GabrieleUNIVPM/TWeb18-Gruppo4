@@ -6,6 +6,14 @@ echo $this->jS($filename);
 echo '<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>';
 ?>
 <h3>Inserisci i dati per procedere con l'acquisto </h3>
+
+<?php if($this->numerobiglietti <= 10 && $this->numerobiglietti > 1):?>
+<?php echo '<h4 style="color:red">'. $this->numerobiglietti .' Biglietti rimanenti.</h4>'?>
+<?php endif ?>
+<?php if($this->numerobiglietti == 1):?>
+<?php echo '<h4 style="color:red">'. $this->numerobiglietti .' Biglietto rimanente.</h4>'?>
+<?php endif ?>
+
 <ul class="form_settings">
     
 <?php echo $this->acquistoForm; echo $this->nomeevento;

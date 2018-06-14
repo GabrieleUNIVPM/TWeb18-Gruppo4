@@ -10,9 +10,14 @@ class Application_Model_User extends App_Model_Abstract
     {
 	return $this->getResource('Tipoeventi')->getTipoEventi($key);
     }
-    public function getEventi($key)
+    public function getEventi()
     {
-        return $this->getResource('Eventi')->getEventi($key);
+        return $this->getResource('Eventi')->getEventi();
+    }
+    
+    public function getEvento($key)
+    {
+        return $this->getResource('Eventi')->getEventoByID($key);
     }
     
     public function getFaq()
