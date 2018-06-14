@@ -20,6 +20,7 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
         $this->addElement('text', 'nome', array(
             'label' => 'Nome',
             'value' => $part['nome'],
+            'attribs' => array('readonly' => 'true'),
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array(array('StringLength',true, array(1,25))),
@@ -85,6 +86,7 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
         $this->addElement('text', 'username', array(
             'label' => 'Username',
             'value' => $u['username'],
+            'attribs' => array('readonly' => 'true'),
             'filters' => array('StringTrim'),
             'required' => true,
             'validators' => array('Alnum',array('StringLength',true, array(3,15)),
@@ -94,13 +96,12 @@ class Application_Form_Admin_Modpartner extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
 		));
         
-        $this->addElement('hidden', 'password', array(
-            'value' => '',
-        //    'label' => 'Password',
-        //    'filters' => array('StringTrim'),
-        //    'required' => true,
-        //    'validators' => array('Alnum',array('StringLength',true, array(3,15))),
-        //    'decorators' => $this->elementDecorators,
+        $this->addElement('password', 'password', array(
+            'label' => 'Password',
+            'filters' => array('StringTrim'),
+            'required' => true,
+            'validators' => array('Alnum',array('StringLength',true, array(3,15))),
+            'decorators' => $this->elementDecorators,
 		));
         $this->addElement('submit', 'modpartner', array(
             'label' => 'Conferma',
