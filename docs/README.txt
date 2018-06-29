@@ -1,6 +1,6 @@
 README
 ======
-The resulting website is hosted at tweb.dii.univpm.it/~grp_04/ZendProject/public ,
+The webapp resulting from this project is hosted at tweb.dii.univpm.it/~grp_04/ZendProject/public ,
 username and password available by mailing to S1068979@studenti.univpm.it
 ======
 
