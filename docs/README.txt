@@ -1,5 +1,8 @@
 README
 ======
+The resulting website is hosted at tweb.dii.univpm.it/~grp_04/ZendProject/public ,
+username and password available by mailing to S1068979@studenti.univpm.it
+======
 
 This directory should be used to place project specfic documentation including
 but not limited to project notes, generated API/phpdoc documentation, or 
